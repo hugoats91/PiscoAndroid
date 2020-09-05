@@ -26,8 +26,10 @@ import com.google.gson.JsonObject;
 import com.pisco.app.LocalService.AppDatabase;
 import com.pisco.app.R;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.Utils.ViewModelInstanceList;
+import com.pisco.app.ViewModel.LoginViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -121,43 +123,59 @@ public class LogInEmailFragment extends Fragment {
                 tvEmail.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                 tvPassword.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                 textView.setVisibility(View.INVISIBLE);
-                ViewModelInstanceList.getLogInViewModelInstance().loginUser(LogInEmailFragment.this, email, password1, switchMantenerSesion, getContext(), (result, userState) -> {
-                    ViewModelInstanceList.getHomeViewModelInstance().postGetCityListFront(new Callback<ArrayList<JsonObject>>() {
-                        @EverythingIsNonNull
-                        @Override
-                        public void onResponse(Call<ArrayList<JsonObject>> call, Response<ArrayList<JsonObject>> responseList) {
-                            ArrayList<JsonObject> arrCity = responseList.body();
-                            if (arrCity != null) {
-                                Query.saveCityCount(getContext(), arrCity.size());
-                                if (result > 0) {
-                                    if (userState == 1) {
-                                        if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 1) {
-                                            Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioBienvenidoFragment);
-                                        } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1) {
-                                            Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioFragment);
-                                        } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 0) {
-                                            Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioFragment);
-                                        } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 0) {
-                                            Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioFragment);
-                                        } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 0) {
-                                            Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioFragment);
+                ViewModelInstanceList.getLogInViewModelInstance().loginUser(LogInEmailFragment.this, email, password1, switchMantenerSesion, getContext(), new LoginViewModel.LoginCallback() {
+                    @Override
+                    public void onSuccess(long result, int userState) {
+                        ViewModelInstanceList.getHomeViewModelInstance().postGetCityListFront(new Callback<ArrayList<JsonObject>>() {
+                            @EverythingIsNonNull
+                            @Override
+                            public void onResponse(Call<ArrayList<JsonObject>> call, Response<ArrayList<JsonObject>> responseList) {
+                                ArrayList<JsonObject> arrCity = responseList.body();
+                                if (arrCity != null) {
+                                    Query.saveCityCount(getContext(), arrCity.size());
+                                    if (result > 0) {
+                                        if (userState == 1) {
+                                            if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 1) {
+                                                Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioBienvenidoFragment);
+                                            } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1) {
+                                                Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioFragment);
+                                            } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 0) {
+                                                Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioFragment);
+                                            } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 0) {
+                                                Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioFragment);
+                                            } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 0) {
+                                                Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioFragment);
+                                            }
+                                        } else {
+                                            Navigation.findNavController(view).navigate(R.id.action_edit_profile);
                                         }
                                     } else {
-                                        Navigation.findNavController(view).navigate(R.id.action_edit_profile);
+                                        TextView textView = view.findViewById(R.id.textView);
+                                        textView.setVisibility(View.VISIBLE);
                                     }
-                                } else {
-                                    TextView textView = view.findViewById(R.id.textView);
-                                    textView.setVisibility(View.VISIBLE);
                                 }
                             }
-                        }
 
-                        @EverythingIsNonNull
-                        @Override
-                        public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
-                        }
+                            @EverythingIsNonNull
+                            @Override
+                            public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
+                            }
 
-                    });
+                        });
+                    }
+
+                    @Override
+                    public void onError(int type) {
+                        if(type == 3){
+                            String error = "";
+                            if (Query.getPortalId() == 1) {
+                                error = getString(R.string.app_en_login_clasico_error);
+                            } else {
+                                error = getString(R.string.app_es_login_clasico_error);
+                            }
+                            UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), error);
+                        }
+                    }
                 });
             } else {
                 tvEmail.setCompoundDrawablesWithIntrinsicBounds(null, null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion), null);

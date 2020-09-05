@@ -334,6 +334,7 @@ public class ProfileFragment extends Fragment {
                     tvPassword2.setVisibility(View.VISIBLE);
                     tvCountry.setVisibility(View.VISIBLE);
                     tvLanguage.setVisibility(View.VISIBLE);
+                    tvLanguageProfile.setVisibility(View.VISIBLE);
                     etName.setVisibility(View.GONE);
                     etEmail.setVisibility(View.GONE);
                     etPassword.setVisibility(View.GONE);
@@ -492,6 +493,7 @@ public class ProfileFragment extends Fragment {
                 RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) linRectangle.getLayoutParams();
                 params.height = params.height + 300;
                 linRectangle.requestLayout();
+                tvLanguageProfile.setVisibility(View.GONE);
                 tvName.setVisibility(View.GONE);
                 tvEmail.setVisibility(View.GONE);
                 tvPassword2.setVisibility(View.GONE);

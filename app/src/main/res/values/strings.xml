@@ -63,6 +63,12 @@
     <string name="app_es_saltar">Saltar</string>
     <string name="app_es_listo">¡Listo!</string>
 
+    <string name="app_es_red_social_error">"Ya existe una cuenta asociada con correo"</string>
+    <string name="app_en_red_social_error">"An account associated with mail already exists"</string>
+
+    <string name="app_es_login_clasico_error">"Ya existe una cuenta asociada para una red social"</string>
+    <string name="app_en_login_clasico_error">"There is already an associated account for a social network"</string>
+
     <string name="app_es_onboard_donde_1">¿Necesitas pisco para preparar&lt;br/&gt; &lt;b&gt;las increíbles recetas?&lt;/b&gt;</string>
     <string name="app_es_onboard_donde_2">Aquí te mostraremos cuáles son las&lt;br/&gt; &lt;b&gt;tiendas más cercanas.&lt;/b&gt;</string>
 

@@ -192,7 +192,6 @@
                                         android:id="@+id/IDTextViewIdioma"
                                         android:fontFamily="@font/clan_offc_book"
                                         android:textColor="@color/colorAccent"
-                                        android:visibility="gone"
                                         android:textSize="18dp" />
                                     <RelativeLayout
                                         android:layout_width="match_parent"

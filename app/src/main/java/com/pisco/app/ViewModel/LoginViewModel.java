@@ -34,6 +34,7 @@ public class LoginViewModel extends ViewModel {
 
     public interface LoginCallback{
         void onSuccess(long result, int userState);
+        void onError(int type);
     }
 
     private OAuthRepository oauthRepository = new OAuthRepository();
@@ -97,7 +98,6 @@ public class LoginViewModel extends ViewModel {
                     String imagePath = jsonObject.get("rutaImagen").getAsString();
                     int portalId = jsonObject.get("PortalId").getAsInt();
                     JsonArray jsonArrayStateListOnboarding = jsonObject.getAsJsonArray("listaEstadoOnnboarding");
-                    View view = ViewInstanceList.getDictionaryViews("login-email-fragment");
                     if (consultationResponse == StateUser.EXISTS.ordinal()) {
                         AppDatabase.INSTANCE.userDao().deleteAll();
                         AppDatabase.INSTANCE.userDao().deleteAllEntityStateOnboarding();
@@ -112,9 +112,8 @@ public class LoginViewModel extends ViewModel {
                         }
                         long result = AppDatabase.INSTANCE.userDao().insert(entityUser);
                         callback.onSuccess(result, userState);
-                    } else if (consultationResponse == StateUser.NO_EXISTS.ordinal()) {
-                        TextView textView = view.findViewById(R.id.textView);
-                        textView.setVisibility(View.VISIBLE);
+                    } else{
+                        callback.onError(consultationResponse);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -177,6 +176,8 @@ public class LoginViewModel extends ViewModel {
                         }
                         long result = AppDatabase.INSTANCE.userDao().insert(entityUser);
                         callback.onSuccess(result, userState);
+                    }else{
+                        callback.onError(consultationResponse);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

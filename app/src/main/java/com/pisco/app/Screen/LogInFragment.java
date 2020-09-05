@@ -46,6 +46,7 @@ import com.pisco.app.Utils.Query;
 import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.Utils.ViewInstanceList;
+import com.pisco.app.ViewModel.LoginViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -123,36 +124,52 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
                         String country = Query.getUserCountry(getContext());
                         int userType = UserType.FACEBOOK.ordinal();
                         int countryPortalId = Query.getPortalId();
-                        ViewModelInstanceList.getLogInViewModelInstance().logInOAuthUser(LogInFragment.this, name, email, password, confirmPassword, country, userType, countryPortalId, getContext(), (result, userState) -> {
-                            ViewModelInstanceList.getHomeViewModelInstance().postGetCityListFront(new Callback<ArrayList<JsonObject>>() {
-                                @EverythingIsNonNull
-                                @Override
-                                public void onResponse(Call<ArrayList<JsonObject>> call, Response<ArrayList<JsonObject>> responseList) {
-                                    ArrayList<JsonObject> arrCity = responseList.body();
-                                    if (arrCity != null) {
-                                        Query.saveCityCount(getContext(), arrCity.size());
-                                        if (result > 0) {
-                                            if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 1) {
-                                                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioBienvenidoFragment);
-                                            } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1) {
-                                                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
-                                            } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 0) {
-                                                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
-                                            } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 0) {
-                                                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
-                                            } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 0) {
-                                                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
+                        ViewModelInstanceList.getLogInViewModelInstance().logInOAuthUser(LogInFragment.this, name, email, password, confirmPassword, country, userType, countryPortalId, getContext(), new LoginViewModel.LoginCallback() {
+                            @Override
+                            public void onSuccess(long result, int userState) {
+                                ViewModelInstanceList.getHomeViewModelInstance().postGetCityListFront(new Callback<ArrayList<JsonObject>>() {
+                                    @EverythingIsNonNull
+                                    @Override
+                                    public void onResponse(Call<ArrayList<JsonObject>> call, Response<ArrayList<JsonObject>> responseList) {
+                                        ArrayList<JsonObject> arrCity = responseList.body();
+                                        if (arrCity != null) {
+                                            Query.saveCityCount(getContext(), arrCity.size());
+                                            if (result > 0) {
+                                                if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 1) {
+                                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioBienvenidoFragment);
+                                                } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1) {
+                                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
+                                                } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 0) {
+                                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
+                                                } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 0) {
+                                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
+                                                } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 0) {
+                                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
+                                                }
                                             }
                                         }
                                     }
-                                }
 
-                                @EverythingIsNonNull
-                                @Override
-                                public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
-                                }
+                                    @EverythingIsNonNull
+                                    @Override
+                                    public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
+                                    }
 
-                            });
+                                });
+                            }
+
+                            @Override
+                            public void onError(int type) {
+                                if(type == 4){
+                                    String error = "";
+                                    if (Query.getPortalId() == 1) {
+                                        error = getString(R.string.app_en_red_social_error);
+                                    } else {
+                                        error = getString(R.string.app_es_red_social_error);
+                                    }
+                                    UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), error);
+                                }
+                            }
                         });
                     } catch (Exception e) {
                         UtilDialog.infoMessage(getContext(), getString(R.string.app_name), "No se puede conectar con Facebook");
@@ -257,36 +274,52 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
             String country = Query.getUserCountry(getContext());
             int userType = UserType.GOOGLE.ordinal();
             int countryPortalId = Query.getPortalId();
-            ViewModelInstanceList.getLogInViewModelInstance().logInOAuthUser(this, name, email, password, confirmPassword, country, userType, countryPortalId, getContext(), (result, userState) -> {
-                ViewModelInstanceList.getHomeViewModelInstance().postGetCityListFront(new Callback<ArrayList<JsonObject>>() {
-                    @EverythingIsNonNull
-                    @Override
-                    public void onResponse(Call<ArrayList<JsonObject>> call, Response<ArrayList<JsonObject>> responseList) {
-                        ArrayList<JsonObject> arrCity = responseList.body();
-                        if (arrCity != null) {
-                            Query.saveCityCount(getContext(), arrCity.size());
-                            if (result > 0) {
-                                if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 1) {
-                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioBienvenidoFragment);
-                                } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1) {
-                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
-                                } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 0) {
-                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
-                                } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 0) {
-                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
-                                } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 0) {
-                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
+            ViewModelInstanceList.getLogInViewModelInstance().logInOAuthUser(this, name, email, password, confirmPassword, country, userType, countryPortalId, getContext(), new LoginViewModel.LoginCallback() {
+                @Override
+                public void onSuccess(long result, int userState) {
+                    ViewModelInstanceList.getHomeViewModelInstance().postGetCityListFront(new Callback<ArrayList<JsonObject>>() {
+                        @EverythingIsNonNull
+                        @Override
+                        public void onResponse(Call<ArrayList<JsonObject>> call, Response<ArrayList<JsonObject>> responseList) {
+                            ArrayList<JsonObject> arrCity = responseList.body();
+                            if (arrCity != null) {
+                                Query.saveCityCount(getContext(), arrCity.size());
+                                if (result > 0) {
+                                    if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 1) {
+                                        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioBienvenidoFragment);
+                                    } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1) {
+                                        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
+                                    } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 0) {
+                                        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
+                                    } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 0) {
+                                        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
+                                    } else if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("Bienvenidos").getSesiState() == 0) {
+                                        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_inicioFragment);
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    @EverythingIsNonNull
-                    @Override
-                    public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
-                    }
+                        @EverythingIsNonNull
+                        @Override
+                        public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
 
-                });
+                        }
+                    });
+                }
+
+                @Override
+                public void onError(int type) {
+                    if(type == 4){
+                        String error = "";
+                        if (Query.getPortalId() == 1) {
+                            error = getString(R.string.app_en_red_social_error);
+                        } else {
+                            error = getString(R.string.app_es_red_social_error);
+                        }
+                        UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), error);
+                    }
+                }
             });
         }
     }
