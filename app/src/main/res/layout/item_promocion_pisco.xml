@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/IdPromocionPiscoCard"
+    android:layout_width="wrap_content"
+    android:layout_height="180dp"
+    app:cardBackgroundColor="@color/colorAccent"
+    app:cardCornerRadius="8dp">
+    <ImageView
+        android:id="@+id/IDPromImagen"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_height="100dp"
+        android:contentDescription="@string/app_name" />
+    <TextView
+        android:layout_below="@id/IDPromImagen"
+        android:id="@+id/IDPromTitulo"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:textAllCaps="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="110dp"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/clan_offc_bold"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/imageViewSeparator"
+        android:layout_width="fill_parent"
+        android:layout_height="0.8dp"
+        android:src="@drawable/divider_line"
+        android:layout_marginTop="130dp"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/app_name" />
+    <TextView
+        android:layout_below="@id/IDPromTitulo"
+        android:textStyle="bold"
+        android:id="@+id/IDPromTag"
+        android:textColor="#fff"
+        android:textSize="10sp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/clan_offc_bold"
+        android:layout_marginTop="138dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_below="@id/IDPromTag"
+        android:textStyle="bold"
+        android:id="@+id/IDPromPromocion"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        android:textAllCaps="true"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/clan_offc_black"
+        android:layout_marginTop="152dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</androidx.cardview.widget.CardView>

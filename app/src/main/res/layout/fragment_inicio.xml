@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Screen.StartFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--<include layout="@layout/layout_pp_in_inicio"/>-->
+    <LinearLayout
+        android:id="@+id/IDContentLinearLayout"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="60dp"
+                    android:elevation="10dp"
+                    android:background="@color/colorAccent">
+                    <include
+                        android:elevation="10dp"
+                        layout="@layout/layout_background_pp_in_part_first"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="vertical"
+                    android:background="#FFFFFF">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp">
+                        <LinearLayout
+                            android:id="@+id/IdLayoutInicioHeader"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:orientation="vertical"
+                            android:background="@color/colorAccent">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="62dp"
+                            android:layout_below="@+id/IdLayoutInicioHeader"
+                            android:layout_marginTop="-28dp"
+                            android:gravity="center">
+                            <RelativeLayout
+                                android:layout_width="120dp"
+                                android:layout_height="35dp"
+                                android:elevation="4dp"
+                                android:layout_marginRight="40dp"
+                                android:background="@drawable/button_border_inicio_white"
+                                android:orientation="horizontal">
+                                <Button
+                                    android:id="@+id/IdInicioButtonUsuario"
+                                    android:layout_height="35dp"
+                                    android:layout_width="wrap_content"
+                                    android:textAllCaps="false"
+                                    android:elevation="0dp"
+                                    android:layout_alignParentLeft="true"
+                                    android:textColor="@color/colorAccent"
+                                    android:textStyle="normal"
+                                    android:textSize="18dp"
+                                    android:fontFamily="@font/typeforgestudio_kapra_neue_regular"
+                                    android:background="@drawable/button_border_inicio_white_right"></Button>
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginTop="10.5dp"
+                                    android:layout_marginRight="10.5dp"
+                                    android:gravity="start|center"
+                                    android:elevation="0dp"
+                                    android:layout_alignParentRight="true"
+
+                                    android:src="@drawable/perfil_blue" />
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:elevation="4dp"
+                                android:background="@drawable/button_border_inicio_white"
+                                android:orientation="horizontal">
+                                <Button
+                                    android:layout_marginLeft="30dp"
+                                    android:id="@+id/IdInicioButtonStart"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:textAllCaps="false"
+                                    android:layout_alignParentRight="true"
+
+
+                                    android:elevation="0dp"
+                                    android:layout_alignParentLeft="true"
+                                    android:textColor="@color/colorAccent"
+                                    android:textStyle="normal"
+                                    android:textSize="18dp"
+                                    android:fontFamily="@font/typeforgestudio_kapra_neue_regular"
+                                    android:background="@drawable/button_border_inicio_white_left"
+                                    ></Button>
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginTop="10.5dp"
+                                    android:layout_marginLeft="8.5dp"
+                                    android:gravity="start|center"
+                                    android:elevation="0dp"
+                                    android:src="@drawable/estrella" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/IDapp_es_inicio_ruleta"
+                        android:layout_gravity="center"
+                        android:layout_width="260dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccent"
+                        android:fontFamily="@font/typeforgestudio_kapra_neue_regular"
+                        android:textStyle="normal"
+                        android:lineHeight="35dp"
+                        android:textSize="35sp"/>
+                    <!-- android:text="@string/app_es_inicio_ruleta"-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/IDRuletaLinearLAyout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+                            <!-- <ImageView
+                                android:id="@+id/imFondoRoulette"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ruletasombras"></ImageView>-->
+                            <ImageView
+                                android:id="@+id/imRoulette"
+                                android:layout_width="match_parent"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginEnd="24dp"
+                                android:layout_height="300dp"
+                                android:layout_marginTop="40dp"
+                                android:adjustViewBounds="true"
+                                android:layout_marginBottom="40dp" />
+                            <!--android:src="@drawable/ruleta1"-->
+                            <!--android:layout_centerInParent="true"-->
+                            <ImageButton
+                                android:id="@+id/imPointer"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="0dp"
+                                android:background="#05FFFFFF"
+                                android:clickable="true"
+                                android:paddingTop="5dp"
+                                android:src="@drawable/spin" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="40dp"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/rlInicioRecetas"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_border_blue"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <Button
+                                android:id="@+id/IdButtonInicioRecetas"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:background="#00FFFFFF"
+                                android:elevation="4dp"
+                                android:fontFamily="@font/clan_offc_bold"
+                                android:gravity="start|center"
+                                android:paddingLeft="25dp"
+                                android:textAllCaps="false"
+                                android:textColor="#fff"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                            <!-- android:text="@string/app_es_recetas"-->
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="18dp"
+                                android:layout_marginRight="25dp"
+                                android:src="@drawable/receta" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rlDondeComprar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/button_border_blue"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/rlInicioRecetas">
+
+                            <Button
+                                android:id="@+id/IdButtonInicioDondeComprar"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:background="#00FFFFFF"
+                                android:fontFamily="@font/clan_offc_bold"
+                                android:gravity="start|center"
+                                android:paddingLeft="25dp"
+                                android:textAllCaps="false"
+                                android:textColor="#fff"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                            <!-- android:text="@string/app_es_donde_comprar"-->
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="18dp"
+                                android:layout_marginRight="25dp"
+                                android:src="@drawable/canasta_white" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rlAprendoPisco"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/button_border_blue"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/rlDondeComprar">
+
+                            <Button
+                                android:id="@+id/IdButtonInicioAprendePisco"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:background="#00FFFFFF"
+                                android:fontFamily="@font/clan_offc_bold"
+                                android:gravity="start|center"
+                                android:paddingLeft="25dp"
+                                android:textAllCaps="false"
+
+                                android:textColor="#fff"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                            <!-- android:text="@string/app_es_aprende_sobre_pisco"-->
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="18dp"
+                                android:layout_marginRight="25dp"
+                                android:src="@drawable/wine_white" />
+
+                        </RelativeLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:paddingBottom="20dp"
+                    android:background="#eaeaea">
+                    <TextView
+                        android:id="@+id/IDapp_es_inicio_promociones"
+                        android:layout_width="240dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="normal"
+                        android:lineHeight="22dp"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/typeforgestudio_kapra_neue_regular"
+                        android:textSize="24dp"></TextView>
+                    <!-- android:text="@string/app_es_inicio_promociones"-->
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/promociones_pisco_view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp">
+                    </androidx.viewpager.widget.ViewPager>
+
+                </LinearLayout>
+
+                <!--<include
+
+                    layout="@layout/view_pager_promociones_pisco"
+                    />-->
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+</FrameLayout>

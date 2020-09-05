@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Screen.ProfileFragment">
+
+    <!-- TODO: Update blank fragment layout     <include layout="@layout/layout_pp_in_mi_perfil"/>
+-->
+    <Button
+        android:id="@+id/show_options_button"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="Foto"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/IDUsuaPasswords"
+        android:visibility="gone"
+        android:layout_height="wrap_content"></TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/background_perfil">
+        <ScrollView
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="60dp"
+                    android:elevation="8dp"
+                    android:background="@color/colorAccent">
+                    <include
+                        layout="@layout/layout_background_pp_in_part_first"
+                        />
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="match_parent">
+                    <View
+                        android:background="@color/colorAccent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="280dp"></View>
+                    <RelativeLayout
+                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:id="@+id/IDLinearLayoutContent"
+                        >
+                        <ImageView
+                            android:id="@+id/ImageViewButtonBackPerfil"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="20dp"
+                            android:contentDescription="TODO"
+                            android:elevation="8dp"
+                            android:layout_marginLeft="20dp"
+                            android:src="@drawable/backdonde"
+                            android:background="@drawable/backdonde_draw"/>
+                        <!--
+                        android:background="@drawable/myrect_shadow"-->
+                        <LinearLayout
+                            android:background="@drawable/rectangule_shadow"
+                            android:layout_margin="10dp"
+                            android:elevation="4dp"
+                            android:id="@+id/IDLinearLayoutRectanguleShadow"
+                            android:layout_height="650dp"
+                            android:layout_width="match_parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="20dp"
+                                android:orientation="vertical"
+                                >
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="15dp"
+                                    android:textSize="18dp"
+
+                                    android:id="@+id/IDapp_es_informacion_general"
+                                    android:fontFamily="@font/clan_offc_bold"
+                                    android:textColor="@color/colorAccent"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+                                <!--      android:text="Información general:"-->
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <ImageView
+                                        android:id="@+id/IdImagePerfil"
+                                        android:tag="image_tag"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="140dp"
+                                        android:layout_weight="1"
+                                        android:layout_marginTop="30dp"
+                                        android:src="@drawable/perfil_img"/>
+
+                                    <ImageView
+                                        android:id="@+id/IDImageViewCamera"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/IdImagePerfil"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginTop="-43dp"
+                                        android:layout_marginRight="100dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:clickable="true"
+                                        android:src="@drawable/camaraboton"></ImageView>
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="10dp"
+
+                                        android:textSize="35dp"
+                                        android:id="@+id/IDTextViewNombre"
+                                        android:fontFamily="@font/typeforgestudio_kapra_neue_regular"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/colorAccent" />
+                                    <EditText
+                                        android:background="@drawable/editext_border"
+                                        android:id="@+id/IDEditTextNombre"
+                                        android:inputType="textEmailAddress"
+                                        android:layout_marginLeft="50dp"
+                                        android:layout_marginRight="50dp"
+                                        style="@style/txt_input_with_perfil"
+                                        android:elevation="4dp"
+                                        android:visibility="gone"
+                                        />
+                                    <!-- android:text="Franceso"-->
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:gravity="center">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:paddingLeft="35dp"
+                                            android:id="@+id/IDTextViewPuntos"
+                                            android:fontFamily="@font/typeforgestudio_kapra_neue_regular"
+                                            android:textAppearance="?android:attr/textAppearanceLarge"
+                                            android:textColor="@color/colorAccent" />
+                                        <!-- android:text="0 pts."-->
+                                        <ImageView
+                                            android:id="@+id/imageView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="20dp"
+                                            android:layout_marginTop="5dp"
+                                            android:src="@drawable/estrella" />
+                                    </RelativeLayout>
+                                    <TextView
+                                        android:id="@+id/IDapp_es_idioma_perfil"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="40dp"
+
+                                        android:fontFamily="@font/clan_offc_bold"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="18dp" />
+                                    <!--      android:text="Correo:"-->
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:id="@+id/IDTextViewIdioma"
+                                        android:fontFamily="@font/clan_offc_book"
+                                        android:textColor="@color/colorAccent"
+                                        android:visibility="gone"
+                                        android:textSize="18dp" />
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="55dp"
+                                        android:id="@+id/IdRelativeContentIdioma"
+                                        android:layout_marginLeft="50dp"
+                                        android:visibility="gone"
+                                        android:layout_marginRight="50dp"
+                                        android:orientation="horizontal">
+
+                                        <Spinner
+                                            android:id="@+id/IdEditTextIdioma"
+                                            android:hint="@string/app_es_pais"
+                                            android:layout_height="match_parent"
+                                            android:elevation="4dp"
+
+                                            style="@style/txt_spinner_light"
+                                            />
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginRight="15dp"
+                                            android:rotation="180"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/dropdownbottom1" />
+
+                                    </RelativeLayout>
+                                    <TextView
+                                        android:id="@+id/IDapp_es_correo_perfil"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="10dp"
+
+                                        android:fontFamily="@font/clan_offc_bold"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="18dp" />
+                                    <!--      android:text="Correo:"-->
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:id="@+id/IDTextViewCorreo"
+                                        android:fontFamily="@font/clan_offc_book"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="18dp" />
+                                    <EditText
+                                        android:background="@drawable/editext_border"
+                                        android:id="@+id/IDEditTextCorreo"
+                                        android:inputType="textEmailAddress"
+                                        android:layout_marginLeft="50dp"
+                                        android:layout_marginRight="50dp"
+                                        style="@style/txt_input_with_perfil"
+                                        android:elevation="4dp"
+                                        android:visibility="gone"
+                                        />
+                                    <!-- android:text="fraflores@gmail.com"-->
+                                    <TextView
+                                        android:id="@+id/IDapp_es_pais_perfil"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="10dp"
+                                        android:fontFamily="@font/clan_offc_bold"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="18dp" />
+                                    <!--      android:text="Pais:"-->
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="10dp"
+                                        android:id="@+id/IDTextViewPais"
+                                        android:fontFamily="@font/clan_offc_book"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="18dp" />
+                                    <!-- android:text="Perú"-->
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="55dp"
+                                        android:id="@+id/IdRelativeContentPais"
+                                        android:layout_marginLeft="50dp"
+                                        android:visibility="gone"
+                                        android:layout_marginRight="50dp"
+                                        android:orientation="horizontal">
+
+                                        <Spinner
+                                            android:id="@+id/IdEditTextPais"
+                                            android:hint="@string/app_es_pais"
+                                            android:layout_height="match_parent"
+                                            android:elevation="4dp"
+
+                                            style="@style/txt_spinner_light"
+                                            />
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginRight="15dp"
+                                            android:rotation="180"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/dropdownbottom1" />
+
+                                    </RelativeLayout>
+                                   <!-- <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="55dp"
+                                        android:id="@+id/IdRelativeContentPais2"
+                                        android:layout_marginLeft="50dp"
+                                        android:visibility="gone"
+                                        android:layout_marginRight="50dp"
+                                        android:orientation="horizontal">
+
+                                        <Spinner
+                                            android:id="@+id/IdEditTextPais2"
+                                            android:hint="@string/app_es_pais"
+                                            android:layout_height="match_parent"
+                                            android:elevation="4dp"
+
+                                            style="@style/txt_spinner_light"
+                                            />
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_marginTop="20dp"
+                                            android:layout_marginRight="15dp"
+                                            android:rotation="180"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/dropdownbottom1" />
+
+                                    </RelativeLayout>-->
+                                    <TextView
+                                        android:id="@+id/IDapp_es_contrasena"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="10dp"
+
+                                        android:fontFamily="@font/clan_offc_bold"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="18dp" />
+                                    <!--      android:text="Contraseña:"-->
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="10dp"
+                                        android:id="@+id/IDTextViewPassword"
+                                        android:text="********************"
+                                        android:fontFamily="@font/clan_offc_book"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="18dp" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:gravity="center"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginLeft="50dp"
+                                        android:layout_marginRight="50dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:id="@+id/IDapp_en_contrasena_validacion"
+                                        android:fontFamily="@font/clan_offc_book"
+                                        android:textColor="@color/colorAccent"
+                                        android:visibility="gone"
+                                        android:textSize="14dp" />
+
+
+                                    <EditText
+                                        android:background="@drawable/editext_border"
+                                        android:id="@+id/IDEditTextPassword"
+                                        android:inputType="textPassword"
+
+                                        android:layout_marginLeft="50dp"
+                                        android:layout_marginRight="50dp"
+                                        style="@style/txt_input_with_perfil"
+                                        android:elevation="4dp"
+                                        android:visibility="gone"
+                                        />
+                                    <!-- android:text=""********************""-->
+
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_below="@+id/IDLinearLayoutContent"
+                        android:layout_marginLeft="40dp"
+                        android:id="@+id/IDapp_es_editar"
+                        android:layout_marginTop="-60dp"
+                        android:layout_marginRight="40dp"
+                        android:background="@drawable/button_border_blue"
+                        android:fontFamily="@font/clan_offc_bold"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        android:textSize="18dp"></Button>
+                    <!--      android:text="Editar"-->
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</FrameLayout>

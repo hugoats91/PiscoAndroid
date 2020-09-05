@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    tools:context=".Screen.InitialRecipeFragment">
+
+    <!-- TODO: Update blank fragment layout     <include layout="@layout/layout_pp_in_receta"/>-->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="60dp"
+                    android:elevation="4dp"
+                    android:background="@color/colorAccent">
+                    <include
+                        layout="@layout/layout_background_pp_in_part_first"
+                        />
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ImageViewBtnBackINRecetaInicio"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="40dp"
+                        android:elevation="4dp"
+
+                        android:src="@drawable/backdonde" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/CardViewINRecetaReceImagenRecetaCabecera"
+                        android:layout_width="match_parent"
+                        android:layout_height="380dp">
+                        <!-- app:cardCornerRadius="20dp"-->
+                        <ImageView
+                            android:id="@+id/ImageViewINRecetaReceImagenRecetaCabecera"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="top|center"
+                            android:scaleType="fitXY"
+                            android:elevation="0dp"
+                            android:background="@color/clear"
+
+                            >
+                            <!--
+                            android:src="@drawable/pisco_sour_3"
+                            android:cropToPadding="true"
+                            android:padding="5dp"
+                            android:background="@drawable/border_image"
+                            android:src="@drawable/pisco_sour_3"-->
+                        </ImageView>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <ImageView
+                        android:id="@+id/IDMeGustaCorazon"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_below="@+id/CardViewINRecetaReceImagenRecetaCabecera"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="-20dp"
+                        android:layout_marginRight="43dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/circle_shadow"
+                        android:elevation="5dp"
+                        android:src="@drawable/megustacorazoncirculo"
+                        android:visibility="gone"></ImageView>
+
+                    <TextView
+                        android:id="@+id/IDTextViewInRecetaTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/CardViewINRecetaReceImagenRecetaCabecera"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="-20dp"
+                        android:elevation="4dp"
+                        android:background="@drawable/border_inicio_white"
+                        android:fontFamily="@font/clan_offc_bold"
+                        android:paddingLeft="18dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="18dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16dp"></TextView>
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="45dp"
+                    android:layout_marginLeft="45dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/IDTextViewInRecetaDescription"
+                        android:fontFamily="@font/clan_offc_book"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12dp"
+                        android:lineHeight="20dp"
+                        android:justificationMode="inter_word"
+                        android:textColor="@color/colorAccent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/IDapp_es_ingredientes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="#d7da2e"
+                        android:fontFamily="@font/peforgestudio_kapra_neue_medium_0"
+                        android:textSize="28dp"></TextView>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvIngredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_ingrediente"/>
+                <!-- <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                     android:id="@+id/carouself"
+                     android:layout_width="match_parent"
+                     android:layout_height="80dp" />-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="45dp"
+                    android:layout_marginLeft="45dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/IDapp_en_preparacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="700"
+                        android:fontFamily="@font/peforgestudio_kapra_neue_medium_0"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="28dp"></TextView>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/IDLinearLayoutInRecetaPReparacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_below="@+id/IDTextViewAgainMasOpciones"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#fff"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/button_border_blue"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/IDButtonResultadoJuegoAgainJugarDenuevo"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:background="#00FFFFFF"
+                            android:elevation="4dp"
+                            android:paddingLeft="25dp"
+                            android:textAlignment="textStart"
+                            android:textStyle="bold"
+                            android:textColor="#fff"
+                            android:fontFamily="@font/clan_offc_bold"
+                            android:textSize="14dp"
+                            tools:ignore="RtlCompat"></Button>
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginRight="25dp"
+                            android:src="@drawable/ruleta_mini" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</FrameLayout><!--@-->

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Screen.AskResultFragment">
+
+    <!-- TODO: Update blank fragment layout <include layout="@layout/layout_pp_in_resultado_ask"></include>
+-->
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="60dp"
+                    android:elevation="4dp"
+                    android:background="@color/colorAccent">
+                    <include
+                        layout="@layout/layout_background_pp_in_part_first"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent">
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/CardViewINRecetaReceImagenRecetaCabecera"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/border_image"
+                            android:layout_height="550dp">
+                            <!-- app:cardCornerRadius="20dp"-->
+
+                            <ImageView
+                                android:id="@+id/IDResultadoAskImageViewCabecera"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="top|center"
+                                android:elevation="0dp"
+
+                                android:scaleType="fitXY"></ImageView>
+                            <!--
+
+                            android:src="@drawable/pisco_sour_3"-->
+
+                        </androidx.cardview.widget.CardView>
+
+
+                        <ImageView
+                            android:id="@+id/IDBackInResultadoAsk"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:clickable="true"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="40dp"
+                            android:elevation="4dp"
+                            android:src="@drawable/backdonde" />
+
+                        <TextView
+                            android:id="@+id/IdTextViewReceta"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ImageViewButtonBackInPerfil"
+                            android:layout_marginTop="180dp"
+                            android:layout_marginBottom="10dp"
+                            android:textStyle="bold"
+
+                            android:textColor="#d7da2e"
+                            android:textSize="60dp"
+                            android:lineHeight="70dp"
+                            android:elevation="4dp"
+                            android:fontFamily="@font/peforgestudio_kapra_neue_medium_0"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="35dp"
+                            android:textAlignment="textStart"
+
+                            ></TextView>
+                        <!--      android:text="@string/app_es_resultado_juego_titulo"-->
+                        <LinearLayout
+                            android:id="@+id/IDResultadoRecibeUnCantigoTextView"
+                            android:background="@drawable/button_border_inicio_white_2"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:layout_below="@+id/IdTextViewReceta"
+                            android:layout_width="match_parent"
+                            android:elevation="2dp"
+                            android:gravity="center"
+                            android:layout_height="60dp">
+
+                            <TextView
+                                android:id="@+id/marg"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/colorAccent"
+                                android:fontFamily="@font/clan_offc_bold"
+                                android:textStyle="bold"
+                                android:textSize="15dp"
+                                ></TextView>
+                            <!--android:text="@string/app_es_resultado_juego_titulo_cuerpo"-->
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/IDAskResultadoJuegoBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:layout_below="@+id/IDResultadoRecibeUnCantigoTextView"
+                            android:background="@drawable/button_border_inicio_white_2"
+                            android:paddingBottom="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="40dp"
+                            android:elevation="3dp"
+                            android:gravity="center"
+                            android:layout_centerInParent="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/Idapp_es_resultado_felicidad"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="@font/peforgestudio_kapra_neue_medium_0"
+                                android:layout_marginTop="20dp"
+                                android:textStyle="normal"
+                                android:textSize="28dp"
+                                android:textAlignment="center"
+                                android:textColor="@color/colorAccent"></TextView>
+                            <!--android:text="@string/app_es_resultado_felicidad"-->
+                            <TextView
+                                android:id="@+id/IDapp_es_resultado_ganaste_punto"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="20dp"
+
+                                android:textStyle="bold"
+                                android:textSize="55dp"
+                                android:fontFamily="@font/peforgestudio_kapra_neue_medium_0"
+                                android:textAlignment="center"
+                                android:lineHeight="60dp"
+                                android:textColor="@color/colorAccent"
+                                android:layout_marginRight="40dp"
+                                android:layout_marginLeft="40dp"></TextView>
+                            <!--android:text="@string/app_es_resultado_ganaste_punto"-->
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_below="@+id/IDAskResultadoJuegoBox"
+                            android:layout_marginTop="20dp"
+                            android:id="@+id/IDRecetaResultado"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="32dp"
+                            android:layout_marginRight="32dp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content">
+                                <RelativeLayout
+                                    android:id="@+id/IDButtonResultadoJuegoAskRecetas"
+                                    android:clickable="true"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="240dp">
+                                    <ImageView
+                                        android:id="@+id/ImgRelativeResultadoAsk"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"
+                                        android:elevation="0dp"
+                                        android:background="@drawable/receta_resultado"></ImageView>
+
+                                    <TextView
+                                        android:id="@+id/IDapp_es_resultado_ganaste_receta"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/ImgRelativeResultadoAsk"
+                                        android:layout_marginTop="-65dp"
+                                        android:layout_marginBottom="-120dp"
+                                        android:paddingLeft="40dp"
+                                        android:fontFamily="@font/clan_offc_bold"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="22dp"
+                                        android:textStyle="bold"></TextView>
+                                    <!--android:text="@string/app_es_resultado_ganaste_receta"-->
+                                </RelativeLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_below="@+id/IDRecetaResultado"
+                            android:layout_marginTop="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:background="#fff"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/rlDondeComprar"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="20dp"
+                                android:background="@drawable/button_border_blue"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/IDButtonResultadoJuegoAskDondeComprar"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:background="#00FFFFFF"
+                                    android:elevation="2dp"
+                                    android:fontFamily="@font/clan_offc_bold"
+                                    android:paddingLeft="25dp"
+                                    android:textAlignment="textStart"
+
+                                    android:textColor="#fff"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlCompat"></Button>
+                                <!--android:text="@string/app_es_donde_comprar"-->
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginTop="18dp"
+                                    android:layout_marginRight="25dp"
+                                    android:src="@drawable/canasta_white" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="20dp"
+                                android:background="@drawable/button_border_blue"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:background="#00FFFFFF"
+                                    android:elevation="2dp"
+                                    android:id="@+id/IDButtonResultadoJuegoAskAprendePisco"
+                                    android:paddingLeft="25dp"
+                                    android:textAlignment="textStart"
+                                    android:textColor="#fff"
+                                    android:textSize="14dp"
+                                    android:fontFamily="@font/clan_offc_bold"
+
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlCompat"></Button>
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginTop="18dp"
+                                    android:layout_marginRight="25dp"
+                                    android:src="@drawable/wine_white" />
+                                <!--android:text="@string/app_es_aprende_sobre_pisco"-->
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="20dp"
+                                android:background="@drawable/button_border_blue"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/IDButtonResultadoJuegoAskJugarDenuevo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:background="#00FFFFFF"
+                                    android:elevation="2dp"
+                                    android:paddingLeft="25dp"
+                                    android:textAlignment="textStart"
+                                    android:fontFamily="@font/clan_offc_bold"
+
+                                    android:textColor="#fff"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold"
+                                    tools:ignore="RtlCompat"></Button>
+                                <!--android:text="@string/app_es_jugar_denuevo"-->
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginTop="18dp"
+                                    android:layout_marginRight="25dp"
+                                    android:src="@drawable/ruleta_mini" />
+
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</FrameLayout>

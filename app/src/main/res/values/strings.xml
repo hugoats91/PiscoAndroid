@@ -1,0 +1,263 @@
+<resources>
+    <!--español-->
+    <string name="app_name">Pisco</string>
+    <string name="app_es_complete_campos">¡Complete los campos!</string>
+    <string name="app_es_nombre">Nombre</string>
+    <string name="app_es_correo">Correo electrónico</string>
+    <string name="app_es_contrasena">Contraseña</string>
+    <string name="app_es_contrasena_confirmar">Confirmar contraseña</string>
+    <string name="app_es_pais">País</string>
+    <string name="app_es_puntos_venta">No cuenta con puntos de venta en su pais</string>
+    <string name="app_en_puntos_venta">It does not have points of sale in your country</string>
+    <string name="app_es_cuenta"><u>Ya tengo una cuenta</u></string>
+    <string name="app_es_iniciar_sesion">Iniciar sesión</string>
+    <string name="app_es_mensaje_cambio_contrasena">Te hemos enviado un correo para cambiar tu contraseña</string>
+    <string name="app_es_mensaje_cambio_contrasena_exitoso">¡Bienvenido, nombre! Tu registro se ha realizado con éxito</string>
+    <string name="app_es_recuperar_contrasena">Recupera aquí tu contraseña</string>
+    <string name="app_es_recuperar">Recuperar</string>
+    <string name="app_es_continuar">Continuar</string>
+    <string name="app_es_above_img_login">Iniciar sesión con</string>
+    <string name="app_es_above_button_login">o</string>
+    <string name="app_es_o">o</string>
+    <string name="app_es_btn_login">Iniciar sesión con tu correo electrónico</string>
+    <string name="app_es_register"><u>Regístrate</u></string>
+    <string name="app_es_activity_login_email_above_img">La cuenta o la contraseña es incorrecta, vuelve a intentarlo</string>
+    <string name="app_es_completar_campos_password">Rellene los campos requeridos</string>
+    <string name="app_es_validacion_password">Recuerde que la contraseña debe tener mas de 5 caracteres</string>
+    <string name="app_es_validacion_email">Formato de correo incorrecto</string>
+    <string name="app_es_activity_login_email_btn_login">Ingresar</string>
+    <string name="app_es_activity_login_email_above_button_login"><u>¿Olvidaste tu contraseña?</u></string>
+    <string name="app_es_activity_login_email_above_button_in">Mantener la sesión iniciada</string>
+    <string name="app_es_correo_invalido">Correo invalido</string>
+    <string name="app_es_contrasena_invalido">Contraseña invalida</string>
+    <string name="app_es_nombre_invalido">Nombre invalido</string>
+    <string name="app_es_inicio_ruleta">¡Gira la ruleta y empieza a jugar!</string>
+    <string name="app_es_inicio_promociones">Promociones de pisco</string>
+    <string name="app_es_no_conexion_titulo">Sin conexión a Internet</string>
+    <string name="app_es_no_conexion">Revisa tu conexión Wi-Fi o de datos móviles para que sigas divirtiendote al máximo</string>
+    <string name="app_es_resultado_juego_titulo">¡TU RECETA PERFECTA ES</string>
+    <string name="app_es_resultado_juego_titulo_cuerpo">Acierta la respuesta o recibe un castigo</string>
+    <string name="app_es_jugar_denuevo">Jugar de nuevo</string>
+    <string name="app_es_resultado_felicidad">¡Felicitaciones!</string>
+    <string name="app_es_resultado_ganaste_punto">¡Ganaste un punto!</string>
+    <string name="app_es_aprende_sobre_pisco_mas">Aprende mas sobre pisco</string>
+    <string name="app_es_aprende_sobre_pisco">Aprende sobre pisco</string>
+    <string name="app_es_donde_comprar">¿Dónde comprar?</string>
+    <string name="app_es_resultado_ganaste_receta">Receta</string>
+    <string name="app_es_incorrecto">INCORRECTO</string>
+    <string name="app_es_recetas">Recetas</string>
+    <string name="app_es_ejemplo">Ejemplo</string>
+    <string name="app_es_resultado_jugar_mas_opciones">¡Juega para desbloquear más opciones!</string>
+    <string name="app_es_disponible">Disponible en: </string>
+    <string name="app_es_no_puntos_venta">Próximamente podrá buscar sus puntos de venta en su ciudad</string>
+    <string name="app_en_no_puntos_venta">Soon you will be able to find your points of sale in your city</string>
+    <string name="app_es_no_puntos_venta_aviso">Los puntos de venta estarán habilitados próximamente en tu país</string>
+    <string name="app_en_no_puntos_venta_aviso">The points of sale will be enabled soon in your country</string>
+
+    <string name="app_es_menu_perfil">PERFIL</string>
+    <string name="app_es_menu_jugar">JUGAR</string>
+    <string name="app_es_menu_receta">RECETAS</string>
+    <string name="app_es_menu_donde_comprar">¿DÓNDE COMPRAR?</string>
+    <string name="app_es_menu_aprende_sobre_pisco">APRENDE SOBRE PISCO</string>
+    <string name="app_es_menu_salir">CERRAR SESIÓN</string>
+    <string name="app_es_saltar">Saltar</string>
+    <string name="app_es_listo">¡Listo!</string>
+
+    <string name="app_es_onboard_donde_1">¿Necesitas pisco para preparar&lt;br/&gt; &lt;b&gt;las increíbles recetas?&lt;/b&gt;</string>
+    <string name="app_es_onboard_donde_2">Aquí te mostraremos cuáles son las&lt;br/&gt; &lt;b&gt;tiendas más cercanas.&lt;/b&gt;</string>
+
+    <string name="app_es_onboard_inicio_1">Pisco Spirit of Peru: Descubre los secretos de una &lt;b&gt;bebida convertida en tendencia.&lt;/b&gt;</string>
+    <string name="app_es_onboard_inicio_2">Al girar la ruleta &lt;b&gt;aprenderemos&lt;/b&gt;&lt;b&gt; juntos sobre el pisco&lt;/b&gt;&lt;b&gt; y exóticas recetas.&lt;/b&gt;</string>
+
+    <string name="app_es_onboard_receta_1">Bienvenido a la &lt;br/&gt;&lt;b&gt;sección de recetas.&lt;/b&gt; ¡Nuestra favorita!</string>
+    <string name="app_es_onboard_receta_2">Conviértete en un barman &lt;br/&gt;&lt;b&gt;experto en pisco.&lt;/b&gt;</string>
+
+    <string name="app_es_onboard_resultado_1">Descubre que coctel de pisco es perfecto para ti, &lt;b&gt;para obtener la receta deberás responder correctamente.&lt;/b&gt;</string>
+    <string name="app_es_onboard_resultado_2">Si fallas, tendrás que superar el challenge...&lt;b&gt;con mucho pisco.&lt;/b&gt;</string>
+
+    <string name="app_en_onboard_donde_1">Do you need pisco to prepare&lt;br/&gt; &lt;b&gt;the incredible recipes?&lt;/b&gt;</string>
+    <string name="app_en_onboard_donde_2">Here we will show you which are&lt;br/&gt; &lt;b&gt;the closest stores.&lt;/b&gt;</string>
+
+    <string name="app_en_onboard_inicio_1">Pisco Spirit of Peru:&lt;br/&gt;Discover the secrets of a&lt;br/&gt;&lt;b&gt; drink that has become a trend.&lt;/b&gt;</string>
+    <string name="app_en_onboard_inicio_2">Spinning the roulette wheel &lt;b&gt; we will learn &lt;/b&gt; &lt;br/&gt; &lt;b&gt; together about pisco &lt;/b&gt; &lt;b&gt; and exotic recipes. &lt;/b&gt;</string>
+
+    <string name="app_en_onboard_receta_1">Welcome to the &lt;br/&gt;&lt;b&gt; recipe section. &lt;/b&gt; Our favorite!</string>
+    <string name="app_en_onboard_receta_2">Become a &lt;br/&gt;&lt;b&gt; expert pisco bartender. &lt;/b&gt;</string>
+
+    <string name="app_en_onboard_resultado_1">Discover that pisco cocktail is perfect for you, &lt;b&gt;to obtain the recipe you must answer correctly. &lt;/b&gt;</string>
+    <string name="app_en_onboard_resultado_2">If you fail, you will have to overcome the challenge ... &lt;b&gt;with a lot of pisco. &lt;/b&gt;</string>
+
+    <string name="app_es_ver_receta">Ver receta</string>
+    <string name="app_es_receta_nombre">RECETAS</string>
+    <string name="app_es_receta_subtitulo">Seleccione el pisco de su interés</string>
+    <string name="app_es_receta_block">RECETAS BLOQUEADAS</string>
+    <string name="app_es_receta_block_subitulo">Sigue jugando para desbloquear más recetas</string>
+    <string name="app_es_preparacion">Preparación</string>
+    <string name="app_es_ingredientes">Ingredientes</string>
+    <string name="app_es_jugar">Jugar</string>
+
+
+    <string name="app_en_preparacion">Preparation</string>
+    <string name="app_en_ingredientes">Ingredients</string>
+
+
+    <string name="app_es_informacion_general">Información general</string>
+    <string name="app_es_correo_perfil">Correo:</string>
+    <string name="app_es_pais_perfil">Pais:</string>
+    <string name="app_es_contrasena_perfil">Contraseña:</string>
+
+    <string name="app_es_editar">Editar</string>
+    <string name="app_es_idioma_perfil">Idioma</string>
+    <string name="app_es">Español</string>
+
+    <string name="app_es_espanol">Español</string>
+    <string name="app_es_ingles">Ingles</string>
+    <string name="app_es_contrasena_validacion">La nueva contraseña debe ser mayor a 5 caracteres</string>
+    <string name="app_es_campos_completados">¡Correo Registrado Previamente!</string>
+
+    <string name="app_es_tomar_foto">Tomar foto</string>
+    <string name="app_es_elegir_galeria">Elegir Galería</string>
+    <string name="app_es_cancelar">Cancelar</string>
+    <string name="app_es_elegir_opcion">Elige una opción</string>
+    <string name="app_es_selecciona_app_imagen">Selecciona app de imagen</string>
+
+    <string name="app_es_permisos_denegados">Permisos denegados</string>
+    <string name="app_es_aceptar_permisos">Para usar las funciones de la app necesitas aceptar los permisos</string>
+    <string name="app_es_aceptar">Aceptar</string>
+
+    <string name="app_es_trophy_congratulations">¡Felicitaciones!</string>
+    <string name="app_es_trophy_subtitle">Lograste completar toda la ruleta, pronto tendremos nuevos retos para ti.</string>
+
+    <!--fin español-->
+    <!--ingles-->
+    <string name="app_en_nombre">Name</string>
+    <string name="app_en_correo">Email</string>
+    <string name="app_en_contrasena">Password</string>
+    <string name="app_en_contrasena_confirmar">Confirm Password</string>
+    <string name="app_en_pais">Country</string>
+    <string name="app_en_cuenta"><u>I already have an account</u></string>
+    <string name="app_en_iniciar_sesion">Log in</string>
+    <string name="app_en_mensaje_cambio_contrasena">We have sent you an email to change your password</string>
+    <string name="app_en_mensaje_cambio_contrasena_exitoso">Welcome, nombre! Your registration has been successful</string>
+    <string name="app_en_recuperar_contrasena">Retrieve your password here</string>
+    <string name="app_en_recuperar">Recover</string>
+    <string name="app_en_continuar">Continue</string>
+    <string name="app_en_above_img_login">Login with</string>
+    <string name="app_en_above_button_login">or</string>
+    <string name="app_en_o">or</string>
+    <string name="app_en_btn_login">Login with your email</string>
+    <string name="app_en_register"><u>Sign up</u></string>
+    <string name="app_en_activity_login_email_above_img">The account or password is incorrect, please try again.</string>
+    <string name="app_en_activity_login_email_btn_login">Enter</string>
+    <string name="app_en_activity_login_email_above_button_login"><u>Did you forget your password?</u></string>
+    <string name="app_en_activity_login_email_above_button_in">Keep the session started</string>
+    <string name="app_en_correo_invalido">Invalid email</string>
+    <string name="app_en_contrasena_invalido">Invalid password</string>
+    <string name="app_en_nombre_invalido">Invalid name</string>
+    <string name="app_en_inicio_ruleta">Spin the roulette and start playing!</string>
+    <string name="app_en_inicio_promociones">Pisco promotions</string>
+    <string name="app_en_no_conexion_titulo">No internet connection</string>
+    <string name="app_en_no_conexion">Check your Wi-Fi or mobile data connection so you can continue having fun to the fullest</string>
+    <string name="app_en_resultado_juego_titulo">YOUR PERFECT RECIPE IS</string>
+    <string name="app_en_resultado_juego_titulo_cuerpo">Hit the answer or get punished</string>
+    <string name="app_en_jugar_denuevo">Play again</string>
+    <string name="app_en_resultado_felicidad">Congratulations!</string>
+    <string name="app_en_resultado_ganaste_punto">You earned a point!</string>
+    <string name="app_en_aprende_sobre_pisco_mas">Learn more about pisco</string>
+    <string name="app_en_aprende_sobre_pisco">Learn about pisco</string>
+    <string name="app_en_donde_comprar">Where to buy?</string>
+    <string name="app_en_resultado_ganaste_receta">Recipe</string>
+    <string name="app_en_recetas">Recipes</string>
+    <string name="app_en_ejemplo">Example</string>
+    <string name="app_en_resultado_jugar_mas_opciones">Play to unlock more options!</string>
+    <string name="app_en_disponible">Available in:</string>
+    <string name="app_en_incorrecto">INCORRECT</string>
+    <string name="app_en_complete_campos">Fill in the fields!</string>
+
+    <string name="app_en_menu_perfil">PROFILE</string>
+    <string name="app_en_menu_jugar">TO PLAY</string>
+    <string name="app_en_menu_receta">RECIPES</string>
+    <string name="app_en_menu_donde_comprar">WHERE TO BUY?</string>
+    <string name="app_en_menu_aprende_sobre_pisco">LEARN ABOUT PISCO</string>
+    <string name="app_en_menu_salir">SIGN OFF</string>
+
+    <string name="app_en_saltar">Skip</string>
+    <string name="app_en_listo">Ready!</string>
+
+
+
+    <string name="app_en_diferente_password">Passwords do not match</string>
+    <string name="app_es_diferente_password">Las contraseñas no coinciden</string>
+    <string name="app_en_formato_email">Check email format</string>
+    <string name="app_es_formato_email">Verificar formato del correo</string>
+    <string name="app_en_recuperar_no_existe">Does not exist in our records</string>
+    <string name="app_es_recuperar_no_existe">No existe en nuestros registros</string>
+    <string name="app_en_recuperar_no_medio">You cannot recover you password by this means</string>
+    <string name="app_es_recuperar_no_medio">No puede recuperar su contraseña por este medio</string>
+    <string name="app_en_completar_campos_password">Fill in the required fields</string>
+    <string name="app_en_validacion_password">Remember that the password must be more than 5 characters</string>
+    <string name="app_en_validacion_email">The email format is wrong</string>
+    <string name="app_en_campos_completados">Email Registered Previously!</string>
+
+    <string name="app_en_ver_receta">See recipe</string>
+    <string name="app_en_receta_nombre">RECIPES</string>
+    <string name="app_en_receta_subtitulo">Select the pisco of your interest</string>
+
+    <string name="app_en_receta_block">LOCKED RECIPES</string>
+    <string name="app_en_receta_block_subitulo">Keep playing to unlock more recipes</string>
+    <string name="app_en_jugar">To play</string>
+    <string name="app_en_informacion_general">General information</string>
+    <string name="app_en_correo_perfil">Mail:</string>
+    <string name="app_en_pais_perfil">Country:</string>
+    <string name="app_en_contrasena_perfil">Password:</string>
+
+    <string name="app_en_editar">Edit</string>
+    <string name="app_en_idioma_perfil">Language</string>
+    <string name="app_en">English</string>
+
+    <string name="app_en_espanol">Spanish</string>
+    <string name="app_en_ingles">English</string>
+
+    <string name="app_en_contrasena_validacion">The new password must be greater than 5 characters</string>
+
+    <string name="app_en_tomar_foto">Take a picture</string>
+    <string name="app_en_elegir_galeria">Choose galery</string>
+    <string name="app_en_cancelar">Cancel</string>
+    <string name="app_en_elegir_opcion">Selected an option</string>
+    <string name="app_en_selecciona_app_imagen">Selected app image</string>
+
+
+    <string name="app_en_permisos_denegados">Permissions denied</string>
+    <string name="app_en_aceptar_permisos">To use the functions of the app you need to accept the permissions</string>
+    <string name="app_en_aceptar">To accept</string>
+
+    <string name="app_en_trophy_congratulations">Congratulations!</string>
+    <string name="app_en_trophy_subtitle">You managed to complete all the roulette, soon we want new challenges for you</string>
+    <!--fin ingles-->
+
+    <!--https://gist.github.com/incredimike/1469814-->
+
+    <!-- TODO: Remove or change this placeholder text -->
+   <!-- <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_status_fmt">Google User: %s</string>
+    <string name="google_title_text">Google Sign In</string>
+    <string name="firebase_status_fmt">Firebase UID: %s</string>
+    <string name="firebase_user_management">Firebase User Management</string>
+    <string name="signed_in">Signed In</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="signin">signin</string>
+    <string name="cancel">cancel</string>
+    <string name="title_activity_maps">Map</string>
+    -->
+
+
+    <string name="signin">signin</string>
+    <string name="cancel">cancel</string>
+    <string name="fb_login_protocol_scheme">fb1215537925470807</string>
+    <string name="facebook_app_id">1215537925470807</string>
+    <string name="facebook_application_id">1215537925470807</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyADXhdPWBunLkyJU-fCcF9LbKmYzA6dHZ8</string>
+
+    <!--<string name="server_client_id">297580232695-50uut303r82slf9nit0k03l0qvv56iah.apps.googleusercontent.com</string>-->
+
+</resources>

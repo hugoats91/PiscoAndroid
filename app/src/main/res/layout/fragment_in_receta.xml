@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    tools:context=".Screen.RecipeFragment">
+
+    <!-- TODO: Update blank fragment layout     <include layout="@layout/layout_pp_in_inicio_receta"/>
+-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="60dp"
+                    android:background="@color/colorAccent">
+                    <include
+                        layout="@layout/layout_background_pp_in_part_first"
+                        />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ImageViewBtnBackRecetaInicio"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="40dp"
+                    android:contentDescription="TODO"
+                    android:elevation="6dp"
+                    android:layout_marginLeft="40dp"
+                    android:src="@drawable/backdonde"
+                    android:background="@drawable/backdonde_draw"/>
+                <TextView
+                    android:id="@+id/IDapp_es_receta_nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/peforgestudio_kapra_neue_medium_0"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="28dp" />
+                <!-- android:text="RECETAS"-->
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/IDapp_es_receta_subtitulo"
+
+                    android:fontFamily="@font/clan_offc_book"
+
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12dp" />
+                <!--  android:text="Seleccione el pisco de su interés"-->
+                <ImageButton
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    style="@style/line_blue" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/recetas_pisco_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </androidx.viewpager2.widget.ViewPager2>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_receta_indicator"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabTextColor="#00FFFFFF"
+                    app:tabUnboundedRipple="false"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabIndicator="@null"
+                    app:tabIndicatorGravity="center"
+                    app:tabMaxWidth="12dp"
+                    app:tabGravity="center"
+                    android:layout_width="wrap_content"
+                    app:tabIndicatorColor="#00FFFFFF"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="10dp"/>
+
+                <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@drawable/top_shadow_gradient" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp"
+                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="20dp"
+                        android:textStyle="bold"
+                        android:id="@+id/IDapp_es_receta_block"
+
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="#d7da2e"
+                        android:fontFamily="@font/peforgestudio_kapra_neue_medium_0"
+                        android:textSize="28dp" />
+                    <!-- android:text="RECETAS BLOQUEADAS"-->
+                    <TextView
+                        android:id="@+id/IDapp_es_receta_block_subitulo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:fontFamily="@font/clan_offc_book"
+                        android:textColor="#541a66"
+                        android:textSize="10dp" />
+                    <!-- android:text="Sigue jugando para desbloquear más recetas"-->
+                    <!--<org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                        android:id="@+id/carouselRecetaBloqueada"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp" />-->
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvRecetasBloqueadas"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="16dp"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/item_receta_block"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/IDButtonResultadoJuegoAgainJugarDenuevo"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/button_border_blue"
+                        android:elevation="4dp"
+
+                        android:fontFamily="@font/clan_offc_bold"
+                        android:textColor="#fff"
+                        android:textSize="14dp"></Button>
+                    <!-- android:text="Jugar"-->
+                </LinearLayout>
+                <!--<androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:elevation="4dp"
+                    android:layout_gravity="bottom"
+                    app:cardBackgroundColor="#00FFFFFF"
+                    app:cardElevation="0dp"
+                    app:cardCornerRadius="10dp">
+
+                </androidx.cardview.widget.CardView>-->
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

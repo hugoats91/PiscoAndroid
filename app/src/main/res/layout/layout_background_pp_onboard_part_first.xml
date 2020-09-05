@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout style="@style/layout_pp_onboard_normal_RelativeLayoutFirst">
+    <LinearLayout
+        style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout">
+        <RelativeLayout
+            style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutFirstAndThree">
+            <ImageView
+                style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond_ImageViewFirst"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond">
+
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutFirstAndThree">
+            <ImageView
+                style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond_ImageView"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

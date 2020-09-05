@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    style="@style/layout_pp_login_large_RelativeLayoutSecond">
+    <LinearLayout
+        style="@style/layout_pp_login_large_RelativeLayoutSecond_LinearLayout">
+        <RelativeLayout
+            style="@style/layout_pp_login_large_RelativeLayoutSecond_LinearLayout_RelativeLayoutFirstAndThree">
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/layout_pp_login_large_RelativeLayoutSecond_LinearLayout_RelativeLayoutSecond">
+            <ImageView
+                style="@style/layout_pp_login_large_RelativeLayoutSecond_LinearLayout_RelativeLayoutSecond_ImageView"/>
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/layout_pp_login_large_RelativeLayoutSecond_LinearLayout_RelativeLayoutFirstAndThree">
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="large_LinearLayout_Layout_Height">80dp</dimen>
+    <dimen name="large_ImageButton">80dp</dimen>
+    <dimen name="large_ImageButton_Padding">10dp</dimen>
+    <dimen name="large_Button">80dp</dimen>
+
+    <dimen name="normal_LinearLayout_Layout_Height">45dp</dimen>
+    <dimen name="normal_TextSize">12.5dp</dimen>
+    <dimen name="normal_EditText_Height">50dp</dimen>
+    <dimen name="normal_EditText_Padding">10dp</dimen>
+    <dimen name="normal_Button">40dp</dimen>
+    <dimen name="normal_TextSize14">14dp</dimen>
+    <dimen name="text_on_board">18sp</dimen>
+
+    <dimen name="viewpager_next_item_visible">26dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">42dp</dimen>
+
+</resources>

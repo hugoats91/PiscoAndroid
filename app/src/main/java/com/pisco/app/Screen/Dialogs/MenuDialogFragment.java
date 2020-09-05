@@ -1,0 +1,179 @@
+package com.pisco.app.Screen.Dialogs;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
+import com.facebook.login.LoginManager;
+import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.R;
+import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilDialog;
+
+public class MenuDialogFragment extends DialogFragment {
+
+    public MenuDialogFragment() {}
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        return dialog;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.myFullscreenAlertDialogStyle);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_menu, container, false);
+    }
+
+    public void exit() {
+        Context context = getContext();
+        if (context != null){
+            Query.clearValuePreferences(context);
+        }
+        dismiss();
+        Fragment fragment = getParentFragment();
+        if (fragment == null){
+            return;
+        }
+        View view = fragment.getView();
+        if (view == null) {
+            return;
+        }
+        Navigation.findNavController(view).navigate(R.id.loginFragment);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ImageView ivClose = view.findViewById(R.id.ImageViewButtonMenuClose);
+        ivClose.setOnClickListener(v -> dismiss());
+        view.findViewById(R.id.IdCardViewPerfil).setOnClickListener(v -> {
+            dismiss();
+            Fragment fragment = getParentFragment();
+            if (fragment == null){
+                return;
+            }
+            View fragmentView = fragment.getView();
+            if (fragmentView == null) {
+                return;
+            }
+            Navigation.findNavController(fragmentView).navigate(R.id.in_mi_perfil);
+        });
+
+        view.findViewById(R.id.IdCardViewJugar).setOnClickListener(v -> {
+            dismiss();
+            Fragment fragment = getParentFragment();
+            if (fragment == null){
+                return;
+            }
+            View fragmentView = fragment.getView();
+            if (fragmentView == null) {
+                return;
+            }
+            Navigation.findNavController(fragmentView).navigate(R.id.inicioFragment);
+        });
+
+        view.findViewById(R.id.IDCardViewDondeCompra).setOnClickListener(v -> {
+            if(Query.readValueInt("count", getContext())>0){
+                dismiss();
+                Fragment fragment = getParentFragment();
+                if (fragment == null){
+                    return;
+                }
+                View fragmentView = fragment.getView();
+                if (fragmentView == null) {
+                    return;
+                }
+                Navigation.findNavController(fragmentView).navigate(R.id.in_donde_comprar);
+            }else{
+                if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+                    UtilDialog.infoMessage(getContext(), getString(R.string.app_name), getString(R.string.app_es_no_puntos_venta_aviso), () -> {
+                        dismiss();
+                    });
+                }else{
+                    UtilDialog.infoMessage(getContext(), getString(R.string.app_name), getString(R.string.app_en_no_puntos_venta_aviso), () -> {
+                        dismiss();
+                    });
+                }
+            }
+        });
+
+        view.findViewById(R.id.IDCardViewSobrePisco).setOnClickListener(v -> {
+            String url = AppDatabase.INSTANCE.userDao().getEntityUser().getLearnPisco();
+            Uri uri = Uri.parse(url);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        });
+
+        view.findViewById(R.id.IDCardViewReceta).setOnClickListener(v -> {
+            dismiss();
+            Fragment fragment = getParentFragment();
+            if (fragment == null){
+                return;
+            }
+            View fragmentView = fragment.getView();
+            if (fragmentView == null) {
+                return;
+            }
+            Navigation.findNavController(fragmentView).navigate(R.id.in_receta);
+        });
+
+        view.findViewById(R.id.IDCardViewLogin).setOnClickListener(v -> {
+            if (Query.googleSignInClient != null) {
+                Query.googleSignInClient.signOut().addOnCompleteListener(task -> exit());
+            } else if (Query.btnFacebook != null) {
+                LoginManager.getInstance().logOut();
+                exit();
+            } else {
+                exit();
+            }
+        });
+
+        TextView tvProfile = view.findViewById(R.id.id_app_es_menu_perfil);
+        TextView tvPlay = view.findViewById(R.id.id_app_es_menu_jugar);
+        TextView tvRecipe = view.findViewById(R.id.id_app_es_menu_receta);
+        TextView tvBuyLocationList = view.findViewById(R.id.id_app_es_menu_donde_comprar);
+        TextView tvLearnPisco = view.findViewById(R.id.IDDialogMenuAPRENDE);
+        TextView tvSignOff = view.findViewById(R.id.id_app_es_menu_salir);
+
+        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+            tvProfile.setText(R.string.app_en_menu_perfil);
+            tvPlay.setText(R.string.app_en_menu_jugar);
+            tvRecipe.setText(R.string.app_en_menu_receta);
+            tvBuyLocationList.setText(R.string.app_en_menu_donde_comprar);
+            tvLearnPisco.setText(R.string.app_en_menu_aprende_sobre_pisco);
+            tvSignOff.setText(R.string.app_en_menu_salir);
+        } else {
+            tvProfile.setText(R.string.app_es_menu_perfil);
+            tvPlay.setText(R.string.app_es_menu_jugar);
+            tvRecipe.setText(R.string.app_es_menu_receta);
+            tvBuyLocationList.setText(R.string.app_es_menu_donde_comprar);
+            tvLearnPisco.setText(R.string.app_es_menu_aprende_sobre_pisco);
+            tvSignOff.setText(R.string.app_es_menu_salir);
+        }
+    }
+
+}

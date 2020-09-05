@@ -1,0 +1,970 @@
+<resources>
+        <!-- Base application theme. -->
+        <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+            <!-- Customize your theme here. -->
+            <item name="colorPrimary">@color/colorPrimary</item>
+            <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+            <item name="colorAccent">@color/colorAccent</item>
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+        </style>
+        <style name="AppTheme.NoActionBar">
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+        </style>
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+    <style name="SpinnerTheme">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/clan_offc_bold</item>
+        <item name="android:textSize">12dp</item>
+        <item name="textAllCaps">true</item>
+    </style>
+    <style name="myFullscreenAlertDialogStyle" parent=""><!--Theme.AppCompat.Light.NoActionBar-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="colorAccent">#ffffff</item>
+        <item name="android:windowBackground">#60ffffff</item>
+        <item name="android:background">#60ffffff</item>
+        <!--<item name="colorAccent">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>-->
+    </style>
+    <!-- large y small para plataformas android-->
+    <!--layout_background_pp_login_normal inicio-->
+        <style name="layout_pp_login_normal_RelativeLayoutFirst">
+            <item name="android:layout_width">fill_parent</item>
+            <item name="android:layout_height">0dip</item>
+            <item name="android:layout_weight">0.1</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutFirst_LinearLayout">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:orientation">horizontal</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutFirstAndThree">
+            <item name="android:layout_width">0dip</item>
+            <item name="android:layout_height">fill_parent</item>
+            <item name="android:layout_weight">0.05</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond">
+            <item name="android:layout_width">0dip</item>
+            <item name="android:layout_height">fill_parent</item>
+            <item name="android:layout_weight">0.9</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond_ImageView">
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">45dp</item>
+            <item name="android:layout_marginTop">30dp</item>
+            <item name="android:layout_alignParentTop">true</item>
+            <item name="android:layout_alignParentRight">true</item>
+            <item name="android:src">@drawable/marcaperu</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutSecond">
+            <item name="android:layout_width">fill_parent</item>
+            <item name="android:layout_height">0dip</item>
+            <item name="android:layout_weight">0.35</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutSecond_LinearLayout">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:orientation">horizontal</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutSecond_LinearLayout_RelativeLayoutFirstAndThree">
+            <item name="android:layout_width">0dip</item>
+            <item name="android:layout_height">fill_parent</item>
+            <item name="android:layout_weight">0.1</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree">
+            <item name="android:layout_width">fill_parent</item>
+            <item name="android:layout_height">0dip</item>
+            <item name="android:layout_weight">0.45</item>
+            <item name="android:gravity">center</item>
+        </style>
+        <!--layout_background_pp_login_normal fin-->
+        <!--layout_background_pp_login_large inicio-->
+            <style name="layout_pp_login_large_RelativeLayoutFirst">
+                <item name="android:layout_width">fill_parent</item>
+                <item name="android:layout_height">0dip</item>
+                <item name="android:layout_weight">0.1</item>
+            </style>
+            <style name="layout_pp_login_large_RelativeLayoutFirst_LinearLayout">
+                <item name="android:layout_width">match_parent</item>
+                <item name="android:layout_height">match_parent</item>
+                <item name="android:orientation">horizontal</item>
+            </style>
+            <style name="layout_pp_login_large_RelativeLayoutFirst_LinearLayout_RelativeLayoutFirstAndThree">
+                <item name="android:layout_width">0dip</item>
+                <item name="android:layout_height">fill_parent</item>
+                <item name="android:layout_weight">0.05</item>
+            </style>
+            <style name="layout_pp_login_large_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond">
+                <item name="android:layout_width">0dip</item>
+                <item name="android:layout_height">fill_parent</item>
+                <item name="android:layout_weight">0.9</item>
+            </style>
+            <style name="layout_pp_login_large_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond_ImageView">
+                <item name="android:layout_width">wrap_content</item>
+                <item name="android:layout_height">50dp</item>
+                <item name="android:layout_marginTop">30dp</item>
+                <item name="android:layout_alignParentTop">true</item>
+                <item name="android:layout_alignParentRight">true</item>
+                <item name="android:src">@drawable/marcaperu</item>
+            </style>
+            <style name="layout_pp_login_large_RelativeLayoutSecond">
+                <item name="android:layout_width">fill_parent</item>
+                <item name="android:layout_height">0dip</item>
+                <item name="android:layout_weight">0.4</item>
+            </style>
+            <style name="layout_pp_login_large_RelativeLayoutSecond_LinearLayout">
+                <item name="android:layout_width">match_parent</item>
+                <item name="android:layout_height">match_parent</item>
+                <item name="android:orientation">horizontal</item>
+            </style>
+            <style name="layout_pp_login_large_RelativeLayoutSecond_LinearLayout_RelativeLayoutFirstAndThree">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">0.15</item>
+    </style>
+            <style name="layout_pp_login_large_RelativeLayoutThree">
+                <item name="android:layout_width">fill_parent</item>
+                <item name="android:layout_height">0dip</item>
+                <item name="android:layout_weight">0.5</item>
+            </style>
+        <!--layout_background_pp_login_large fin-->
+        <!--layout_pp_login inicio-->
+        <!--pantalla normal inicio-->
+        <style name="layout_pp_login_normal_LinearLayout">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:background">@drawable/canvas</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutSecond_LinearLayout_RelativeLayoutSecond">
+            <item name="android:layout_width">0dip</item>
+            <item name="android:layout_height">fill_parent</item>
+            <item name="android:layout_weight">0.8</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutSecond_LinearLayout_RelativeLayoutSecond_ImageView">
+            <item name="android:layout_marginTop">20dp</item>
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_alignParentBottom">true</item>
+            <item name="android:layout_alignParentRight">true</item>
+            <item name="android:src">@drawable/background_pisco</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:orientation">vertical</item>
+            <item name="android:gravity">center</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout_TextView">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_marginBottom">30dp</item>
+            <item name="android:text">@string/app_es_above_img_login</item>
+            <item name="android:textColor">@color/colorWhite</item>
+            <item name="android:textSize">@dimen/normal_TextSize</item>
+            <item name="android:textStyle">normal</item>
+            <item name="android:fontFamily">@font/roboto_light</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_marginRight">40dp</item>
+            <item name="android:layout_marginLeft">40dp</item>
+            <item name="android:layout_height">@dimen/normal_LinearLayout_Layout_Height</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonFirst">
+            <item name="android:textAllCaps">false</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:scaleType">fitCenter</item>
+            <item name="android:padding">10dp</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:layout_marginRight">0dp</item>
+            <item name="android:layout_weight">1.0</item>
+            <item name="android:src">@drawable/google</item>
+            <item name="android:background">@drawable/button_border_google</item>
+            <!--<item name="android:src">@drawable/google</item>
+            <item name="android:background">@drawable/button_border_google</item>-->
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonSecond">
+            <item name="android:textAllCaps">false</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:scaleType">fitCenter</item>
+            <item name="android:padding">8dp</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:layout_marginLeft">10dp</item>
+            <item name="android:layout_weight">1.0</item>
+            <item name="android:src">@drawable/facebook</item>
+            <item name="android:background">@drawable/button_border_blue</item>
+            <!--<item name="android:background">@drawable/button_border_blue</item>-->
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_marginTop">20dp</item>
+            <item name="android:layout_marginRight">40dp</item>
+            <item name="android:layout_marginLeft">40dp</item>
+            <item name="android:layout_height">@dimen/normal_LinearLayout_Layout_Height</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond_Button">
+            <item name="android:textAllCaps">false</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:textSize">@dimen/normal_TextSize</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:background">@drawable/button_border</item>
+            <item name="android:text">@string/app_es_btn_login</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutThree">
+            <item name="android:layout_marginTop">5dp</item>
+            <item name="android:layout_marginRight">80dp</item>
+            <item name="android:layout_marginLeft">80dp</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_width">match_parent</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutThree_ImageButton">
+            <item name="android:layout_marginTop">10dp</item>
+            <item name="android:background">@null</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_weight">1.0</item>
+            <item name="android:src">@drawable/line</item>
+        </style>
+        <style name="line_blue">
+            <item name="android:layout_marginTop">10dp</item>
+            <item name="android:background">@null</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_weight">1.0</item>
+            <item name="android:src">@drawable/linegray</item>
+        </style>
+        <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFour">
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:gravity">center</item>
+        </style>
+
+        <!--pantalla normal fin-->
+
+        <!--pantalla large inicio-->
+        <style name="layout_pp_login_large_LinearLayout">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:background">@drawable/canvas</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutSecond_LinearLayout_RelativeLayoutSecond">
+            <item name="android:layout_width">0dip</item>
+            <item name="android:layout_height">fill_parent</item>
+            <item name="android:layout_weight">0.6</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutSecond_LinearLayout_RelativeLayoutSecond_ImageView">
+            <item name="android:layout_width">wrap_content</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_alignParentBottom">true</item>
+            <item name="android:layout_alignParentRight">true</item>
+            <item name="android:src">@drawable/background_pisco</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:layout_marginTop">40dp</item>
+            <item name="android:orientation">vertical</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_TextView">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:text">@string/app_es_above_img_login</item>
+            <item name="android:textColor">@color/colorWhite</item>
+            <item name="android:layout_marginBottom">30dp</item>
+            <item name="android:textSize">20dp</item>
+            <item name="android:textStyle">normal</item>
+            <item name="android:fontFamily">@font/roboto_light</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">@dimen/large_LinearLayout_Layout_Height</item>
+            <item name="android:layout_marginRight">40dp</item>
+            <item name="android:layout_marginLeft">40dp</item>
+
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonFirst_01">
+            <item name="android:textAllCaps">false</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:scaleType">fitCenter</item>
+
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_weight">1.0</item>
+            <item name="android:padding">@dimen/large_ImageButton_Padding</item>
+            <item name="android:layout_marginRight">10dp</item>
+            <item name="android:src">@drawable/google</item>
+            <item name="android:background">@drawable/button_border_google</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonFirst">
+            <item name="android:textAllCaps">false</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:scaleType">fitCenter</item>
+
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_weight">1.0</item>
+            <!--
+            <item name="android:padding">@dimen/large_ImageButton_Padding</item>
+            <item name="android:layout_marginRight">10dp</item>
+            <item name="android:src">@drawable/google</item>
+            <item name="android:background">@drawable/button_border_google</item>-->
+        </style>
+    <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonSecond_01">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:scaleType">fitCenter</item>
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:padding">@dimen/large_ImageButton_Padding</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:src">@drawable/facebook</item>
+        <item name="android:background">@drawable/button_border_facebook</item>
+    </style>
+        <style name="FacebookLoginButton">
+            <item name="android:background">@drawable/facebook</item>
+            <item name="android:layout_marginTop">10dp</item>
+            <item name="android:layout_marginBottom">10dp</item>
+            <item name="android:layout_gravity">center_horizontal</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_Facebook">
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:scaleType">fitCenter</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_weight">1.0</item>
+            <item name="android:padding">@dimen/large_ImageButton_Padding</item>
+            <item name="android:layout_marginTop">10dp</item>
+            <item name="android:layout_marginBottom">10dp</item>
+            <item name="android:layout_gravity">center_horizontal</item>
+            <item name="android:src">@drawable/facebook</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonSecond">
+            <item name="android:textAllCaps">false</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:scaleType">fitCenter</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:padding">@dimen/large_ImageButton_Padding</item>
+            <item name="android:layout_marginLeft">0dp</item>
+            <item name="android:background">@drawable/button_border_facebook</item>
+            <!--<item name="android:src">@drawable/facebook</item>
+            <item name="android:background">@drawable/button_border_facebook</item>-->
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutSecond">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_marginTop">20dp</item>
+            <item name="android:layout_marginRight">40dp</item>
+            <item name="android:layout_marginLeft">40dp</item>
+            <item name="android:layout_height">wrap_content</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutSecond_Button">
+            <item name="android:textAllCaps">false</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:textSize">20.5dp</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:background">@drawable/button_border</item>
+            <item name="android:text">@string/app_es_btn_login</item>
+            <item name="android:height">@dimen/large_Button</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutThree">
+            <item name="android:layout_marginTop">25dp</item>
+            <item name="android:layout_marginRight">80dp</item>
+            <item name="android:layout_marginLeft">80dp</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_width">match_parent</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutThree_ImageButton">
+            <item name="android:layout_marginTop">10dp</item>
+            <item name="android:background">@null</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_weight">1.0</item>
+            <item name="android:src">@drawable/line</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutThree_TextView">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_weight">1.0</item>
+            <item name="android:textSize">20dp</item>
+            <item name="android:text">@string/app_es_above_button_login</item>
+            <item name="android:textColor">@color/colorWhite</item>
+            <item name="android:fontFamily">@font/roboto_light</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFour">
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:gravity">center</item>
+        </style>
+        <style name="layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFour_TextView">
+            <item name="android:textColor">@color/colorWhite</item>
+            <item name="android:textSize">22dp</item>
+            <item name="android:layout_marginTop">30dp</item>
+            <item name="android:layout_width">110dp</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:text">@string/app_es_register</item>
+            <item name="android:drawableBottom">@drawable/textview_border_bottom</item>
+            <item name="android:fontFamily">@font/roboto_black</item>
+        </style>
+        <!--pantalla large fin-->
+
+        <!--pantalla xlarge fin-->
+    <!--layout_pp_login fin-->
+    <!--layout_pp_login_email inicio-->
+        <!--pantalla normal inicio-->
+        <style name="layout_pp_login_email_normal_LinearLayout">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:background">@color/colorAccent</item><!--@drawable/canvas-->
+        </style>
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:orientation">vertical</item>
+        </style>
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_TextView">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:text">@string/app_es_activity_login_email_above_img</item>
+            <item name="android:textColor">@color/colorWhite</item>
+            <item name="android:textSize">@dimen/normal_TextSize</item>
+            <item name="android:textStyle">normal</item>
+            <item name="android:layout_marginRight">80dp</item>
+            <item name="android:layout_marginLeft">80dp</item>
+            <item name="android:layout_marginBottom">10dp</item>
+            <item name="android:fontFamily">@font/roboto_light</item>
+
+        </style>
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+        </style>
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_EditText">
+            <item name="android:ems">8</item>
+            <item name="android:background">@color/colorWhite</item>
+            <item name="android:padding">@dimen/normal_EditText_Padding</item>
+            <item name="android:src">@drawable/edittext_login_email</item>
+            <item name="android:textSize">@dimen/normal_TextSize</item>
+            <item name="android:layout_marginBottom">8dp</item>
+            <item name="android:inputType">textPersonName</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_marginRight">60dp</item>
+            <item name="android:layout_marginLeft">60dp</item>
+            <item name="android:height">@dimen/normal_EditText_Height</item>
+        </style>
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_Spinner">
+            <item name="android:ems">8</item>
+            <item name="android:background">@drawable/spinner_border</item>
+            <item name="android:padding">@dimen/normal_EditText_Padding</item>
+            <item name="android:src">@drawable/edittext_login_email</item>
+            <item name="android:textSize">@dimen/normal_TextSize</item>
+            <item name="android:layout_marginBottom">8dp</item>
+            <item name="android:inputType">textPersonName</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:height">@dimen/normal_EditText_Height</item>
+        </style>
+
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+        </style>
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond_Button">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">@dimen/normal_Button</item>
+            <item name="android:background">@drawable/button_border</item>
+            <item name="android:text">@string/app_es_activity_login_email_btn_login</item>
+            <item name="android:textAllCaps">false</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:textSize">14.5dp</item>
+            <item name="android:layout_marginRight">60dp</item>
+            <item name="android:layout_marginLeft">60dp</item>
+        </style>
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutThree">
+            <!--
+            <item name="android:layout_marginBottom">10dp</item>-->
+            <item name="android:layout_marginTop">5dp</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_marginRight">60dp</item>
+            <item name="android:layout_marginLeft">60dp</item>
+            <item name="android:gravity">center</item>
+        </style>
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutThree_TextView">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:text">@string/app_es_activity_login_email_above_button_in</item>
+            <item name="android:textColor">@color/colorWhite</item>
+            <item name="android:textSize">@dimen/normal_TextSize</item>
+            <item name="android:fontFamily">@font/roboto_light</item>
+            <item name="android:layout_marginLeft">5dp</item>
+        </style>
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFour">
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:gravity">center</item>
+        </style>
+        <style name="layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFour_TextView">
+            <item name="android:layout_width">118dp</item>
+            <item name="android:textSize">10dp</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:text">@string/app_es_activity_login_email_above_button_login</item>
+            <item name="android:textStyle">normal</item>
+            <item name="android:textColor">@color/colorWhite</item>
+            <item name="android:drawableBottom">@drawable/textview_border_bottom</item>
+            <item name="android:fontFamily">@font/roboto_light</item>
+
+        </style>
+        <!--pantalla normal fin-->
+        <!--pantalla large inicio-->
+        <style name="layout_pp_login_email_large_LinearLayout">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:background">@drawable/canvas</item>
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_marginTop">0dp</item>
+            <item name="android:orientation">vertical</item>
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout_TextView">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:text">@string/app_es_activity_login_email_above_img</item>
+            <item name="android:textColor">@color/colorWhite</item>
+            <item name="android:layout_marginBottom">15dp</item>
+            <item name="android:textSize">@dimen/normal_TextSize14</item>
+            <item name="android:textStyle">normal</item>
+            <item name="android:fontFamily">@font/roboto_light</item>
+            <item name="android:layout_marginRight">80dp</item>
+            <item name="android:layout_marginLeft">80dp</item>
+
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_EditText">
+            <item name="android:ems">10</item>
+            <item name="android:background">@color/colorWhite</item>
+            <item name="android:padding">10dp</item>
+            <item name="android:src">@drawable/edittext_login_email</item>
+            <item name="android:textSize">14dp</item>
+            <item name="android:layout_marginBottom">20dp</item>
+            <item name="android:inputType">textPersonName</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:height">65dp</item>
+            <item name="android:layout_marginRight">80dp</item>
+            <item name="android:layout_marginLeft">80dp</item>
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout_LinearLayoutSecond">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">40dp</item>
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout_LinearLayoutSecond_Button">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">match_parent</item>
+            <item name="android:background">@drawable/button_border</item>
+            <item name="android:text">@string/app_es_activity_login_email_btn_login</item>
+            <item name="android:textAllCaps">false</item>
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:textSize">12dp</item>
+            <item name="android:layout_marginRight">80dp</item>
+            <item name="android:layout_marginLeft">80dp</item>
+
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout_LinearLayoutThree">
+            <!--
+            <item name="android:layout_marginBottom">10dp</item>-->
+            <item name="android:layout_marginTop">10dp</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:gravity">center</item>
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout_LinearLayoutThree_ImageButton">
+
+            <item name="android:background">@null</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_weight">1.0</item>
+            <item name="android:src">@drawable/line</item>
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout_LinearLayoutThree_TextView">
+            <item name="android:layout_width">230dp</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:text">@string/app_es_activity_login_email_above_button_in</item>
+            <item name="android:textColor">@color/colorWhite</item>
+            <item name="android:textSize">14dp</item>
+            <item name="android:fontFamily">@font/roboto_light</item>
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout_LinearLayoutFour">
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:gravity">center</item>
+        </style>
+        <style name="layout_pp_login_email_large_RelativeLayoutThree_LinearLayout_LinearLayoutFour_TextView">
+            <item name="android:layout_width">170dp</item>
+            <item name="android:textSize">14dp</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:text">@string/app_es_activity_login_email_above_button_login</item>
+            <item name="android:textStyle">normal</item>
+            <item name="android:textColor">@color/colorWhite</item>
+            <item name="android:drawableBottom">@drawable/textview_border_bottom</item>
+            <item name="android:fontFamily">@font/roboto_light</item>
+
+        </style>
+        <!--pantalla large fin-->
+    <!--layout_pp_login_email fin-->
+    <!--layout_pp_login_email_reset_password inicio -->
+    <style name="layout_pp_login_email_reset_password_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="layout_pp_login_email_reset_password_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_height">80dp</item>
+    </style>
+    <style name="layout_pp_login_email_reset_password_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/app_es_mensaje_cambio_contrasena</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">22dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_marginRight">60dp</item>
+        <item name="android:layout_marginLeft">60dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+
+    </style>
+    <style name="layout_pp_login_email_reset_password_success_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/app_es_mensaje_cambio_contrasena_exitoso</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">26dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_marginRight">60dp</item>
+        <item name="android:layout_marginLeft">60dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+
+    </style>
+    <!--layout_pp_login_email_reset_password fin -->
+    <!--layout_pp_login_email_reset_password_success inicio -->
+
+    <style name="layout_pp_login_second_normal_RelativeLayoutFirst">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.1</item>
+    </style>
+    <style name="layout_pp_loginn_second_normal_RelativeLayoutSecond">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.5</item>
+    </style>
+    <style name="layout_pp_login_normal_second_RelativeLayoutThree">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.4</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--layout_pp_login_email_reset_password_success fin -->
+
+    <!--layout_pp_login_email_reset_success fin -->
+
+    <style name="layout_pp_login_email_reset_normal_RelativeLayoutThree_LinearLayout_TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/app_es_recuperar_contrasena</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/normal_TextSize</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_marginRight">60dp</item>
+        <item name="android:layout_marginLeft">60dp</item>
+
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+
+    </style>
+
+    <!--layout_pp_login_email_reset_success fin -->
+    <!--layout_pp_onboard inicio-->
+    <style name="layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">0.4</item>
+    </style>
+
+    <style name="layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond_ImageViewFirst">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:src">@drawable/marca_peru_onboard</item>
+    </style>
+    <style name="layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond_ImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:src">@drawable/pisco_peru_onboard</item>
+    </style>
+    <style name="layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond_ImageView_2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:src">@drawable/pisco_peru_onboard</item>
+    </style>
+
+    <style name="layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutFirstAndThree">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">0.2</item>
+    </style>
+
+
+    <style name="layout_pp_onboard_normal_RelativeLayoutFirst">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.15</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="layout_pp_onboard_normal_RelativeLayoutSecond">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.45</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="layout_pp_onboard_normal_RelativeLayoutThree">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.35</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="layout_pp_onboard_normal_RelativeLayoutFour">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.05</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="layout_pp_onboard_normal_RelativeLayoutFour_LinearLayout_RelativeLayoutTree_ImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:src">@drawable/pisco_peru_onboard</item>
+    </style>
+
+
+    <style name="layout_pp_onboard_normal_RelativeLayoutThree_LinearLayout_RelativeLayoutSecond">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">0.6</item>
+    </style>
+    <style name="layout_pp_onboard_normal_RelativeLayoutThree_LinearLayout_RelativeLayoutFirstAndThree">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">0.1</item>
+    </style>
+    <!--layout_pp_onboard fin-->
+    <!-- layout_pp_in -->
+
+
+
+    <style name="layout_pp_in_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond_ImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:src">@drawable/pisco_in</item>
+    </style>
+    <style name="layout_pp_in_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutFirst">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">0.1</item>
+    </style>
+    <style name="layout_pp_in_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">0.3</item>
+    </style>
+    <style name="layout_pp_in_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutThree">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">0.2</item>
+    </style>
+
+    <style name="layout_pp_in_normal_RelativeLayoutSecond">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">0.1</item>
+    </style>
+    <style name="layout_pp_in_normal_RelativeLayoutThree_LinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="layout_pp_in_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond_ImageViewFirst">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:src">@drawable/menu</item>
+    </style>
+    <style name="layout_pp_in_normal_RelativeLayoutFirst">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.2</item>
+    </style>
+    <style name="layout_pp_in_RelativeLayoutThree">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.8</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="layout_pp_in_donde_comprar_Spinner">
+        <item name="android:ems">8</item>
+        <item name="android:background">@drawable/spinner_border</item>
+        <item name="android:padding">@dimen/normal_EditText_Padding</item>
+        <item name="android:src">@drawable/edittext_login_email</item>
+        <item name="android:textSize">@dimen/normal_TextSize</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:height">@dimen/normal_EditText_Height</item>
+    </style>
+    <style name="layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFour_TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/app_es_register</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:drawableBottom">@drawable/textview_border_bottom</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+    </style>
+    <!--layout_pp_in fin-->
+
+    <!--fonts-->
+    <style name="button_login">
+        <item name="android:fontFamily">@font/clan_offc_bold</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/button_border</item>
+    </style>
+    <style  name="txt_login">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:fontFamily">@font/clan_offc_book</item>
+    </style>
+    <style  name="txt_login_bold_o">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:fontFamily">@font/clan_offc_black</item>
+    </style>
+    <style name="txt_input_with_hint">
+        <item name="android:ems">8</item>
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:padding">@dimen/normal_EditText_Padding</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="android:src">@drawable/edittext_login_email</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:fontFamily">@font/clan_offc_book</item>
+        <item name="android:textColorHint">#a3a3a3</item>
+    </style>
+    <style name="txt_input_with_perfil">
+        <item name="android:ems">8</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:padding">@dimen/normal_EditText_Padding</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
+        <item name="android:src">@drawable/edittext_login_email</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:fontFamily">@font/clan_offc_book</item>
+        <item name="android:textColorHint">#a3a3a3</item>
+    </style>
+    <style name="txt_kapraneu_light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:layout_marginRight">60dp</item>
+        <item name="android:layout_marginLeft">60dp</item>
+        <item name="android:fontFamily">@font/kapra_neue_light</item>
+    </style>
+    <style name="txt_kapraneu_weigth">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">32dp</item>
+        <item name="android:layout_marginRight">60dp</item>
+        <item name="android:layout_marginLeft">60dp</item>
+        <item name="android:fontFamily">@font/kapra_neue_light</item>
+    </style>
+    <style name="txt_spinner_light">
+        <item name="android:ems">8</item>
+        <item name="android:background">@drawable/spinner_border</item>
+        <item name="android:padding">@dimen/normal_EditText_Padding</item>
+        <item name="android:src">@drawable/edittext_login_email</item>
+        <item name="android:textSize">@dimen/normal_TextSize</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fontFamily">@font/clan_offc_book</item>
+    </style>
+    <style name="StyleDotBlue">
+        <item name="tabBackground">@drawable/tab_selector_blue</item>
+    </style>
+<!--  <item name="android:layout_marginBottom">20dp</item>-->
+    <!--fonts-end https://pixplicity.com/dp-px-converter-->
+</resources>
+

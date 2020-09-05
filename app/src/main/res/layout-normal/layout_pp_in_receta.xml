@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="60dp"
+                android:elevation="4dp"
+                android:background="#062450">
+                <include
+                    layout="@layout/layout_background_pp_in_part_first"
+                    />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ImageViewBtnBackINRecetaInicio"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:elevation="1dp"
+                    android:clickable="true"
+                    android:src="@drawable/button_back_profile" />
+
+                <ImageView
+                    android:id="@+id/ImageViewINRecetaReceImagenRecetaCabecera"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="380dp"
+                    android:layout_gravity="top|center"
+                    android:scaleType="fitXY"
+                    android:elevation="0dp"
+                    android:src="@drawable/rectangulo">
+                </ImageView>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="45dp"
+                android:layout_marginLeft="45dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/IDTextViewInRecetaTitle"
+                    android:text="Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <TextView
+                    android:id="@+id/IDTextViewInRecetaDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="700"
+                    android:text="Ingredientes"
+                    android:textSize="20dp"></TextView>
+            </LinearLayout>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/ingredientes_pisco_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+            </androidx.viewpager.widget.ViewPager>
+           <!-- <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                android:id="@+id/carouself"
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="45dp"
+                android:layout_marginLeft="45dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="#000"
+                    android:layout_weight="700"
+                    android:text="Preparación"
+                    android:textSize="20dp"></TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/IDLinearLayoutInRecetaPReparacion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_below="@+id/IDTextViewAgainMasOpciones"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="#fff"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/button_border_blue"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/IDButtonResultadoJuegoAgainJugarDenuevo"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:background="#00FFFFFF"
+                        android:elevation="4dp"
+                        android:paddingLeft="25dp"
+                        android:text="@string/app_es_jugar_denuevo"
+                        android:textAlignment="textStart"
+                        android:textStyle="bold"
+                        android:textColor="#fff"
+                        android:textSize="14dp"
+                        tools:ignore="RtlCompat"></Button>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginRight="25dp"
+                        android:src="@drawable/ruleta_mini" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

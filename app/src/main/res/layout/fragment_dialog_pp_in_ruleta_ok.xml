@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_margin="20dp"
+    android:background="@color/clear">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/bg_white_corner">
+        <ImageView
+            android:id="@+id/ImageViewButtonMenuDialogRuletaClose"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:elevation="4dp"
+            android:clickable="true"
+            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/close_coral"/>
+        <ImageView
+            android:src="@drawable/copa_alert"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="fitCenter"
+            android:id="@+id/ImageViewCopa"
+            android:layout_marginBottom="20dp"
+            android:contentDescription="@string/app_name" />
+        <TextView
+            android:id="@+id/IDTextViewFelicitacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_below="@+id/ImageViewCopa"
+            android:fontFamily="@font/clan_offc_bold"
+            android:text="¡Felicitaciones!"/>
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/IDTextViewFelicitacion"
+            android:textColor="@color/colorAccent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="50dp"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:fontFamily="@font/clan_offc_book"
+            android:text="Lograste completar toda la ruleta, pronto tendremos nuevos retos para ti."/>
+    </RelativeLayout>
+</RelativeLayout>

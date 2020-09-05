@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_pp_login_email_normal_LinearLayout"
+    android:orientation="vertical">
+    <!--<include layout="@layout/layout_background_pp_login_normal_part_first"/>
+    <include layout="@layout/layout_background_pp_login_normal_part_second"/>
+
+    <RelativeLayout
+        style="@style/layout_pp_login_normal_RelativeLayoutThree">
+        <LinearLayout
+            style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout">
+            <TextView
+                android:id="@+id/textView"
+                style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_TextView"
+                android:layout_marginBottom="20dp"
+                android:textAlignment="center"
+                />
+            <LinearLayout
+                style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst"
+                android:orientation="vertical">
+                <EditText
+                    android:background="@drawable/editext_border"
+                    style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_EditText"
+                    android:hint="@string/app_es_correo" />
+                <EditText
+                    android:background="@drawable/editext_border"
+                    style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_EditText"
+                    android:hint="@string/app_es_contrasena" />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond"
+                android:orientation="vertical">
+                <Button
+                    android:id="@+id/btnLogin"
+                    style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond_Button"
+                    android:textAlignment="center"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutThree"
+                android:textAlignment="center"
+                android:orientation="horizontal">
+
+                <Switch
+                    android:id="@+id/simpleSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutThree_TextView"/>
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFour"
+                android:textAlignment="center"
+                android:orientation="vertical">
+                <TextView
+                    android:textAlignment="center"
+                    style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFour_TextView"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>-->
+</LinearLayout>

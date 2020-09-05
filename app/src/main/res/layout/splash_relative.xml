@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/containerRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#041c54">
+
+
+    <!-- <com.pisco.app.Utils.GIFImageView
+        android:id="@+id/gifImageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+    </com.pisco.app.Utils.GIFImageView>-->
+
+    <pl.droidsonroids.gif.GifImageView
+        android:adjustViewBounds="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/border"
+        android:src="@drawable/screen">
+    </pl.droidsonroids.gif.GifImageView>
+</RelativeLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:src="@drawable/copa_rota"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginBottom="40dp"
+            android:contentDescription="@string/app_name" />
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:scaleY="1.6"
+            android:scaleX="1.2"
+            android:lineHeight="14dp"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/app_es_no_conexion_titulo"/>
+
+        <ImageView
+            android:src="@drawable/line_copa_rota"
+            android:layout_width="340dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="10dp"
+            android:contentDescription="@string/app_name" />
+        <TextView
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:textColor="#3D3D3D"
+            android:scaleY="1.6"
+            android:scaleX="1.5"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="0dp"
+            android:lineHeight="16dp"
+            android:textSize="13.5dp"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/app_es_no_conexion"/>
+    </LinearLayout>
+</FrameLayout>
+

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_pp_login_large_LinearLayout"
+    android:orientation="vertical">
+
+
+    <!--<include layout="@layout/layout_background_pp_login_large_part_first"/>
+    <include layout="@layout/layout_background_pp_login_large_part_second"/>
+
+    <RelativeLayout
+        style="@style/layout_pp_login_large_RelativeLayoutThree">
+        <LinearLayout
+            style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout">
+            <TextView
+                android:id="@+id/textView"
+                style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_TextView"
+                android:textAlignment="center"
+                />
+            <LinearLayout
+                style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/IDbtnGoogle"
+                    style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonFirst"
+                    />
+                <ImageButton
+                    android:id="@+id/IDbtnFacebook"
+                    style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonSecond"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutSecond"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutSecond_Button"
+                    android:onClick="activity_login_email"
+                    android:textAlignment="center" />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutThree"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutThree_ImageButton" />
+                <TextView
+                    style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutThree_TextView"
+                    android:textAlignment="center" />
+                <ImageButton
+                    style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutThree_ImageButton" />
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFour"
+                android:textAlignment="center"
+                android:orientation="vertical">
+                <TextView
+                    android:textAlignment="center"
+                    android:id="@+id/textViewRegistrar"
+                    android:clickable="true"
+                    style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFour_TextView"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>-->
+</LinearLayout>

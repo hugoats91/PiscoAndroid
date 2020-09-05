@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/IdRecetaBlockCard"
+    app:cardBackgroundColor="#00FFFFFF"
+    app:cardElevation="0dp"
+    android:layout_width="110dp"
+    android:layout_height="110dp"
+    app:cardCornerRadius="50dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/IDRecetaBlockImagen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_centerInParent="true"
+            android:background="@drawable/border_radius_image"
+            android:cropToPadding="true"
+            android:padding="5dp"
+            android:scaleType="centerCrop">
+            <!--            android:src="@drawable/abc"
+-->
+        </ImageView>
+
+        <ImageView
+
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/recetabloqueadacandado"/>
+
+        <!--  <ImageView
+            android:layout_width="15dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/candado"
+            android:layout_height="15dp">
+        </ImageView>-->
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+

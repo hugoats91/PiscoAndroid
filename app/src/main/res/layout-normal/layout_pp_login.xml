@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_pp_login_email_normal_LinearLayout"
+    android:orientation="vertical">
+    <!--<Button
+                   android:visibility="invisible"
+                   android:id="@+id/BTNPRUEBA"
+                   style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond_Button"
+                   android:textAlignment="center"
+                   />-->
+    <!--<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/layout_background_pp_login_normal_part_first"/>
+            <include layout="@layout/layout_background_pp_login_normal_part_second" />
+
+            <RelativeLayout
+                style="@style/layout_pp_login_normal_RelativeLayoutThree"
+                >
+
+                <LinearLayout
+                    style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_TextView"
+                        android:textAlignment="center"
+                        android:textFontWeight="700"/>
+
+                    <LinearLayout
+                        style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1.0"
+                            android:background="@drawable/button_border_google">
+
+                            <com.google.android.gms.common.SignInButton
+                                android:id="@+id/signInButton"
+                                style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonFirst"
+                                android:layout_centerInParent="true"
+                                android:visibility="invisible" />
+
+                            <ImageButton
+                                android:id="@+id/IDbtnGoogle"
+                                style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonFirst" />
+
+                        </FrameLayout>
+
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1.0"
+                            android:background="@drawable/button_border_facebook">
+
+                            <com.facebook.login.widget.LoginButton
+                                android:id="@+id/IDbtnFacebook"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:visibility="invisible" />
+
+                            <ImageButton
+                                android:id="@+id/IDImageButtonbtnFacebook"
+                                style="@style/layout_pp_login_large_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_ImageButtonSecond" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/btnLogin"
+                            style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond_Button"
+
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutThree"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageButton style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutThree_ImageButton" />
+
+                        <TextView
+                            style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutThree_TextView"
+                            android:textAlignment="center" />
+
+                        <ImageButton style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutThree_ImageButton" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFour"
+                        android:orientation="vertical"
+                        android:textAlignment="center">
+
+                        <TextView
+                            android:id="@+id/textViewRegistrar"
+                            style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFour_TextView"
+                            android:clickable="true"
+                            android:textFontWeight="700"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>-->
+
+</LinearLayout>

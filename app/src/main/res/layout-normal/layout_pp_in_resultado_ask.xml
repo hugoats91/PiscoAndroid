@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="60dp"
+                android:elevation="4dp"
+                android:background="#062450">
+                <include
+                    layout="@layout/layout_background_pp_in_part_first"
+                    />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/IDResultadoAskImageViewCabecera"
+                        android:layout_width="match_parent"
+                        android:layout_height="550dp"
+                        android:layout_gravity="top|center"
+                        android:scaleType="centerCrop"
+                        android:elevation="0dp"
+                        android:src="@drawable/rectangulo_01"></ImageView>
+
+                    <ImageView
+                        android:id="@+id/IDBackInResultadoAsk"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="30dp"
+                        android:elevation="4dp"
+                        android:clickable="true"
+                        android:src="@drawable/button_back_profile" />
+
+                    <TextView
+                        android:id="@+id/IdTextViewReceta"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ImageViewButtonBackInPerfil"
+                        android:layout_marginTop="200dp"
+                        android:layout_marginBottom="60dp"
+                        android:textStyle="bold"
+                        android:paddingLeft="40dp"
+                        android:text="@string/app_es_resultado_juego_titulo"
+                        android:textColor="#CDDC39"
+                        android:textSize="25dp"
+
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="35dp"
+                        android:textAlignment="textStart"
+                        android:scaleY="2"
+                        android:scaleX="1.5"
+                        android:lineHeight="26dp"
+
+                        ></TextView>
+                    <LinearLayout
+                        android:id="@+id/IDResultadoRecibeUnCantigoTextView"
+                        android:background="@drawable/button_border_inicio_white_2"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_below="@+id/IdTextViewReceta"
+                        android:layout_width="match_parent"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:id="@+id/marg"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_es_resultado_juego_titulo_cuerpo"
+                            android:textAlignment="center"
+                            android:textColor="#062450"
+                            android:scaleX="1"
+                            android:textStyle="bold"
+                            android:textSize="15dp"
+                            ></TextView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/IDAskResultadoJuegoBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:layout_below="@+id/IDResultadoRecibeUnCantigoTextView"
+                        android:background="@drawable/button_border_inicio_white_2"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="40dp"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:text="@string/app_es_resultado_felicidad"
+                            android:layout_marginTop="20dp"
+                            android:textStyle="normal"
+                            android:textSize="28dp"
+                            android:textAlignment="center"
+                            android:textColor="#062450"
+                            android:scaleX="0.9"></TextView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:text="@string/app_es_resultado_ganaste_punto"
+                            android:textStyle="bold"
+                            android:textSize="35dp"
+                            android:textAlignment="center"
+                            android:textColor="#062450"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="40dp"
+                            android:layout_marginLeft="40dp"
+                            android:scaleY="1.8"
+                            android:lineHeight="28dp"
+                            android:scaleX="1.2"></TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_below="@+id/IDAskResultadoJuegoBox"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:background="#fff"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+
+                            android:layout_height="wrap_content">
+                            <RelativeLayout
+                                android:id="@+id/IDButtonResultadoJuegoAskRecetas"
+                                android:clickable="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:layout_marginBottom="20dp">
+                                <ImageView
+                                    android:id="@+id/ImgRelativeResultadoAsk"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:elevation="0dp"
+
+                                    android:background="@drawable/button_border_inicio_white_2"
+                                    android:src="@drawable/onboard_resultado_juego"></ImageView>
+
+                            </RelativeLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ImgRelativeResultadoAsk"
+                                android:paddingLeft="40dp"
+                                android:text="@string/app_es_resultado_ganaste_receta"
+                                android:textColor="#313131"
+                                android:textSize="18dp"
+                                android:textStyle="bold"></TextView>
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/button_border_blue"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/IDButtonResultadoJuegoAskDondeComprar"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:background="#00FFFFFF"
+                                android:elevation="4dp"
+                                android:paddingLeft="25dp"
+                                android:text="@string/app_es_donde_comprar"
+                                android:textAlignment="textStart"
+                                android:textColor="#fff"
+                                android:textSize="14dp"
+                                android:textStyle="bold"
+                                tools:ignore="RtlCompat"></Button>
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="18dp"
+                                android:layout_marginRight="25dp"
+                                android:src="@drawable/canasta_white" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/button_border_blue"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:background="#00FFFFFF"
+                                android:elevation="4dp"
+                                android:id="@+id/IDButtonResultadoJuegoAskAprendePisco"
+                                android:paddingLeft="25dp"
+                                android:text="@string/app_es_aprende_sobre_pisco"
+                                android:textAlignment="textStart"
+                                android:textColor="#fff"
+                                android:textSize="14dp"
+                                android:textStyle="bold"
+                                tools:ignore="RtlCompat"></Button>
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="18dp"
+                                android:layout_marginRight="25dp"
+                                android:src="@drawable/wine_white" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/button_border_blue"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/IDButtonResultadoJuegoAskJugarDenuevo"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:background="#00FFFFFF"
+                                android:elevation="4dp"
+                                android:paddingLeft="25dp"
+                                android:text="@string/app_es_jugar_denuevo"
+                                android:textAlignment="textStart"
+                                android:textColor="#fff"
+                                android:textSize="14dp"
+                                android:textStyle="bold"
+                                tools:ignore="RtlCompat"></Button>
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="18dp"
+                                android:layout_marginRight="25dp"
+                                android:src="@drawable/ruleta_mini" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

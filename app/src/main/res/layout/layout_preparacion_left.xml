@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/IDLinearLayoutInRecetaPreparacionLeft"
+    android:layout_width="match_parent"
+    android:layout_height="95dp"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/top_shadow_gradient2" />
+    <LinearLayout
+        android:id="@+id/IDLayoutPreparacionCardView"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="5dp"
+       android:layout_centerVertical="true"
+        android:layout_marginBottom="5dp"
+        android:background="#BEF8F6F6"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="45dp"
+            android:id="@+id/IDLayoutPreparacionLeftContenido"
+            android:paddingTop="10dp"
+            android:paddingRight="40dp"
+            android:lineHeight="16dp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/clan_offc_book"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_alignBottom="@+id/IDLayoutPreparacionCardView"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:elevation="4dp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/top_shadow_gradient3" />
+    <ImageView
+        android:id="@+id/IDLayoutPreparacionLeftImagen"
+        android:layout_width="85dp"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="3dp">
+    </ImageView>
+
+</RelativeLayout>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.pisco.app.Screen.LogInFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_loginEmailFragment"
+            app:destination="@id/loginEmailFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_inicioFragment"
+            app:enterAnim="@anim/from_left"
+            app:destination="@id/inicioFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_loginEmailRegistroFragment"
+            app:destination="@id/loginEmailRegistroFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_inicioBienvenidoFragment"
+            app:destination="@id/inicioBienvenidoFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_in_donde_comprar"
+            app:destination="@id/in_donde_comprar" />
+        <action
+            android:id="@+id/action_loginFragment_self"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_OnBoardFragment"
+            app:destination="@id/onBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginEmailFragment"
+        android:name="com.pisco.app.Screen.LogInEmailFragment"
+        android:label="fragment_login_email"
+        tools:layout="@layout/fragment_login_email" >
+        <action
+            android:id="@+id/action_loginEmailFragment_to_inicioFragment"
+            app:enterAnim="@anim/from_left"
+            app:destination="@id/inicioFragment" />
+        <action
+            android:id="@+id/action_loginEmailFragment_to_loginEmailPasswordRecuperarFragment"
+            app:destination="@id/loginEmailPasswordRecuperarFragment" />
+        <action
+            android:id="@+id/action_loginEmailFragment_to_inicioBienvenidoFragment"
+            app:destination="@id/inicioBienvenidoFragment" />
+        <action
+            android:id="@+id/action_loginEmailFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_edit_profile"
+            app:popUpTo="@id/loginEmailFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/in_mi_perfil" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/inicioFragment"
+        android:name="com.pisco.app.Screen.StartFragment"
+        android:label="fragment_inicio"
+        tools:layout="@layout/fragment_inicio" >
+        <action
+            android:id="@+id/action_inicioFragment_to_in_donde_comprar"
+            app:destination="@id/in_donde_comprar" />
+        <action
+            android:id="@+id/action_inicioFragment_to_in_resultado_juego"
+            app:destination="@id/in_resultado_juego" />
+        <action
+            android:id="@+id/action_inicioFragment_self"
+            app:destination="@id/inicioFragment" />
+        <action
+            android:id="@+id/action_inicioFragment_to_in_receta"
+            app:destination="@id/in_receta" />
+        <action
+            android:id="@+id/action_inicioFragment_to_OnBoardFragment"
+            app:destination="@id/onBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginEmailRegistroFragment"
+        android:name="com.pisco.app.Screen.LogInEmailRegisterFragment"
+        android:label="fragment_login_email_registro"
+        tools:layout="@layout/fragment_login_email_registro" >
+        <action
+            android:id="@+id/action_loginEmailRegistroFragment_to_loginEmailFragment"
+            app:destination="@id/loginEmailFragment" />
+
+        <action
+            android:id="@+id/action_loginEmailRegistroFragment_to_inicioBienvenidoFragment"
+            app:popUpTo="@id/loginEmailRegistroFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/inicioBienvenidoFragment" />
+
+        <action
+            android:id="@+id/action_loginEmailRegistroFragment_to_inicioFragment"
+            app:popUpTo="@id/loginEmailRegistroFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/from_left"
+            app:destination="@id/inicioFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/loginEmailPasswordRecuperarFragment"
+        android:name="com.pisco.app.Screen.LogInEmailPasswordRecoverFragment"
+        android:label="fragment_login_email_password_recuperar"
+        tools:layout="@layout/fragment_login_email_password_recuperar" >
+        <action
+            android:id="@+id/action_loginEmailPasswordRecuperarFragment_to_loginEmailPasswordRecuperarExitosoFragment"
+            app:destination="@id/loginEmailPasswordRecuperarExitosoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginEmailPasswordRecuperarExitosoFragment"
+        android:name="com.pisco.app.Screen.LogInEmailPasswordRecoverSuccessfulFragment"
+        android:label="fragment_login_email_password_recuperar_exitoso"
+        tools:layout="@layout/fragment_login_email_password_recuperar_exitoso" >
+        <action
+            android:id="@+id/action_loginEmailPasswordRecuperarExitosoFragment_to_loginEmailFragment"
+            app:destination="@id/loginEmailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inicioBienvenidoFragment"
+        android:name="com.pisco.app.Screen.WelcomeHomeFragment"
+        android:label="fragment_inicio_bienvenido"
+        tools:layout="@layout/fragment_inicio_bienvenido" >
+        <action
+            android:id="@+id/action_inicioBienvenidoFragment_to_inicioFragment"
+            app:destination="@id/inicioFragment" />
+        <action
+            android:id="@+id/action_inicioBienvenidoFragment_to_OnBoardFragment"
+            app:destination="@id/onBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardFragment"
+        android:name="com.pisco.app.Screen.OnBoardFragment"
+        android:label="fragment_on_board"
+        tools:layout="@layout/fragment_on_board">
+        <argument
+            android:name="type"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_onBoardFragment_to_inicioFragment"
+            app:popUpTo="@id/onBoardFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/inicioFragment" />
+        <action
+            android:id="@+id/action_onBoardFragment_to_dondeFragment"
+            app:popUpTo="@id/onBoardFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/in_donde_comprar" />
+        <action
+            android:id="@+id/action_onBoardFragment_to_recetaFragment"
+            app:popUpTo="@id/onBoardFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/in_inicio_receta" />
+        <action
+            android:id="@+id/action_onBoardFragment_to_resultadoFragment"
+            app:popUpTo="@id/onBoardFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/in_resultado_juego" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/in_mi_perfil"
+        android:name="com.pisco.app.Screen.ProfileFragment"
+        android:label="fragment_in_mi_perfil"
+        tools:layout="@layout/fragment_in_mi_perfil" />
+    <fragment
+        android:id="@+id/in_donde_comprar"
+        android:name="com.pisco.app.Screen.WhereBuyFragment"
+        android:label="fragment_in_donde_comprar"
+        tools:layout="@layout/fragment_in_donde_comprar" />
+    <fragment
+        android:id="@+id/in_inicio_receta"
+        android:name="com.pisco.app.Screen.InitialRecipeFragment"
+        android:label="fragment_in_inicio_receta"
+        tools:layout="@layout/fragment_in_inicio_receta" >
+        <action
+            android:id="@+id/action_in_inicio_receta_to_inicioFragment"
+            app:enterAnim="@anim/from_left"
+            app:destination="@id/inicioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/in_receta"
+        android:name="com.pisco.app.Screen.RecipeFragment"
+        android:label="fragment_in_receta"
+        tools:layout="@layout/fragment_in_receta" >
+        <action
+            android:id="@+id/action_in_receta_to_in_inicio_receta"
+            app:enterAnim="@anim/from_left"
+            app:destination="@id/in_inicio_receta" />
+        <action
+            android:id="@+id/action_in_receta_to_inicioFragment"
+            app:enterAnim="@anim/from_left"
+            app:destination="@id/inicioFragment" />
+        <action
+            android:id="@+id/action_recipeFragment_to_OnBoardFragment"
+            app:destination="@id/onBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/in_conoce"
+        android:name="com.pisco.app.Screen.LearnFragment"
+        android:label="fragment_in_conoce"
+        tools:layout="@layout/fragment_in_conoce" />
+    <fragment
+        android:id="@+id/in_resultado_juego"
+        android:name="com.pisco.app.Screen.ResultGameFragment"
+        android:label="fragment_in_resultado_juego"
+        tools:layout="@layout/fragment_in_resultado_juego" >
+        <action
+            android:id="@+id/action_in_resultado_juego_to_in_resultado_juego_again"
+            app:destination="@id/in_resultado_juego_again" />
+        <action
+            android:id="@+id/action_in_resultado_juego_to_in_resultado_ask"
+            app:destination="@id/in_resultado_ask" />
+        <action
+            android:id="@+id/action_resultGameFragment_to_OnBoardFragment"
+            app:destination="@id/onBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cambio_contrasena_solcitud"
+        android:name="com.pisco.app.Screen.ChangePasswordFragment"
+        android:label="fragment_cambio_contrasena_solcitud"
+        tools:layout="@layout/fragment_cambio_contrasena_solcitud" />
+
+
+    <fragment
+        android:id="@+id/in_resultado_ask"
+        android:name="com.pisco.app.Screen.AskResultFragment"
+        android:label="fragment_in_resultado_ask"
+        tools:layout="@layout/fragment_in_resultado_ask" >
+        <action
+            android:id="@+id/action_in_resultado_ask_to_in_donde_comprar"
+            app:destination="@id/in_donde_comprar" />
+        <action
+            android:id="@+id/action_in_resultado_ask_to_inicioFragment"
+            app:enterAnim="@anim/from_left"
+            app:destination="@id/inicioFragment" />
+        <action
+            android:id="@+id/action_in_resultado_ask_to_in_inicio_receta"
+            app:destination="@id/in_inicio_receta" />
+        <action
+            android:id="@+id/action_resultadoAskFragment_to_OnBoardFragment"
+            app:destination="@id/onBoardFragment" />
+    </fragment>
+    <!--<fragment
+        android:id="@+id/in_resultado_juego2"
+        android:name="com.pisco.app.in_resultado_juego"
+        android:label="fragment_in_resultado_juego2"
+        tools:layout="@layout/fragment_in_resultado_juego2" />-->
+
+    <fragment
+        android:id="@+id/in_resultado_juego_again"
+        android:name="com.pisco.app.Screen.ResultPlayAgainFragment"
+        android:label="fragment_in_resultado_juego_again"
+        tools:layout="@layout/fragment_in_resultado_juego_again" >
+        <action
+            android:id="@+id/action_in_resultado_juego_again_to_inicioFragment"
+            app:enterAnim="@anim/from_left"
+            app:destination="@id/inicioFragment" />
+    </fragment>
+    <!--<fragment
+        android:id="@+id/in_menu"
+        android:name="com.pisco.app.Views.in_menu"
+        android:label="in_menu" >
+        <action
+            android:id="@+id/action_in_menu_to_in_mi_perfil"
+            app:destination="@id/in_mi_perfil" />
+        <action
+            android:id="@+id/action_in_menu_to_inicioFragment"
+            app:destination="@id/inicioFragment" />
+        <action
+            android:id="@+id/action_in_menu_to_in_donde_comprar"
+            app:destination="@id/in_donde_comprar" />
+        <action
+            android:id="@+id/action_in_menu_to_in_inicio_receta"
+            app:destination="@id/in_inicio_receta" />
+    </fragment> <include app:graph="@navigation/nav_onboard_graph" />-->
+
+
+    <dialog
+        android:id="@+id/menuDialogFragment2"
+        android:name="com.pisco.app.Screen.Dialogs.MenuDialogFragment"
+        android:label="fragment_dialog_pp_in_menu"
+        tools:layout="@layout/fragment_dialog_pp_in_menu" />
+
+    <!--<fragment
+        android:id="@+id/onboardFragment"
+        android:name="com.pisco.app.Views.Onboards.OnboardFragment"
+        android:label="fragment_onboard"
+        tools:layout="@layout/fragment_onboard" />-->
+    <dialog
+        android:id="@+id/onboardFragment"
+        android:name="com.pisco.app.Screen.Dialogs.OnboardDialogFragment"
+        android:label="fragment_onboard"
+        tools:layout="@layout/fragment_onboard" />
+</navigation>

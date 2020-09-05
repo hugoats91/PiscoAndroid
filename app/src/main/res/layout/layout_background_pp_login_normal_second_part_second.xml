@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout style="@style/layout_pp_loginn_second_normal_RelativeLayoutSecond"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        style="@style/layout_pp_login_normal_RelativeLayoutSecond_LinearLayout">
+        <RelativeLayout
+            style="@style/layout_pp_login_normal_RelativeLayoutSecond_LinearLayout_RelativeLayoutFirstAndThree">
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/layout_pp_login_normal_RelativeLayoutSecond_LinearLayout_RelativeLayoutSecond">
+            <ImageView
+                android:id="@+id/fg"
+                style="@style/layout_pp_login_normal_RelativeLayoutSecond_LinearLayout_RelativeLayoutSecond_ImageView"/>
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/layout_pp_login_normal_RelativeLayoutSecond_LinearLayout_RelativeLayoutFirstAndThree">
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

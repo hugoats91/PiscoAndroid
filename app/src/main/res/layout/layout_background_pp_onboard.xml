@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/IDLayoutOnBoard"
+
+    >
+    <!--android:background="@drawable/onboard_donde"-->
+    <include layout="@layout/layout_background_pp_onboard_part_first"/>
+
+    <RelativeLayout style="@style/layout_pp_onboard_normal_RelativeLayoutSecond">
+        <LinearLayout
+            style="@style/layout_pp_login_normal_RelativeLayoutSecond_LinearLayout">
+            <RelativeLayout
+                style="@style/layout_pp_login_normal_RelativeLayoutSecond_LinearLayout_RelativeLayoutFirstAndThree">
+            </RelativeLayout>
+            <RelativeLayout
+                style="@style/layout_pp_login_normal_RelativeLayoutSecond_LinearLayout_RelativeLayoutSecond">
+                <!--app:srcCompat="@drawable/onboard_map"-->
+                <ImageView
+                    android:id="@+id/IDImageCenterOnBoard"
+                    android:layout_marginTop="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="280dp"
+                    android:layout_height="match_parent"
+                     />
+            </RelativeLayout>
+            <RelativeLayout
+                style="@style/layout_pp_login_normal_RelativeLayoutSecond_LinearLayout_RelativeLayoutFirstAndThree">
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        style="@style/layout_pp_onboard_normal_RelativeLayoutThree">
+        <LinearLayout
+            style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout"
+            >
+            <RelativeLayout
+                style="@style/layout_pp_onboard_normal_RelativeLayoutThree_LinearLayout_RelativeLayoutFirstAndThree">
+
+            </RelativeLayout>
+            <RelativeLayout
+                style="@style/layout_pp_onboard_normal_RelativeLayoutThree_LinearLayout_RelativeLayoutSecond">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical">
+
+                   <TextView
+                       android:id="@+id/IDTexViewDescription"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_weight="0.1"
+                       android:fontFamily="@font/clan_offc_book"
+                       android:paddingTop="25dp"
+                       android:text="IDTexViewDescription"
+                       android:textAlignment="center"
+                       android:textSize="16sp"
+                       android:textStyle="normal" />
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_weight="0.1"
+                       android:orientation="vertical">
+
+                       <TextView
+                           android:id="@+id/IDTexViewDescriptionNumbers"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginBottom="10dp"
+                           android:fontFamily="@font/clan_offc_book"
+                           android:paddingTop="10dp"
+                           android:text="IDTexViewDescriptionNumbers"
+
+                           android:textAlignment="center"
+                           android:textSize="16sp"
+                           android:textStyle="normal" />
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="20dp"
+                           android:layout_gravity="center"
+                           android:gravity="center"
+                           android:orientation="horizontal">
+
+                           <Button
+                               android:id="@+id/IDTexViewTab1"
+                               android:layout_width="10dp"
+                               android:layout_height="10dp"
+                               android:background="@drawable/circle_no_solid"
+                                />
+                           <Button
+                               android:id="@+id/IDTexViewTab2"
+                               android:layout_width="10dp"
+                               android:layout_height="10dp"
+                               android:layout_marginLeft="10dp"
+                               android:background="@drawable/circle_solid"
+                               />
+                       </LinearLayout>
+                   </LinearLayout>
+               </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                style="@style/layout_pp_onboard_normal_RelativeLayoutThree_LinearLayout_RelativeLayoutFirstAndThree">
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!--
+            <LinearLayout
+            style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout">
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layout_pp_login_normal_RelativeLayoutThree_LinearLayout">
+
+        </LinearLayout>-->
+
+    </RelativeLayout>
+    <RelativeLayout
+        style="@style/layout_pp_onboard_normal_RelativeLayoutFour">
+        <LinearLayout
+            style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout"
+            >
+            <RelativeLayout
+                style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutFirstAndThree">
+                <TextView
+                    android:id="@+id/IDTexViewSaltar"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:fontFamily="@font/clan_offc_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAlignment="center"
+                    android:text="Saltar"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond">
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:gravity="top|center"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutFirstAndThree">
+                <!--<ImageView
+                    style="@style/layout_pp_onboard_normal_RelativeLayoutFirst_LinearLayout_RelativeLayoutSecond_ImageView_2"
+                    />-->
+
+                <TextView
+                    android:id="@+id/IDTexViewListo"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:visibility="invisible"
+                    android:fontFamily="@font/clan_offc_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:textAlignment="center"
+                    android:text="¡Listo!"/>
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/IDImageViewNext"
+                    android:layout_width="10dp"
+                    android:clickable="true"
+                    android:layout_height="15dp"
+                    ></ImageView>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Screen.LearnFragment">
+
+    <!-- TODO: Update blank fragment layout      <include layout="@layout/layout_pp_in_conoce"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="60dp"
+                    android:elevation="4dp"
+                    android:background="@color/colorAccent">
+                    <include
+                        layout="@layout/layout_background_pp_in_part_first"
+                        />
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/ImageViewButtonBackInPerfil"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:elevation="4dp"
+                    android:src="@drawable/button_back_profile" />
+
+                <!--<org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                    android:id="@+id/carousel"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" />-->
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="-40dp"
+                    android:layout_gravity="center"
+                    android:elevation="4dp"
+                    android:background="@drawable/myrect_shadow"
+                    >
+                    <androidx.cardview.widget.CardView
+                        android:layout_gravity="center"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="20dp"
+                                android:text="Pisco Sour"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="28dp" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+
+
+                <!--<me.relex.circleindicator.CircleIndicator2
+                    android:id="@+id/custom_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"></me.relex.circleindicator.CircleIndicator2>-->
+
+                <RelativeLayout
+                    style="@style/layout_pp_in_RelativeLayoutThree"
+                    android:layout_width="350dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_gravity="center"
+                    android:elevation="2dp"
+                    android:background="@drawable/myrect_shadow"
+                    >
+                    <LinearLayout
+                        android:background="#fff"
+                        style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout">
+                        <LinearLayout
+                            android:layout_width="350dp"
+                            android:layout_height="350dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="2"
+                            android:background="@drawable/card_in"
+                            android:elevation="2dp"
+                            android:orientation="vertical"
+                            android:padding="30dp">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:background="@drawable/card_in"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="left"
+                                        android:text="Pisco Sour"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="28dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="10dp"
+                                        android:text="Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor v"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:textColor="@color/colorAccent"
+                                        android:textSize="14dp" />
+                                    >
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+                <Button
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_border_blue"
+                    android:elevation="4dp"
+                    android:text="@string/app_es_aprende_sobre_pisco_mas"
+                    android:textColor="#fff"
+                    android:textSize="18dp"></Button>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

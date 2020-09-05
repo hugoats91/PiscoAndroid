@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Screen.ChangePasswordFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+<!--    <include layout="@layout/layout_pp_in_cambio_contrasena_solicitud"/>
+-->
+    <LinearLayout
+        style="@style/layout_pp_login_email_normal_LinearLayout"
+        android:orientation="vertical">
+
+        <!--<include layout="@layout/layout_background_pp_login_normal_part_first"/>-->
+
+        <include layout="@layout/layout_background_pp_login_normal_part_second"/>
+
+        <RelativeLayout
+            style="@style/layout_pp_login_normal_RelativeLayoutThree"
+            >
+            <LinearLayout
+                style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout">
+
+                <LinearLayout
+                    style="@style/layout_pp_login_email_reset_password_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/layout_pp_login_email_reset_password_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_TextView"
+                        android:text="Hola, francesco"
+                        android:textAlignment="center"
+                        />
+                    <TextView
+                        android:id="@+id/textView"
+                        style="@style/layout_pp_login_email_reset_password_normal_RelativeLayoutThree_LinearLayout_LinearLayoutFirst_TextView"
+                        android:textAlignment="center"
+                        android:text="Recibimos una solicitud para cambiar la contrasena"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/IDButtonRecuperarPasswordExitoso"
+                        style="@style/layout_pp_login_email_normal_RelativeLayoutThree_LinearLayout_LinearLayoutSecond_Button"
+                        android:textAlignment="center"
+                        android:text="Recuperar cuenta"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+</FrameLayout>
