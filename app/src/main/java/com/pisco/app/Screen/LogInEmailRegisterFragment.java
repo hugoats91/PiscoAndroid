@@ -161,66 +161,70 @@ public class LogInEmailRegisterFragment extends Fragment {
     }
 
     public Boolean validate(View view){
-        name = (etName).getText().toString();
-        email = (etEmail).getText().toString();
-        password = (etPassword).getText().toString().trim();
-        confirmPassword = (etConfirmPassword).getText().toString().trim();
-        if(name.isEmpty()){
-            etName.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
-            if (Query.getPortalId() == 1) {
-                tvFillFields.setText(R.string.app_en_completar_campos_password);
-            }else{
-                tvFillFields.setText(R.string.app_es_completar_campos_password);
+        try {
+            name = (etName).getText().toString();
+            email = (etEmail).getText().toString();
+            password = (etPassword).getText().toString().trim();
+            confirmPassword = (etConfirmPassword).getText().toString().trim();
+            if(name.isEmpty()){
+                etName.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
+                if (Query.getPortalId() == 1) {
+                    tvFillFields.setText(R.string.app_en_completar_campos_password);
+                }else{
+                    tvFillFields.setText(R.string.app_es_completar_campos_password);
+                }
+                return false;
             }
+            if (!Query.validateEmail(email)){
+                etEmail.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
+                if (Query.getPortalId() == 1) {
+                    tvFillFields.setText(R.string.app_en_validacion_email);
+                }else{
+                    tvFillFields.setText(R.string.app_es_validacion_email);
+                }
+                return false;
+            }
+            if (password.isEmpty()){
+                etPassword.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
+                if (Query.getPortalId() == 1) {
+                    tvFillFields.setText(R.string.app_en_completar_campos_password);
+                }else{
+                    tvFillFields.setText(R.string.app_es_completar_campos_password);
+                }
+                return false;
+            }
+            if (confirmPassword.isEmpty()){
+                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
+                if (Query.getPortalId() == 1) {
+                    tvFillFields.setText(R.string.app_en_completar_campos_password);
+                }else{
+                    tvFillFields.setText(R.string.app_es_completar_campos_password);
+                }
+                return false;
+            }
+            if (!(password.length()>=5&& confirmPassword.length()>=5)){
+                etPassword.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
+                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
+                if (Query.getPortalId() == 1) {
+                    tvFillFields.setText(R.string.app_en_validacion_password);
+                }else{
+                    tvFillFields.setText(R.string.app_es_validacion_password);
+                }
+                return false;
+            }
+            if (!confirmPassword.equals(password)){
+                etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
+                if (Query.getPortalId() == 1) {
+                    tvFillFields.setText(R.string.app_en_diferente_password);
+                }else{
+                    tvFillFields.setText(R.string.app_es_diferente_password);
+                }
+                return false;
+            }
+            return true;
+        }catch (Exception e){
             return false;
         }
-        if (!Query.validateEmail(email)){
-            etEmail.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
-            if (Query.getPortalId() == 1) {
-                tvFillFields.setText(R.string.app_en_validacion_email);
-            }else{
-                tvFillFields.setText(R.string.app_es_validacion_email);
-            }
-            return false;
-        }
-        if (password.isEmpty()){
-            etPassword.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
-            if (Query.getPortalId() == 1) {
-                tvFillFields.setText(R.string.app_en_completar_campos_password);
-            }else{
-                tvFillFields.setText(R.string.app_es_completar_campos_password);
-            }
-            return false;
-        }
-        if (confirmPassword.isEmpty()){
-            etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
-            if (Query.getPortalId() == 1) {
-                tvFillFields.setText(R.string.app_en_completar_campos_password);
-            }else{
-                tvFillFields.setText(R.string.app_es_completar_campos_password);
-            }
-            return false;
-        }
-        if (!(password.length()>=5&& confirmPassword.length()>=5)){
-            etPassword.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
-            etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
-            if (Query.getPortalId() == 1) {
-                tvFillFields.setText(R.string.app_en_validacion_password);
-            }else{
-                tvFillFields.setText(R.string.app_es_validacion_password);
-            }
-            return false;
-        }
-        if (!confirmPassword.equals(password)){
-            etConfirmPassword.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion),null);
-            if (Query.getPortalId() == 1) {
-                tvFillFields.setText(R.string.app_en_diferente_password);
-            }else{
-                tvFillFields.setText(R.string.app_es_diferente_password);
-            }
-            return false;
-        }
-        return true;
     }
 
     public void onButtonPressed(Uri uri) {

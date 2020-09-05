@@ -116,9 +116,6 @@ public class ResultGameFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        OnboardDialogFragment onboardDialogFragment = new OnboardDialogFragment(response -> {
-
-        });
         HomeViewModel homeViewModel =new HomeViewModel();
         ImageView ivBack = view.findViewById(R.id.IDBackInResultadoJuego);
         ImageView ivHeader = view.findViewById(R.id.IDInResultadoJuegoCabeceraImageView);

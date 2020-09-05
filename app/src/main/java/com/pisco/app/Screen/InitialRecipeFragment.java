@@ -75,7 +75,9 @@ public class InitialRecipeFragment extends Fragment {
             @Override
             public void onResponse(Call<ArrayList<JsonObject>> call, Response<ArrayList<JsonObject>> response) {
                 ArrayList<JsonObject> arrayList = response.body();
+                LinearLayout linearLayout = view.findViewById(R.id.IDLinearLayoutInRecetaPReparacion);
                 if (arrayList == null || arrayList.isEmpty()) {
+                    linearLayout.removeAllViews();
                     return;
                 }
                 try {
@@ -110,7 +112,7 @@ public class InitialRecipeFragment extends Fragment {
                     rvIngredients.setAdapter(ingredientsAdapter);
 
                     JsonArray preparationJsonArray = jsonObject.get("ListaPreparacion").getAsJsonArray();
-                    LinearLayout linearLayout = view.findViewById(R.id.IDLinearLayoutInRecetaPReparacion);
+
                     ImageView imageView;
                     TextView textView;
                     for (int j = 0; j < preparationJsonArray.size(); j++) {

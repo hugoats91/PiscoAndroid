@@ -201,6 +201,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                relMap.setVisibility(View.INVISIBLE);
                 int cityId = ViewModelInstanceList.getHomeViewModelInstance().cityIdList.get(position);
                 mapMarkerSet(cityId);
             }

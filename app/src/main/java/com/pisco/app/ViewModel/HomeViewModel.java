@@ -10,6 +10,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.pisco.app.Entity.RecipeItem;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.LocalService.Entity.EntityUser;
 import com.pisco.app.R;
 import com.pisco.app.Repository.OAuthAuthorizationRepository;
 import com.pisco.app.Utils.ViewInstanceList;
@@ -55,10 +56,11 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void questionList(Callback<ArrayList<JsonObject>> calling) {
-        int bebiId = AppDatabase.INSTANCE.userDao().getEntityUser().getBebiId();
+        EntityUser user = AppDatabase.INSTANCE.userDao().getEntityUser();
+        int bebiId = user.getBebiId();
         if (bebiId != 0) {
             Drink drink = new Drink(bebiId);
-            AppDatabase.INSTANCE.userDao().setUpdateBebiId(0);
+            //AppDatabase.INSTANCE.userDao().setUpdateBebiId(0);
             Call<ArrayList<JsonObject>> call = oauthRepository.postQuestionListFront(drink);
             call.enqueue(calling);
         }
