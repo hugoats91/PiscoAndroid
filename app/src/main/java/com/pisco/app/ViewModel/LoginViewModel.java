@@ -51,7 +51,7 @@ public class LoginViewModel extends ViewModel {
                 dialog.dismiss();
                 int result = response.body().getAsInt();
                 if(result == 0){
-                    logInEnterOAuthUser(email, password, context, callback);
+                    logInEnterOAuthUser(email, password, type, context, callback);
                 }else {
                     callback.onError(result);
                 }
@@ -135,10 +135,11 @@ public class LoginViewModel extends ViewModel {
         });
     }
 
-    public void logInEnterOAuthUser(String email, String password, Context context, LoginViewModel.LoginCallback callback) {
+    public void logInEnterOAuthUser(String email, String password, int type, Context context, LoginViewModel.LoginCallback callback) {
         LoginRegisterData data = new LoginRegisterData();
         data.setEmail(email);
         data.setPassword(password);
+        data.setType(type);
         Query.saveValue(email, password, context);
         Call<JsonElement> call = oauthRepository.postLogInSelectionEmailFront(data);
         call.enqueue(new Callback<JsonElement>() {
