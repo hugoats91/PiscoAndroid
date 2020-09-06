@@ -49,7 +49,13 @@ public class LoginViewModel extends ViewModel {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 dialog.dismiss();
-                logInEnterOAuthUser(email, password, context, callback);
+                int result = response.body().getAsInt();
+                if(result == 0){
+                    logInEnterOAuthUser(email, password, context, callback);
+                }else {
+                    callback.onError(result);
+                }
+
             }
 
             @EverythingIsNonNull

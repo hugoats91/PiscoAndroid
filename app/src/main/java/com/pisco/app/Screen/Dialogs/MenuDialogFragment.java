@@ -18,6 +18,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
 import com.facebook.login.LoginManager;
 import com.pisco.app.LocalService.AppDatabase;
 import com.pisco.app.R;
@@ -145,8 +149,7 @@ public class MenuDialogFragment extends DialogFragment {
             if (Query.googleSignInClient != null) {
                 Query.googleSignInClient.signOut().addOnCompleteListener(task -> exit());
             } else if (Query.btnFacebook != null) {
-                LoginManager.getInstance().logOut();
-                exit();
+                disconnectFromFacebook(this::exit);
             } else {
                 exit();
             }
@@ -174,6 +177,27 @@ public class MenuDialogFragment extends DialogFragment {
             tvLearnPisco.setText(R.string.app_es_menu_aprende_sobre_pisco);
             tvSignOff.setText(R.string.app_es_menu_salir);
         }
+    }
+
+    interface FacebookLogout{
+        void onSuccess();
+    }
+
+    public void disconnectFromFacebook(FacebookLogout callback) {
+
+        if (AccessToken.getCurrentAccessToken() == null) {
+            return;
+        }
+
+        new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, new GraphRequest
+                .Callback() {
+            @Override
+            public void onCompleted(GraphResponse graphResponse) {
+                LoginManager.getInstance().logOut();
+                callback.onSuccess();
+
+            }
+        }).executeAsync();
     }
 
 }

@@ -44,6 +44,7 @@ import com.pisco.app.LocalService.AppDatabase;
 import com.pisco.app.R;
 import com.pisco.app.Utils.Query;
 import com.pisco.app.Utils.UtilDialog;
+import com.pisco.app.Utils.UtilText;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.ViewModel.LoginViewModel;
@@ -160,15 +161,8 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
 
                             @Override
                             public void onError(int type) {
-                                if(type == 4){
-                                    String error = "";
-                                    if (Query.getPortalId() == 1) {
-                                        error = getString(R.string.app_en_red_social_error);
-                                    } else {
-                                        error = getString(R.string.app_es_red_social_error);
-                                    }
-                                    UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), error);
-                                }
+                                UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), UtilText.errorRegister(type, requireContext()));
+
                             }
                         });
                     } catch (Exception e) {
@@ -310,15 +304,7 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
 
                 @Override
                 public void onError(int type) {
-                    if(type == 4){
-                        String error = "";
-                        if (Query.getPortalId() == 1) {
-                            error = getString(R.string.app_en_red_social_error);
-                        } else {
-                            error = getString(R.string.app_es_red_social_error);
-                        }
-                        UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), error);
-                    }
+                    UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), UtilText.errorRegister(type, requireContext()));
                 }
             });
         }

@@ -26,6 +26,7 @@ import com.pisco.app.LocalService.AppDatabase;
 import com.pisco.app.R;
 import com.pisco.app.Utils.Query;
 import com.pisco.app.Utils.UtilDialog;
+import com.pisco.app.Utils.UtilText;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.ViewModel.LoginViewModel;
@@ -152,7 +153,7 @@ public class LogInEmailRegisterFragment extends Fragment {
 
                         @Override
                         public void onError(int type) {
-
+                            UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), UtilText.errorRegister(type, requireContext()));
                         }
                     });
                 });
