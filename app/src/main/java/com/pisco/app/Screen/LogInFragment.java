@@ -26,7 +26,9 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
+import com.facebook.HttpMethod;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -42,6 +44,8 @@ import com.google.gson.JsonObject;
 import com.pisco.app.Enum.UserType;
 import com.pisco.app.LocalService.AppDatabase;
 import com.pisco.app.R;
+import com.pisco.app.Screen.Dialogs.MenuDialogFragment;
+import com.pisco.app.Screen.Dialogs.ProgressDialogFragment;
 import com.pisco.app.Utils.Query;
 import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.UtilText;
@@ -161,7 +165,12 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
 
                             @Override
                             public void onError(int type) {
-                                UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), UtilText.errorRegister(type, requireContext()));
+                                ProgressDialogFragment progress = UtilDialog.showProgress(LogInFragment.this);
+                                disconnectFromFacebook(() -> {
+                                    progress.dismiss();
+                                    UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), UtilText.errorRegister(type, requireContext()));
+                                });
+
 
                             }
                         });
@@ -304,7 +313,10 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
 
                 @Override
                 public void onError(int type) {
-                    UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), UtilText.errorRegister(type, requireContext()));
+                    Query.googleSignInClient.signOut().addOnCompleteListener(task -> {
+                        UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), UtilText.errorRegister(type, requireContext()));
+                    });
+
                 }
             });
         }
@@ -339,6 +351,24 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
 
         void onFragmentInteraction(Uri uri);
 
+    }
+
+    interface FacebookLogout{
+        void onSuccess();
+    }
+
+    public void disconnectFromFacebook(FacebookLogout callback) {
+
+        if (AccessToken.getCurrentAccessToken() == null) {
+            return;
+        }
+        ProgressDialogFragment progress = UtilDialog.showProgress(this);
+        new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, graphResponse -> {
+            progress.dismiss();
+            LoginManager.getInstance().logOut();
+            callback.onSuccess();
+
+        }).executeAsync();
     }
 
 }

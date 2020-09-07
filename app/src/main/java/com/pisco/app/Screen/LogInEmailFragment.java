@@ -166,14 +166,19 @@ public class LogInEmailFragment extends Fragment {
 
                     @Override
                     public void onError(int type) {
-                        if(type == 3){
-                            String error = "";
-                            if (Query.getPortalId() == 1) {
-                                error = getString(R.string.app_en_login_clasico_error);
-                            } else {
-                                error = getString(R.string.app_es_login_clasico_error);
-                            }
-                            UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), error);
+                        switch (type){
+                            case 2:
+                                textView.setVisibility(View.VISIBLE);
+                                break;
+                            case 3:
+                                String error = "";
+                                if (Query.getPortalId() == 1) {
+                                    error = getString(R.string.app_en_login_clasico_error);
+                                } else {
+                                    error = getString(R.string.app_es_login_clasico_error);
+                                }
+                                UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), error);
+                                break;
                         }
                     }
                 });
