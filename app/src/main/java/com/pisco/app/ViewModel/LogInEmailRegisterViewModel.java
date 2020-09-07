@@ -38,6 +38,7 @@ public class LogInEmailRegisterViewModel extends ViewModel {
 
     public interface RegisterCallback{
         void onSuccess();
+        void onError(int type);
     }
 
     public boolean validatePassword(String password, String confirmPassword) {
@@ -83,6 +84,8 @@ public class LogInEmailRegisterViewModel extends ViewModel {
                                     }, 3000);
                         } else if (responseInt == StateSignUpUserNoAuth.REGISTERED.ordinal()) {
                             callback.onSuccess();
+                        }else{
+                            callback.onError(responseInt);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
