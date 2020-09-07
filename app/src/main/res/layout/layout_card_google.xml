@@ -138,7 +138,7 @@
                         android:fontFamily="@font/clan_offc_book"
                         android:gravity="bottom"
                         android:textColor="@color/colorAccent"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
                     <!--  android:text="+1 212-288-0770"  -->
                 </LinearLayout>
 

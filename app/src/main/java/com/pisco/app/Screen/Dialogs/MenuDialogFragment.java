@@ -146,12 +146,17 @@ public class MenuDialogFragment extends DialogFragment {
         });
 
         view.findViewById(R.id.IDCardViewLogin).setOnClickListener(v -> {
-            if (Query.googleSignInClient != null) {
-                Query.googleSignInClient.signOut().addOnCompleteListener(task -> exit());
-            } else if (Query.btnFacebook != null) {
-                disconnectFromFacebook(this::exit);
-            } else {
-                exit();
+            int type = Query.readValueInt("login_type", requireContext());
+            switch (type){
+                case 0:
+                    exit();
+                    break;
+                case 1:
+                    disconnectFromFacebook(this::exit);
+                    break;
+                case 2:
+                    Query.googleSignInClient.signOut().addOnCompleteListener(task -> exit());
+                    break;
             }
         });
 
@@ -188,15 +193,12 @@ public class MenuDialogFragment extends DialogFragment {
         if (AccessToken.getCurrentAccessToken() == null) {
             return;
         }
+        ProgressDialogFragment progress = UtilDialog.showProgress(this);
+        new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, graphResponse -> {
+            progress.dismiss();
+            LoginManager.getInstance().logOut();
+            callback.onSuccess();
 
-        new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/permissions/", null, HttpMethod.DELETE, new GraphRequest
-                .Callback() {
-            @Override
-            public void onCompleted(GraphResponse graphResponse) {
-                LoginManager.getInstance().logOut();
-                callback.onSuccess();
-
-            }
         }).executeAsync();
     }
 

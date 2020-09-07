@@ -94,6 +94,14 @@ public class Query {
         editor.apply();
     }
 
+    public static void saveLoginType(Context context, int type){
+        SharedPreferences settings = context.getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor;
+        editor = settings.edit();
+        editor.putInt("login_type", type);
+        editor.apply();
+    }
+
     public static void clearValuePreferences(Context context){
         SharedPreferences settings = context.getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor;

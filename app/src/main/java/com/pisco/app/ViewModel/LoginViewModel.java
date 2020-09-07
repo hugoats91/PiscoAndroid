@@ -117,6 +117,7 @@ public class LoginViewModel extends ViewModel {
                             AppDatabase.INSTANCE.userDao().insertStateOnboarding(entityStateOnboarding);
                         }
                         long result = AppDatabase.INSTANCE.userDao().insert(entityUser);
+                        Query.saveLoginType(context, 0);
                         callback.onSuccess(result, userState);
                     } else{
                         callback.onError(consultationResponse);
@@ -168,7 +169,6 @@ public class LoginViewModel extends ViewModel {
                     String imagePath = jsonObject.get("rutaImagen").getAsString();
                     int portalId = jsonObject.get("PortalId").getAsInt();
                     JsonArray jsonArrayStateListOnboarding = jsonObject.getAsJsonArray("listaEstadoOnnboarding");
-                    View view = ViewInstanceList.getDictionaryViews("login-fragment");
                     if (consultationResponse == StateUser.EXISTS.ordinal()) {
                         AppDatabase.INSTANCE.userDao().deleteAll();
                         AppDatabase.INSTANCE.userDao().deleteAllEntityStateOnboarding();
@@ -182,6 +182,7 @@ public class LoginViewModel extends ViewModel {
                             AppDatabase.INSTANCE.userDao().insertStateOnboarding(entityStateOnboarding);
                         }
                         long result = AppDatabase.INSTANCE.userDao().insert(entityUser);
+                        Query.saveLoginType(context, type);
                         callback.onSuccess(result, userState);
                     }else{
                         callback.onError(consultationResponse);
