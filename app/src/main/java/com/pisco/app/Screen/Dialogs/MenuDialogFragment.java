@@ -24,8 +24,10 @@ import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
 import com.facebook.login.LoginManager;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilDialog;
 
 public class MenuDialogFragment extends DialogFragment {
@@ -75,6 +77,7 @@ public class MenuDialogFragment extends DialogFragment {
         ImageView ivClose = view.findViewById(R.id.ImageViewButtonMenuClose);
         ivClose.setOnClickListener(v -> dismiss());
         view.findViewById(R.id.IdCardViewPerfil).setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Menu", "Boton", "Menu - Perfil");
             dismiss();
             Fragment fragment = getParentFragment();
             if (fragment == null){
@@ -88,6 +91,7 @@ public class MenuDialogFragment extends DialogFragment {
         });
 
         view.findViewById(R.id.IdCardViewJugar).setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Menu", "Boton", "Menu - Jugar");
             dismiss();
             Fragment fragment = getParentFragment();
             if (fragment == null){
@@ -102,6 +106,7 @@ public class MenuDialogFragment extends DialogFragment {
 
         view.findViewById(R.id.IDCardViewDondeCompra).setOnClickListener(v -> {
             if(Query.readValueInt("count", getContext())>0){
+                UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Menu", "Boton", "Menu - ¿Donde comprar?");
                 dismiss();
                 Fragment fragment = getParentFragment();
                 if (fragment == null){
@@ -126,6 +131,7 @@ public class MenuDialogFragment extends DialogFragment {
         });
 
         view.findViewById(R.id.IDCardViewSobrePisco).setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Menu", "Boton", "Menu - Aprende sobre Pisco");
             String url = AppDatabase.INSTANCE.userDao().getEntityUser().getLearnPisco();
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -133,6 +139,7 @@ public class MenuDialogFragment extends DialogFragment {
         });
 
         view.findViewById(R.id.IDCardViewReceta).setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Menu", "Boton", "Menu - Recetas");
             dismiss();
             Fragment fragment = getParentFragment();
             if (fragment == null){
@@ -146,6 +153,7 @@ public class MenuDialogFragment extends DialogFragment {
         });
 
         view.findViewById(R.id.IDCardViewLogin).setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Menu", "Boton", "Menu - Cerrar Sesion");
             int type = Query.readValueInt("login_type", requireContext());
             switch (type){
                 case 0:

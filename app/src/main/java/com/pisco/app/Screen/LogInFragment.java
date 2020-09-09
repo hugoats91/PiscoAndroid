@@ -43,10 +43,12 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.gson.JsonObject;
 import com.pisco.app.Enum.UserType;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Screen.Dialogs.MenuDialogFragment;
 import com.pisco.app.Screen.Dialogs.ProgressDialogFragment;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.UtilText;
 import com.pisco.app.Utils.ViewModelInstanceList;
@@ -72,6 +74,7 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
     private OnFragmentInteractionListener listener;
     private View view;
     private CallbackManager callbackManager;
+
 
     public LogInFragment() {}
 
@@ -104,7 +107,10 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
         Button btnLogIn = view.findViewById(R.id.btnLogin);
-        btnLogIn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_loginEmailFragment));
+        btnLogIn.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Login", "Boton", "Iniciar sesion por correo");
+            Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_loginEmailFragment);
+        });
         SignInButton signInButton = view.findViewById(R.id.signInButton);
         signInButton.setOnClickListener(v -> {
             Intent signInIntent = Query.googleSignInClient.getSignInIntent();
@@ -119,6 +125,7 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
         Query.btnFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Login", "Boton", "Facebook");
                 final AccessToken accessToken = loginResult.getAccessToken();
                 RequestFacebookGraph(accessToken, (user, graphResponse) -> {
                     try {
@@ -200,9 +207,8 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
         });
         TextView textViewRegistrar = view.findViewById(R.id.textViewRegistrar);
         textViewRegistrar.setOnClickListener(v -> {
-            //Navigation.findNavController(v).navigate(LogInFragmentDirections.actionLoginFragmentToOnBoardFragment("onBoard-donde"));
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Login", "Clic", "Registrate");
             Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_loginEmailRegistroFragment);
-            //FirebaseCrashlytics.getInstance().setCustomKey("test_pisco", true);
         });
         return view;
     }
@@ -280,6 +286,7 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
             ViewModelInstanceList.getLogInViewModelInstance().logInOAuthUser(this, name, email, password, confirmPassword, country, userType, countryPortalId, getContext(), new LoginViewModel.LoginCallback() {
                 @Override
                 public void onSuccess(long result, int userState) {
+                    UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Login", "Boton", "Google");
                     ViewModelInstanceList.getHomeViewModelInstance().postGetCityListFront(new Callback<ArrayList<JsonObject>>() {
                         @EverythingIsNonNull
                         @Override

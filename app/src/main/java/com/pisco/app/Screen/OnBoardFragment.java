@@ -23,7 +23,11 @@ import com.pisco.app.Adapter.HorizontalMarginItemDecoration;
 import com.pisco.app.Adapter.OnBoardPagerAdapter;
 import com.pisco.app.Entity.ScreenItem;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
+import com.pisco.app.Screen.Dialogs.ProgressDialogFragment;
+import com.pisco.app.Utils.UtilAnalytics;
+import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.Utils.ViewModelInstanceList;
 
@@ -149,16 +153,22 @@ public class OnBoardFragment extends Fragment {
 
         vLeft.setOnClickListener(v -> {
             String[] response = getOnBoard(onBoard, vpPosition);
+            ProgressDialogFragment progress = UtilDialog.showProgress(this);
             ViewModelInstanceList.getWelcomeViewModelInstance().updateReadyOnboardingFront(response[0], response[1], () -> {
+                progress.dismiss();
                 nextFragment(view, onBoard);
             });
         });
         vRight.setOnClickListener(v -> {
             if (vpPosition == 0) {
+                UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio_onboarding", "Boton", "Flecha_siguiente");
                 vpOnBoard.setCurrentItem(1, true);
             } else {
+                UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio_onboarding", "Boton", "Listo");
                 String[] response = getOnBoard(onBoard, vpPosition);
+                ProgressDialogFragment progress = UtilDialog.showProgress(this);
                 ViewModelInstanceList.getWelcomeViewModelInstance().updateReadyOnboardingFront(response[0], response[1], () -> {
+                    progress.dismiss();
                     nextFragment(view, onBoard);
                 });
             }

@@ -14,8 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.DownloadImageTask;
+import com.pisco.app.Utils.UtilAnalytics;
 
 public class PromotionPiscoFragment extends Fragment {
 
@@ -45,6 +47,7 @@ public class PromotionPiscoFragment extends Fragment {
         tvDescription.setText(args.getString(PromPromocion));
         tvSubtitle.setText(args.getString(PromSubTitulo));
         view.findViewById(R.id.IdPromocionPiscoCard).setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "Clic", "Inicio - Promociones de Pisco");
             String url= AppDatabase.INSTANCE.userDao().getEntityUser().getLearnPisco();
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);

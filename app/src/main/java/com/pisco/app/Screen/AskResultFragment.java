@@ -25,13 +25,16 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.DownloadImageTask;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.ViewModel.HomeViewModel;
 import com.pisco.app.Screen.Dialogs.TrophyDialogFragment;
 import com.pisco.app.Screen.Dialogs.MenuDialogFragment;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -67,36 +70,40 @@ public class AskResultFragment extends Fragment {
         ImageView ivBack = view.findViewById(R.id.IDBackInResultadoAsk);
         ivBack.setOnClickListener(v -> requireActivity().onBackPressed());
         Button btnPlayAgain = view.findViewById(R.id.IDButtonResultadoJuegoAskJugarDenuevo);
-        btnPlayAgain.setOnClickListener(v -> homeViewModel.currentScore(new Callback<JsonElement>() {
+        btnPlayAgain.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Resultados del Juego", "Boton", "Jugar de Nuevo - Respuesta correcta");
+            homeViewModel.currentScore(new Callback<JsonElement>() {
 
-            @EverythingIsNonNull
-            @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                JsonElement jsonElement = response.body();
-                if (jsonElement == null) {
-                    return;
-                }
-                try {
-                    JsonObject jsonObject = jsonElement.getAsJsonObject();
-                    int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
-                    if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
-                        DialogFragment newFragment = new TrophyDialogFragment();
-                        newFragment.show(getChildFragmentManager(), "missiles");
-                    } else {
-                        Navigation.findNavController(view).navigate(R.id.action_in_resultado_ask_to_inicioFragment);
+                @EverythingIsNonNull
+                @Override
+                public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                    JsonElement jsonElement = response.body();
+                    if (jsonElement == null) {
+                        return;
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    try {
+                        JsonObject jsonObject = jsonElement.getAsJsonObject();
+                        int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
+                        if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
+                            DialogFragment newFragment = new TrophyDialogFragment();
+                            newFragment.show(getChildFragmentManager(), "missiles");
+                        } else {
+                            Navigation.findNavController(view).navigate(R.id.action_in_resultado_ask_to_inicioFragment);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
 
-            @EverythingIsNonNull
-            @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {}
+                @EverythingIsNonNull
+                @Override
+                public void onFailure(Call<JsonElement> call, Throwable t) {}
 
-        }));
+            });
+        });
         RelativeLayout relRecipe = view.findViewById(R.id.IDButtonResultadoJuegoAskRecetas);
         relRecipe.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Resultados del Juego", "Boton", "Recetas_Resultado");
             if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 2.1").getSesiState()==1 &&AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 2.2").getSesiState()==1 ) {
                 Navigation.findNavController(view).navigate(AskResultFragmentDirections.actionResultadoAskFragmentToOnBoardFragment("onBoard-receta"));
             }else{
@@ -105,9 +112,13 @@ public class AskResultFragment extends Fragment {
 
         });
         Button btnWhereBuy = view.findViewById(R.id.IDButtonResultadoJuegoAskDondeComprar);
-        btnWhereBuy.setOnClickListener(v -> Navigation.findNavController(view).navigate(R.id.action_in_resultado_ask_to_in_donde_comprar));
+        btnWhereBuy.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Resultados del Juego", "Boton", "¿Donde Comprar?_Resultado");
+            Navigation.findNavController(view).navigate(R.id.action_in_resultado_ask_to_in_donde_comprar);
+        });
         Button btnLearnPisco = view.findViewById(R.id.IDButtonResultadoJuegoAskAprendePisco);
         btnLearnPisco.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Resultados del Juego", "Boton", "Aprende sobre Pisco_Resultado");
             String url=AppDatabase.INSTANCE.userDao().getEntityUser().getLearnPisco();
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -132,7 +143,8 @@ public class AskResultFragment extends Fragment {
             }
             tvRecipe.setText(yourPerfectRecipe + " " + drinkTitle + "!");
             ImageView ivHeader = view.findViewById(R.id.IDResultadoAskImageViewCabecera);
-            new DownloadImageTask(ivHeader).execute(drinkImagePath);
+            Picasso.get().load(drinkImagePath).into(ivHeader);
+            //new DownloadImageTask(ivHeader).execute(drinkImagePath);
             ImageView ivResult = view.findViewById(R.id.ImgRelativeResultadoAsk);
             ivResult.setOnClickListener(v -> {
                 if (recipeId != null) {

@@ -65,7 +65,7 @@ public class WelcomeViewModel extends ViewModel {
 
             @EverythingIsNonNull
             @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {}
+            public void onFailure(Call<JsonElement> call, Throwable t) { callback.onSuccess();}
 
         });
     }

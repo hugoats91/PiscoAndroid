@@ -51,7 +51,7 @@
                     <View
                         android:background="@color/colorAccent"
                         android:layout_width="wrap_content"
-                        android:layout_height="280dp"></View>
+                        android:layout_height="280dp"/>
                     <RelativeLayout
                         android:layout_marginTop="40dp"
                         android:layout_marginLeft="20dp"

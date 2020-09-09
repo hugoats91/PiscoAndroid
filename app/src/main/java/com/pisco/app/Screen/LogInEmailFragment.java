@@ -24,8 +24,10 @@ import androidx.navigation.Navigation;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.JsonObject;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.Utils.ViewModelInstanceList;
@@ -58,7 +60,10 @@ public class LogInEmailFragment extends Fragment {
             FirebaseAnalytics.getInstance(context);
         }
         TextView tvRecoverPassword = view.findViewById(R.id.IDTextViewRecuperarPassword);
-        tvRecoverPassword.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_loginEmailFragment_to_loginEmailPasswordRecuperarFragment));
+        tvRecoverPassword.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Login_correo", "Clic", "¿Olvidaste tu contraseña?");
+            Navigation.findNavController(v).navigate(R.id.action_loginEmailFragment_to_loginEmailPasswordRecuperarFragment);
+        });
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -116,6 +121,7 @@ public class LogInEmailFragment extends Fragment {
         simpleSwitch = view.findViewById(R.id.simpleSwitch);
         Button btnLogInEmail = view.findViewById(R.id.IDButtonLoginEmail);
         btnLogInEmail.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Login_correo", "Boton", "Ingresar");
             String email = tvEmail.getText().toString();
             String password1 = tvPassword.getText().toString();
             boolean switchMantenerSesion = getsimpleSwitchValue();

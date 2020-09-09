@@ -23,8 +23,10 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.JsonObject;
 import com.pisco.app.Enum.UserType;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.UtilText;
 import com.pisco.app.Utils.ViewModelInstanceList;
@@ -109,6 +111,7 @@ public class LogInEmailRegisterFragment extends Fragment {
                 country = spinnerCountry.getSelectedItem().toString();
                 int userType = UserType.EMAIL.ordinal();
                 int countryPortalId= Query.getPortalId();
+                UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "sign_up", "Registro", "Registrate");
                 ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().registerUser(name, email, password, confirmPassword, country, userType, countryPortalId, new LogInEmailRegisterViewModel.RegisterCallback() {
                     @Override
                     public void onSuccess() {

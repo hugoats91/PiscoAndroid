@@ -31,13 +31,16 @@ import com.google.gson.JsonObject;
 import com.pisco.app.Adapter.PromotionPiscoViewPagerAdapter;
 import com.pisco.app.Entity.PromotionPiscoItem;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Screen.Dialogs.MenuDialogFragment;
 import com.pisco.app.Screen.Dialogs.OnboardDialogFragment;
 import com.pisco.app.Screen.Dialogs.TrophyDialogFragment;
 import com.pisco.app.Utils.AppConstantList;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilSound;
+import com.pisco.app.Utils.UtilText;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.Utils.ZoomOutPageTransformer;
@@ -85,7 +88,7 @@ public class StartFragment extends Fragment {
             newFragment.show(getChildFragmentManager(), "missiles");
         });
         Button btnUser = view.findViewById(R.id.IdInicioButtonUsuario);
-        btnUser.setText(AppDatabase.INSTANCE.userDao().getEntityUser().getUserName());
+        btnUser.setText(UtilText.capitalize(AppDatabase.INSTANCE.userDao().getEntityUser().getUserName()));
         Button btnStart = view.findViewById(R.id.IdInicioButtonStart);
 
         homeViewModel.currentScore(new Callback<JsonElement>() {
@@ -165,6 +168,7 @@ public class StartFragment extends Fragment {
         view.findViewById(R.id.imRoulette).setOnClickListener(v -> rouletteOnWeel());
         Button aprendePisco = view.findViewById(R.id.IdButtonInicioAprendePisco);
         aprendePisco.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "boton", "Inicio - Aprende sobre pisco");
             String url = AppDatabase.INSTANCE.userDao().getEntityUser().getLearnPisco();
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -178,22 +182,19 @@ public class StartFragment extends Fragment {
             rlWhereBuy.setVisibility(View.VISIBLE);
         }
         btnWhereBuy.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "boton", "Inicio - ¿Donde comprar?");
             if(AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 3.1").getSesiState()==1 &&AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 3.2").getSesiState()== 1){
                 Navigation.findNavController(view).navigate(StartFragmentDirections.actionInicioFragmentToOnBoardFragment("onBoard-donde"));
-                /*Bundle bundle = new Bundle();
-                bundle.putString("onboard", "onboard-donde");
-                OnboardDialogFragment onboardDialogFragment = new OnboardDialogFragment(response -> {
-                    Navigation.findNavController(view).navigate(R.id.action_inicioFragment_to_in_donde_comprar);
-                });
-                onboardDialogFragment.setArguments(bundle);
-                onboardDialogFragment.show(getChildFragmentManager(), "missiles");*/
             }else{
                 Navigation.findNavController(view).navigate(R.id.action_inicioFragment_to_in_donde_comprar);
             }
         });
 
         Button btnRecipeHome = view.findViewById(R.id.IdButtonInicioRecetas);
-        btnRecipeHome.setOnClickListener(v -> Navigation.findNavController(view).navigate(R.id.action_inicioFragment_to_in_receta));
+        btnRecipeHome.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "boton", "Inicio - Recetas");
+            Navigation.findNavController(view).navigate(R.id.action_inicioFragment_to_in_receta);
+        });
         return view;
     }
 
@@ -225,6 +226,7 @@ public class StartFragment extends Fragment {
 
                             @Override
                             public void onAnimationStart(Animation animation) {
+                                UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio_onboarding", "Ruleta", "Ruleta - Inicio");
                             }
 
                             @Override

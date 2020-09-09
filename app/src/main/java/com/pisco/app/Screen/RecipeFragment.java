@@ -29,8 +29,10 @@ import com.pisco.app.Adapter.RecipeBlockAdapter;
 import com.pisco.app.Adapter.RecipePagerAdapter;
 import com.pisco.app.Entity.RecipeItem;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.AppConstantList;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.ViewModel.HomeViewModel;
@@ -185,34 +187,37 @@ public class RecipeFragment extends Fragment {
             btnPlayAgain.setText(R.string.app_en_jugar);
         }
         HomeViewModel homeViewModel = new HomeViewModel();
-        btnPlayAgain.setOnClickListener(v -> homeViewModel.currentScore(new Callback<JsonElement>() {
+        btnPlayAgain.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Recetas", "Boton", "Jugar");
+            homeViewModel.currentScore(new Callback<JsonElement>() {
 
-            @EverythingIsNonNull
-            @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                JsonElement jsonElement = response.body();
-                if (jsonElement == null) {
-                    return;
-                }
-                try {
-                    JsonObject jsonObject = jsonElement.getAsJsonObject();
-                    int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
-                    if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
-                        DialogFragment newFragment = new TrophyDialogFragment();
-                        newFragment.show(getChildFragmentManager(), "missiles");
-                    } else {
-                        Navigation.findNavController(view).navigate(R.id.action_in_receta_to_inicioFragment);
+                @EverythingIsNonNull
+                @Override
+                public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                    JsonElement jsonElement = response.body();
+                    if (jsonElement == null) {
+                        return;
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    try {
+                        JsonObject jsonObject = jsonElement.getAsJsonObject();
+                        int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
+                        if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
+                            DialogFragment newFragment = new TrophyDialogFragment();
+                            newFragment.show(getChildFragmentManager(), "missiles");
+                        } else {
+                            Navigation.findNavController(view).navigate(R.id.action_in_receta_to_inicioFragment);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
 
-            @EverythingIsNonNull
-            @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {}
+                @EverythingIsNonNull
+                @Override
+                public void onFailure(Call<JsonElement> call, Throwable t) {}
 
-        }));
+            });
+        });
     }
 
     public void onButtonPressed(Uri uri) {

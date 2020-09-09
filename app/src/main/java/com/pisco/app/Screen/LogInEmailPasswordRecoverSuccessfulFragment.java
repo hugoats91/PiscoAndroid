@@ -15,8 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilAnalytics;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -34,7 +36,10 @@ public class LogInEmailPasswordRecoverSuccessfulFragment extends Fragment {
             FirebaseAnalytics.getInstance(this.getContext());
         }
         Button btnRecoverPasswordSuccessful = view.findViewById(R.id.IDButtonRecuperarPasswordExitoso);
-        btnRecoverPasswordSuccessful.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_loginEmailPasswordRecuperarExitosoFragment_to_loginEmailFragment));
+        btnRecoverPasswordSuccessful.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Login_correo", "Boton", "Olvido su clave");
+            Navigation.findNavController(v).navigate(R.id.action_loginEmailPasswordRecuperarExitosoFragment_to_loginEmailFragment);
+        });
         return view;
     }
 

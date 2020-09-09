@@ -44,9 +44,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.JsonObject;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.AppConstantList;
 import com.pisco.app.Utils.DownloadImageTask;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.Utils.ViewInstanceList;
@@ -131,7 +133,10 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
         ImageView ivClose = view.findViewById(R.id.IDPuntClose);
         ivClose.setOnClickListener(v -> relMap.setVisibility(View.INVISIBLE));
         ImageView ivBack = view.findViewById(R.id.ImageViewButtonBackMap);
-        ivBack.setOnClickListener(v -> requireActivity().onBackPressed());
+        ivBack.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "¿Donde Comprar?", "Boton", "Flecha Volver");
+            requireActivity().onBackPressed();
+        });
 
         ViewModelInstanceList.getHomeViewModelInstance().postGetCityListFront(new Callback<ArrayList<JsonObject>>() {
 
@@ -211,6 +216,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
 
         });
         map.setOnMarkerClickListener(marker -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "¿Donde comprar?", "Clic", "Donde comprar - Seleccion");
             int pointId = Integer.parseInt(marker.getSnippet());
             int pointCityId = ViewModelInstanceList.getHomeViewModelInstance().cityIdList.get(spinnerCity.getSelectedItemPosition());
             sellPoint(pointId, pointCityId);

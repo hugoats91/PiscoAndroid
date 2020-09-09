@@ -17,10 +17,12 @@ import androidx.navigation.Navigation;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Screen.Dialogs.OnboardDialogFragment;
 import com.pisco.app.Screen.Dialogs.ProgressDialogFragment;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.Utils.ViewInstanceList;
@@ -44,17 +46,10 @@ public class WelcomeHomeFragment extends Fragment {
         }
         Button btnContinue = view.findViewById(R.id.IDButtonContinuarRegisterExitoso);
         btnContinue.setOnClickListener(v -> ViewModelInstanceList.getWelcomeViewModelInstance().updateWelcomeFront(() -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "sign_up", "Registro", "Continuar");
             ProgressDialogFragment dialog = UtilDialog.showProgress(this);
             if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.1").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 1.2").getSesiState() == 1) {
                 Navigation.findNavController(view).navigate(WelcomeHomeFragmentDirections.actionInicioBienvenidoFragmentToOnBoardFragment("onBoard-inicio"));
-                /*Bundle bundle = new Bundle();
-                bundle.putString("onboard", "onBoard-inicio");*/
-                /*OnboardDialogFragment onboardDialogFragment = new OnboardDialogFragment(response -> {
-                    Navigation.findNavController(view).navigate(R.id.action_inicioBienvenidoFragment_to_inicioFragment);
-                    dialog.dismiss();
-                });
-                onboardDialogFragment.setArguments(bundle);
-                onboardDialogFragment.show(getChildFragmentManager(),"");*/
             }else{
                 Navigation.findNavController(view).navigate(R.id.action_inicioBienvenidoFragment_to_inicioFragment);
             }

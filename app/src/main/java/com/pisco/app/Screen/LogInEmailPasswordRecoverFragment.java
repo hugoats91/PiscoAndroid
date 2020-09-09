@@ -16,8 +16,10 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.Utils.ViewInstanceList;
@@ -77,6 +79,7 @@ public class LogInEmailPasswordRecoverFragment extends Fragment {
         btnRecoverPassword.setOnClickListener(v -> {
             String email = tvEmail.getText().toString();
             if (Query.validateEmail(email)){
+                UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Login_correo", "Boton", "Recuperar");
                 tvEmail.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
                 ViewModelInstanceList.getLogInViewModelInstance().postRecoverPasswordFront(LogInEmailPasswordRecoverFragment.this, email);
             }else{

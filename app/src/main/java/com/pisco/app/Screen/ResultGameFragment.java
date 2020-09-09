@@ -24,9 +24,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.AppConstantList;
 import com.pisco.app.Utils.DownloadImageTask;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilSound;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.ViewModel.HomeViewModel;
@@ -136,6 +138,7 @@ public class ResultGameFragment extends Fragment {
             btnPlayAgain.setText(R.string.app_es_jugar_denuevo);
         }
         btnQuestion1.setOnTouchListener((v, event) -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Resultado del Juego", "Respuesta", "Respuesta");
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 btnQuestion1.setTextColor(Color.WHITE);
             }else{
@@ -144,6 +147,7 @@ public class ResultGameFragment extends Fragment {
             return false;
         });
         btnQuestion2.setOnTouchListener((v, event) -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Resultado del Juego", "Respuesta", "Respuesta");
             if (event.getAction() == MotionEvent.ACTION_DOWN){
                 btnQuestion2.setTextColor(Color.WHITE);
             } else {
@@ -152,7 +156,10 @@ public class ResultGameFragment extends Fragment {
             }
             return false;
         });
-        ivBack.setOnClickListener(v -> requireActivity().onBackPressed());
+        ivBack.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Resultado del Juego", "Clic Boton", "Volver");
+            requireActivity().onBackPressed();
+        });
         homeViewModel.questionList(new Callback<ArrayList<JsonObject>>() {
 
             @SuppressLint("SetTextI18n")

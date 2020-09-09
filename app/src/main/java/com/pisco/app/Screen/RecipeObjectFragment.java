@@ -17,8 +17,10 @@ import androidx.navigation.Navigation;
 import com.google.gson.JsonElement;
 import com.pisco.app.Entity.RecipeItem;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Screen.Dialogs.OnboardDialogFragment;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.squareup.picasso.Picasso;
 
@@ -77,23 +79,18 @@ public class RecipeObjectFragment extends Fragment {
             tnShow.setText(R.string.app_en_ver_receta);
         }
         tnShow.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Recetas", "Ver", args.getString(ReceTitulo));
             String recipeIdText = tvRecipeId.getText().toString();
             int recipeId = Integer.parseInt(recipeIdText);
             AppDatabase.INSTANCE.userDao().setUpdateReceId(recipeId);
             if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 2.1").getSesiState()==1 &&AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 2.2").getSesiState()==1 ) {
                 Navigation.findNavController(view).navigate(RecipeFragmentDirections.actionRecipeFragmentToOnBoardFragment("onBoard-receta"));
-                /*Bundle bundle = new Bundle();
-                bundle.putString("onboard", "onboard-receta");
-                OnboardDialogFragment onboardDialogFragment = new OnboardDialogFragment(response -> {
-                    Navigation.findNavController(view).navigate(R.id.action_in_receta_to_in_inicio_receta);
-                });
-                onboardDialogFragment.setArguments(bundle);
-                onboardDialogFragment.show(getChildFragmentManager(), "missiles");*/
             }else{
                 Navigation.findNavController(view).navigate(R.id.action_in_receta_to_in_inicio_receta);
             }
         });
         ivHeart.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Recetas", "Boton", "Favorito");
             String userLikeText = tvUserLike.getText().toString();
             String recipeIdText = tvRecipeId.getText().toString();
             int userLike = Integer.parseInt(userLikeText);

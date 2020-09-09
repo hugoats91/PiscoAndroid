@@ -23,8 +23,10 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.pisco.app.LocalService.AppDatabase;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.DownloadImageTask;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.ViewModel.HomeViewModel;
 import com.pisco.app.Screen.Dialogs.TrophyDialogFragment;
@@ -60,37 +62,43 @@ public class ResultPlayAgainFragment extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
         ImageView ivBack = view.findViewById(R.id.IDBackInResultadoAgain);
-        ivBack.setOnClickListener(v -> requireActivity().onBackPressed());
+        ivBack.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Resultados del Juego", "Clic Boton", "Respuesta Incorrecta_Flecha Volver");
+            requireActivity().onBackPressed();
+        });
         HomeViewModel homeViewModel =new HomeViewModel();
         Button btnPlayAgain = view.findViewById(R.id.IDButtonResultadoJuegoAgainJugarDenuevo);
-        btnPlayAgain.setOnClickListener(v -> homeViewModel.currentScore(new Callback<JsonElement>() {
+        btnPlayAgain.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Resultados del Juego", "Boton", "Jugar de Nuevo - Respuesta incorrecta");
+            homeViewModel.currentScore(new Callback<JsonElement>() {
 
-            @EverythingIsNonNull
-            @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                JsonElement jsonElement = response.body();
-                if (jsonElement == null) {
-                    return;
-                }
-                try {
-                    JsonObject jsonObject = jsonElement.getAsJsonObject();
-                    int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
-                    if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
-                        DialogFragment newFragment = new TrophyDialogFragment();
-                        newFragment.show(getChildFragmentManager(), "missiles");
-                    } else {
-                        Navigation.findNavController(view).navigate(R.id.action_in_resultado_juego_again_to_inicioFragment);
+                @EverythingIsNonNull
+                @Override
+                public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                    JsonElement jsonElement = response.body();
+                    if (jsonElement == null) {
+                        return;
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    try {
+                        JsonObject jsonObject = jsonElement.getAsJsonObject();
+                        int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
+                        if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
+                            DialogFragment newFragment = new TrophyDialogFragment();
+                            newFragment.show(getChildFragmentManager(), "missiles");
+                        } else {
+                            Navigation.findNavController(view).navigate(R.id.action_in_resultado_juego_again_to_inicioFragment);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
 
-            @EverythingIsNonNull
-            @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {}
+                @EverythingIsNonNull
+                @Override
+                public void onFailure(Call<JsonElement> call, Throwable t) {}
 
-        }));
+            });
+        });
         TextView tvResultIncorrect = view.findViewById(R.id.IDTextResultadoAgainIncorrecto);
         ImageView ivMenu = view.findViewById(R.id.IDMenuModal);
         ivMenu.setOnClickListener(v -> {

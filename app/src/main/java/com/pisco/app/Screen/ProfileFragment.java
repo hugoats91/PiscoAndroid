@@ -45,10 +45,12 @@ import com.pisco.app.Enum.StateUser;
 import com.pisco.app.LocalService.AppDatabase;
 import com.pisco.app.LocalService.Entity.EntityStateOnboarding;
 import com.pisco.app.LocalService.Entity.EntityUser;
+import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Utils.AppConstantList;
 import com.pisco.app.Utils.DownloadImageTask;
 import com.pisco.app.Utils.Query;
+import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilBitmap;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.Utils.ViewInstanceList;
@@ -106,7 +108,10 @@ public class ProfileFragment extends Fragment {
             newFragment.show(getChildFragmentManager(), "missiles");
         });
         ImageView ivBack = view.findViewById(R.id.ImageViewButtonBackPerfil);
-        ivBack.setOnClickListener(v -> requireActivity().onBackPressed());
+        ivBack.setOnClickListener(v -> {
+            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Mi Perfil", "Boton", "Flecha-Regreso al juego");
+            requireActivity().onBackPressed();
+        });
         return view;
     }
 
@@ -406,6 +411,7 @@ public class ProfileFragment extends Fragment {
                     int code = ((Country)spiCountry.getSelectedItem()).getPaisId();
                     LoginRegisterData data = new LoginRegisterData(code, name, "", email, password, portalId, imgBase64);
                     String finalPassword = password;
+                    UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Mi Perfil", "Boton", "Editar");
                     ViewModelInstanceList.getHomeViewModelInstance().postUpdateUserFront(new Callback<JsonElement>() {
 
                         @EverythingIsNonNull

@@ -9,8 +9,8 @@ apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         debug {
-            storeFile file('../piscokeystore.jks')
-            keyAlias 'promperu'
+            storeFile file('../pisco.jks')
+            keyAlias 'pisco'
             storePassword '123456'
             keyPassword '123456'
         }
