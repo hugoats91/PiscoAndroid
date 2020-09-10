@@ -5,11 +5,15 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.pisco.app.LocalService.AppDatabase;
 import com.pisco.app.R;
+import com.pisco.app.Utils.UtilDialog;
 
 public class NoConnectionDialogFragment extends DialogFragment {
 
@@ -25,4 +29,17 @@ public class NoConnectionDialogFragment extends DialogFragment {
         return builder.create();
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        TextView tvTitle = view.findViewById(R.id.tvTitle);
+        TextView tvDescription = view.findViewById(R.id.tvDescription);
+        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+            tvTitle.setText(getString(R.string.app_es_no_conexion_titulo));
+            tvDescription.setText(getString(R.string.app_es_no_conexion));
+        }else{
+            tvTitle.setText(getString(R.string.app_en_no_conexion_titulo));
+            tvDescription.setText(getString(R.string.app_en_no_conexion));
+        }
+    }
 }

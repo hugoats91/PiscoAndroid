@@ -173,6 +173,7 @@ public class LogInEmailFragment extends Fragment {
                     @Override
                     public void onError(int type) {
                         switch (type){
+                            case 1:
                             case 2:
                                 textView.setVisibility(View.VISIBLE);
                                 break;

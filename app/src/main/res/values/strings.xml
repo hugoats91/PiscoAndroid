@@ -33,8 +33,11 @@
     <string name="app_es_nombre_invalido">Nombre invalido</string>
     <string name="app_es_inicio_ruleta">¡Gira la ruleta y empieza a jugar!</string>
     <string name="app_es_inicio_promociones">Promociones de pisco</string>
+
     <string name="app_es_no_conexion_titulo">Sin conexión a Internet</string>
     <string name="app_es_no_conexion">Revisa tu conexión Wi-Fi o de datos móviles para que sigas divirtiendote al máximo</string>
+
+
     <string name="app_es_resultado_juego_titulo">¡TU RECETA PERFECTA ES</string>
     <string name="app_es_resultado_juego_titulo_cuerpo">Acierta la respuesta o recibe un castigo</string>
     <string name="app_es_jugar_denuevo">Jugar de nuevo</string>

@@ -38,7 +38,7 @@
             android:paddingTop="16dp"
             android:textColor="#FFFFFF"
             android:textSize="10dp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
         <!--
             android:text="Disponible en:"-->
         <LinearLayout

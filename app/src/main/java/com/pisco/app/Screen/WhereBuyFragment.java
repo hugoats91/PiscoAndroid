@@ -55,6 +55,7 @@ import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.ViewModel.LiveData.CityData;
 import com.pisco.app.ViewModel.LiveData.CitySaleData;
 import com.pisco.app.Screen.Dialogs.MenuDialogFragment;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -265,7 +266,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                     tvAddress.setText(pointAddress);
                     tvSchedule.setText(pointSchedule);
                     String imageUrl = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath()+ AppConstantList.RUTA_PUNTO_VENTA + pointId + "/" + pointImage;
-                    new DownloadImageTask(ivPoint).execute(imageUrl);
+                    Picasso.get().load(imageUrl).into(ivPoint);
                     ivFacebook.setOnClickListener(v -> {
                         Uri uri = Uri.parse(pointUrlFacebook);
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
