@@ -102,6 +102,8 @@ public class LoginViewModel extends ViewModel {
                     int rouletteNumber = jsonObject.get("nroRuleta").getAsInt();
                     String rouletteImage = jsonObject.get("imagenRuleta").getAsString();
                     String imagePath = jsonObject.get("rutaImagen").getAsString();
+                    int flagPromocion = jsonObject.get("FlagPromocion").getAsInt();
+                    Query.saveIntValue(context, "flag_promocion", flagPromocion);
                     int portalId = jsonObject.get("PortalId").getAsInt();
                     JsonArray jsonArrayStateListOnboarding = jsonObject.getAsJsonArray("listaEstadoOnnboarding");
                     if (consultationResponse == StateUser.EXISTS.ordinal()) {

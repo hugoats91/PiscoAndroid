@@ -326,7 +326,7 @@
                         android:lineHeight="22dp"
                         android:textAllCaps="true"
                         android:fontFamily="@font/typeforgestudio_kapra_neue_regular"
-                        android:textSize="24dp"></TextView>
+                        android:textSize="24dp"/>
                     <!-- android:text="@string/app_es_inicio_promociones"-->
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/promociones_pisco_view_pager"

@@ -86,6 +86,14 @@ public class Query {
         editor.apply();
     }
 
+    public static void saveIntValue(Context context, String key, int value){
+        SharedPreferences settings = context.getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor;
+        editor = settings.edit();
+        editor.putInt(key, value);
+        editor.apply();
+    }
+
     public static void saveCityCount(Context context, int count){
         SharedPreferences settings = context.getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor;
@@ -117,6 +125,15 @@ public class Query {
             return preferences.getString(keyPref, "");
         }else{
             return "";
+        }
+    }
+
+    public static int readIntValue(String keyPref, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE);
+        if(preferences.contains(keyPref)){
+            return preferences.getInt(keyPref, 0);
+        }else{
+            return 0;
         }
     }
 

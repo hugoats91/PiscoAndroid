@@ -87,6 +87,7 @@ public class StartFragment extends Fragment {
             DialogFragment newFragment = new MenuDialogFragment();
             newFragment.show(getChildFragmentManager(), "missiles");
         });
+
         Button btnUser = view.findViewById(R.id.IdInicioButtonUsuario);
         btnUser.setText(UtilText.capitalize(AppDatabase.INSTANCE.userDao().getEntityUser().getUserName()));
         Button btnStart = view.findViewById(R.id.IdInicioButtonStart);
@@ -141,7 +142,7 @@ public class StartFragment extends Fragment {
                                 data.get(i).getAsJsonObject().get("PromPromocion").getAsString(),
                                 data.get(i).getAsJsonObject().get("PromSubTitulo").getAsString()));
                     }
-                    viewPager = view.findViewById(R.id.promociones_pisco_view_pager);
+
                     promotionPiscoViewPagerAdapter = new PromotionPiscoViewPagerAdapter(view.getContext(), promotionPiscoItemList, getChildFragmentManager());
                     viewPager.setAdapter(promotionPiscoViewPagerAdapter);
                     viewPager.setClipToPadding(false);
@@ -309,6 +310,11 @@ public class StartFragment extends Fragment {
             btnWhereBuy.setText(R.string.app_es_donde_comprar);
             btnLearnPisco.setText(R.string.app_es_aprende_sobre_pisco);
             tvPromotions.setText(R.string.app_es_inicio_promociones);
+        }
+        viewPager = view.findViewById(R.id.promociones_pisco_view_pager);
+        if(Query.readValueInt("flag_promocion", requireContext())==0){
+            viewPager.setVisibility(View.GONE);
+            tvPromotions.setVisibility(View.GONE);
         }
     }
 

@@ -49,6 +49,7 @@ import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
 import com.pisco.app.Screen.Dialogs.ProgressDialogFragment;
 import com.pisco.app.Utils.AppConstantList;
+import com.pisco.app.Utils.CircleTransform;
 import com.pisco.app.Utils.DownloadImageTask;
 import com.pisco.app.Utils.Query;
 import com.pisco.app.Utils.UtilAnalytics;
@@ -61,6 +62,8 @@ import com.pisco.app.ViewModel.LiveData.LoginRegisterData;
 import com.pisco.app.ViewModel.LiveData.CountryData;
 import com.pisco.app.Screen.Dialogs.MenuDialogFragment;
 import com.pisco.app.Remote.UpdateAvatarRemote;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -259,7 +262,12 @@ public class ProfileFragment extends Fragment {
                         imageview.setImageDrawable(AppCompatResources.getDrawable(view.getContext(), R.drawable.imagenperfil));
                     } else {
                         String urlImagen = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_USUARIO + userId + "/" + userImage;
-                        Picasso.get().load(urlImagen).into(imageview);
+                        Picasso.get().load(urlImagen)
+                                .transform(new CircleTransform())
+                                .error(R.drawable.imagenperfil)
+                                .placeholder(R.drawable.imagenperfil)
+                                .memoryPolicy(MemoryPolicy.NO_CACHE )
+                                .networkPolicy(NetworkPolicy.NO_CACHE).into(imageview);
                     }
                     ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().postCountryListUserFront(new Callback<JsonElement>() {
                         @Override
@@ -573,6 +581,7 @@ public class ProfileFragment extends Fragment {
             if (extras != null) {
                 Bitmap imageBitmap = (Bitmap)extras.get("data");
                 imageview.setImageBitmap(imageBitmap);
+
                 if (imageBitmap != null) {
                     updateAvatar(UtilBitmap.getBase64ByBitmap(imageBitmap));
                 }
@@ -582,7 +591,14 @@ public class ProfileFragment extends Fragment {
             Uri path = data.getData();
             try {
                 Bitmap imageBitmap = getThumbnail(path);
-                imageview.setImageBitmap(imageBitmap);
+                Picasso.get().load(data.getData())
+                        .transform(new CircleTransform())
+                        .error(R.drawable.imagenperfil)
+                        .placeholder(R.drawable.imagenperfil)
+                        .memoryPolicy(MemoryPolicy.NO_CACHE )
+                        .networkPolicy(NetworkPolicy.NO_CACHE).into(imageview);
+
+                //imageview.setImageBitmap(imageBitmap);
                 updateAvatar(UtilBitmap.getBase64ByBitmap(imageBitmap));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -607,15 +623,20 @@ public class ProfileFragment extends Fragment {
 
     public void updateAvatar(String avatar){
         UpdateAvatarRemote data = new UpdateAvatarRemote("data:image/jpeg;base64,"+avatar);
+        ProgressDialogFragment progress = UtilDialog.showProgress(this);
         ViewModelInstanceList.getHomeViewModelInstance().postUpdateAvatarFront(new Callback<JsonElement>() {
 
             @EverythingIsNonNull
             @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {}
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                progress.dismiss();
+            }
 
             @EverythingIsNonNull
             @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {}
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                progress.dismiss();
+            }
 
         }, data);
     }
@@ -724,7 +745,7 @@ public class ProfileFragment extends Fragment {
                 openCamera();
             } else if (option[which] == finalChooseGallery) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
+                intent.setType("image/jpeg");
                 startActivityForResult(Intent.createChooser(intent, finalSelectImage), SELECT_PICTURE);
             } else {
                 dialog.dismiss();
