@@ -140,7 +140,7 @@
                         android:textStyle="bold"
                         android:textColor="#fff"
                         android:textSize="14dp"
-                        tools:ignore="RtlCompat"></Button>
+                        tools:ignore="RtlCompat"/>
 
                     <ImageView
                         android:layout_width="25dp"

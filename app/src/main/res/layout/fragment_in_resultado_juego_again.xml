@@ -224,12 +224,12 @@
                                     android:elevation="2dp"
                                     android:paddingLeft="25dp"
                                     android:fontFamily="@font/clan_offc_bold"
-
+                                    android:textAllCaps="false"
                                     android:textAlignment="textStart"
                                     android:textStyle="bold"
                                     android:textColor="#fff"
-                                    android:textSize="14dp"
-                                    tools:ignore="RtlCompat"></Button>
+                                    android:textSize="14sp"
+                                    tools:ignore="RtlCompat"/>
                                 <!--      android:text="@string/app_es_jugar_denuevo"-->
                                 <ImageView
                                     android:layout_width="25dp"

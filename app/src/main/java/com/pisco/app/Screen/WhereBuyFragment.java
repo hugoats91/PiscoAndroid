@@ -176,7 +176,6 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
         googleMap = map;
         googleMap.setMinZoomPreference(11.0f);
         googleMap.setMaxZoomPreference(14.0f);
-        getLocationPermission();
         updateLocationUI();
         getDeviceLocation();
         ViewModelInstanceList.getHomeViewModelInstance().postGetCityListFront(new Callback<ArrayList<JsonObject>>() {
@@ -428,22 +427,9 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                 googleMap.setMyLocationEnabled(true);
                 googleMap.getUiSettings().setMyLocationButtonEnabled(false);
                 lastKnownLocation = null;
-                getLocationPermission();
             }
         } catch (SecurityException e)  {
             e.printStackTrace();
-        }
-    }
-
-    private void getLocationPermission() {
-        if (ContextCompat.checkSelfPermission(view.getContext().getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            locationPermissionGranted = true;
-        } else {
-            ActivityCompat.requestPermissions((Activity) view.getContext(),
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
     }
 

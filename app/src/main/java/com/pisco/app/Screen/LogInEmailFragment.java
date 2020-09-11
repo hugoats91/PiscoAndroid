@@ -153,6 +153,7 @@ public class LogInEmailFragment extends Fragment {
                                                 Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_inicioFragment);
                                             }
                                         } else {
+                                            Navigation.findNavController(view).navigate(LogInEmailFragmentDirections.actionEditProfile("1"));
                                             Navigation.findNavController(view).navigate(R.id.action_edit_profile);
                                         }
                                     } else {

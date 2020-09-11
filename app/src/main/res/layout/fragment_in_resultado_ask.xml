@@ -238,11 +238,11 @@
                                     android:fontFamily="@font/clan_offc_bold"
                                     android:paddingLeft="25dp"
                                     android:textAlignment="textStart"
-
+                                    android:textAllCaps="false"
                                     android:textColor="#fff"
                                     android:textSize="14dp"
                                     android:textStyle="bold"
-                                    tools:ignore="RtlCompat"></Button>
+                                    tools:ignore="RtlCompat"/>
                                 <!--android:text="@string/app_es_donde_comprar"-->
                                 <ImageView
                                     android:layout_width="25dp"
@@ -274,9 +274,9 @@
                                     android:textColor="#fff"
                                     android:textSize="14dp"
                                     android:fontFamily="@font/clan_offc_bold"
-
+                                    android:textAllCaps="false"
                                     android:textStyle="bold"
-                                    tools:ignore="RtlCompat"></Button>
+                                    tools:ignore="RtlCompat"/>
 
                                 <ImageView
                                     android:layout_width="25dp"
@@ -306,11 +306,11 @@
                                     android:paddingLeft="25dp"
                                     android:textAlignment="textStart"
                                     android:fontFamily="@font/clan_offc_bold"
-
+                                    android:textAllCaps="false"
                                     android:textColor="#fff"
                                     android:textSize="14dp"
                                     android:textStyle="bold"
-                                    tools:ignore="RtlCompat"></Button>
+                                    tools:ignore="RtlCompat"/>
                                 <!--android:text="@string/app_es_jugar_denuevo"-->
 
                                 <ImageView

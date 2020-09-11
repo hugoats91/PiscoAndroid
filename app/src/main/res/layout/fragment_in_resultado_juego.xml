@@ -206,12 +206,13 @@
                                     android:layout_gravity="center"
                                     android:background="#00FFFFFF"
                                     android:elevation="4dp"
+                                    android:textAllCaps="false"
                                     android:paddingLeft="25dp"
                                     android:textAlignment="textStart"
                                     android:textColor="#fff"
                                     android:fontFamily="@font/clan_offc_bold"
                                     android:textSize="14dp"
-                                    tools:ignore="RtlCompat"></Button>
+                                    tools:ignore="RtlCompat"/>
                                 <!--      android:text="@string/app_es_jugar_denuevo"-->
 
                                 <ImageView

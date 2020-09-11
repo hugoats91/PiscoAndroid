@@ -47,11 +47,13 @@ import com.pisco.app.LocalService.Entity.EntityStateOnboarding;
 import com.pisco.app.LocalService.Entity.EntityUser;
 import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
+import com.pisco.app.Screen.Dialogs.ProgressDialogFragment;
 import com.pisco.app.Utils.AppConstantList;
 import com.pisco.app.Utils.DownloadImageTask;
 import com.pisco.app.Utils.Query;
 import com.pisco.app.Utils.UtilAnalytics;
 import com.pisco.app.Utils.UtilBitmap;
+import com.pisco.app.Utils.UtilDialog;
 import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.Utils.ViewInstanceList;
 import com.pisco.app.ViewModel.HomeViewModel;
@@ -59,6 +61,7 @@ import com.pisco.app.ViewModel.LiveData.LoginRegisterData;
 import com.pisco.app.ViewModel.LiveData.CountryData;
 import com.pisco.app.Screen.Dialogs.MenuDialogFragment;
 import com.pisco.app.Remote.UpdateAvatarRemote;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -107,11 +110,7 @@ public class ProfileFragment extends Fragment {
             DialogFragment newFragment = new MenuDialogFragment();
             newFragment.show(getChildFragmentManager(), "missiles");
         });
-        ImageView ivBack = view.findViewById(R.id.ImageViewButtonBackPerfil);
-        ivBack.setOnClickListener(v -> {
-            UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Mi Perfil", "Boton", "Flecha-Regreso al juego");
-            requireActivity().onBackPressed();
-        });
+
         return view;
     }
 
@@ -124,6 +123,20 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Bundle args = getArguments();
+        if (args == null) {
+            return;
+        }
+        ImageView ivBack = view.findViewById(R.id.ImageViewButtonBackPerfil);
+        ivBack.setOnClickListener(v -> {
+            String type = args.getString("type");
+            if(type!=null){
+                Navigation.findNavController(view).navigate(R.id.action_inicioFragment);
+            }else{
+                UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Mi Perfil", "Boton", "Flecha-Regreso al juego");
+                requireActivity().onBackPressed();
+            }
+        });
         HomeViewModel homeViewModel = new HomeViewModel();
         imageview = view.findViewById(R.id.IdImagePerfil);
         imageview.setDrawingCacheEnabled(true);
@@ -246,7 +259,7 @@ public class ProfileFragment extends Fragment {
                         imageview.setImageDrawable(AppCompatResources.getDrawable(view.getContext(), R.drawable.imagenperfil));
                     } else {
                         String urlImagen = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_USUARIO + userId + "/" + userImage;
-                        new DownloadImageTask(imageview).execute(urlImagen);
+                        Picasso.get().load(urlImagen).into(imageview);
                     }
                     ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().postCountryListUserFront(new Callback<JsonElement>() {
                         @Override
@@ -362,7 +375,6 @@ public class ProfileFragment extends Fragment {
                     ((TextView) view.findViewById(R.id.IDTextViewPais)).setText(country);
                     String language = spiLanguage.getSelectedItem().toString();
                     int portalId;
-                    int countryId = 0;
                     if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
                         if (language.toLowerCase().equals(getString(R.string.app_en_ingles).toLowerCase())) {
                             portalId = 1;
@@ -412,11 +424,13 @@ public class ProfileFragment extends Fragment {
                     LoginRegisterData data = new LoginRegisterData(code, name, "", email, password, portalId, imgBase64);
                     String finalPassword = password;
                     UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Mi Perfil", "Boton", "Editar");
+                    ProgressDialogFragment progress = UtilDialog.showProgress(this);
                     ViewModelInstanceList.getHomeViewModelInstance().postUpdateUserFront(new Callback<JsonElement>() {
 
                         @EverythingIsNonNull
                         @Override
                         public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                            progress.dismiss();
                             ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addLanguageSpinner(spiLanguage, arrLanguage, view);
                             LoginRegisterData loginRegisterData = new LoginRegisterData();
                             loginRegisterData.setEmail(email);
@@ -468,6 +482,11 @@ public class ProfileFragment extends Fragment {
                                                         }
                                                         AppDatabase.INSTANCE.userDao().insert(entityUser);
                                                     }
+                                                    if (Query.getPortalId() == 1) {
+                                                        UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), getString(R.string.app_en_actualizar_perfil));
+                                                    }else{
+                                                        UtilDialog.infoMessage(requireContext(), getString(R.string.app_name), getString(R.string.app_es_actualizar_perfil));
+                                                    }
                                                 } catch (Exception e) {
                                                     e.printStackTrace();
                                                 }
@@ -477,6 +496,7 @@ public class ProfileFragment extends Fragment {
                                         @EverythingIsNonNull
                                         @Override
                                         public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
+                                            progress.dismiss();
                                         }
 
                                     });
@@ -484,14 +504,18 @@ public class ProfileFragment extends Fragment {
                                 }
 
                                 @Override
-                                public void onFailure(Call<JsonElement> call, Throwable t) {}
+                                public void onFailure(Call<JsonElement> call, Throwable t) {
+                                    progress.dismiss();
+                                }
 
                             });
                         }
 
                         @EverythingIsNonNull
                         @Override
-                        public void onFailure(Call<JsonElement> call, Throwable t) {}
+                        public void onFailure(Call<JsonElement> call, Throwable t) {
+                            progress.dismiss();
+                        }
 
                     }, data);
                 }
@@ -499,12 +523,10 @@ public class ProfileFragment extends Fragment {
                 RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) linRectangle.getLayoutParams();
                 params.height = params.height + 300;
                 linRectangle.requestLayout();
-                tvLanguageProfile.setVisibility(View.GONE);
                 tvName.setVisibility(View.GONE);
                 tvEmail.setVisibility(View.GONE);
                 tvPassword2.setVisibility(View.GONE);
                 tvCountry.setVisibility(View.GONE);
-                tvLanguage.setVisibility(View.GONE);
                 etName.setVisibility(View.VISIBLE);
                 etEmail.setVisibility(View.VISIBLE);
                 etPassword.setVisibility(View.VISIBLE);
@@ -525,10 +547,12 @@ public class ProfileFragment extends Fragment {
                     etName.setHint(getString(R.string.app_en_nombre));
                     etEmail.setHint(getString(R.string.app_en_correo));
                     etPassword.setHint(getString(R.string.app_en_contrasena));
+                    tvEdit.setText(getString(R.string.app_en_guardar));
                 } else {
                     etName.setHint(getString(R.string.app_es_nombre));
                     etEmail.setHint(getString(R.string.app_es_correo));
                     etPassword.setHint(getString(R.string.app_es_contrasena));
+                    tvEdit.setText(getString(R.string.app_es_guardar));
                 }
 
             }

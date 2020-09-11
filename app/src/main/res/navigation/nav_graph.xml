@@ -165,7 +165,14 @@
         android:id="@+id/in_mi_perfil"
         android:name="com.pisco.app.Screen.ProfileFragment"
         android:label="fragment_in_mi_perfil"
-        tools:layout="@layout/fragment_in_mi_perfil" />
+        tools:layout="@layout/fragment_in_mi_perfil" >
+        <argument
+            android:name="type"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_inicioFragment"
+            app:destination="@id/inicioFragment" />
+    </fragment>
     <fragment
         android:id="@+id/in_donde_comprar"
         android:name="com.pisco.app.Screen.WhereBuyFragment"
@@ -260,24 +267,6 @@
             app:enterAnim="@anim/from_left"
             app:destination="@id/inicioFragment" />
     </fragment>
-    <!--<fragment
-        android:id="@+id/in_menu"
-        android:name="com.pisco.app.Views.in_menu"
-        android:label="in_menu" >
-        <action
-            android:id="@+id/action_in_menu_to_in_mi_perfil"
-            app:destination="@id/in_mi_perfil" />
-        <action
-            android:id="@+id/action_in_menu_to_inicioFragment"
-            app:destination="@id/inicioFragment" />
-        <action
-            android:id="@+id/action_in_menu_to_in_donde_comprar"
-            app:destination="@id/in_donde_comprar" />
-        <action
-            android:id="@+id/action_in_menu_to_in_inicio_receta"
-            app:destination="@id/in_inicio_receta" />
-    </fragment> <include app:graph="@navigation/nav_onboard_graph" />-->
-
 
     <dialog
         android:id="@+id/menuDialogFragment2"
