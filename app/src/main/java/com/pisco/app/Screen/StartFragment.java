@@ -71,6 +71,9 @@ public class StartFragment extends Fragment {
     private View view;
     private OnFragmentInteractionListener listener;
 
+    LinearLayout layoutPromotions;
+    TextView tvPromotions;
+
     public StartFragment() {
     }
 
@@ -132,25 +135,38 @@ public class StartFragment extends Fragment {
             public void onResponse(Call<List<JsonElement>> call, Response<List<JsonElement>> response) {
                 List<JsonElement> data = response.body();
                 if (data == null) {
+                    viewPager.setVisibility(View.GONE);
+                    tvPromotions.setVisibility(View.GONE);
+                    layoutPromotions.setVisibility(View.GONE);
                     return;
                 }
                 try {
-                    promotionPiscoItemList = new ArrayList<>();
-                    for (int i = 0; i < data.size(); i++) {
-                        String imagePath = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_PROMOCION + data.get(i).getAsJsonObject().get("PromId").getAsInt() + "/" + data.get(i).getAsJsonObject().get("PromImagen").getAsString();
-                        promotionPiscoItemList.add(new PromotionPiscoItem(imagePath,
-                                data.get(i).getAsJsonObject().get("PromTitulo").getAsString(),
-                                data.get(i).getAsJsonObject().get("PromPromocion").getAsString(),
-                                data.get(i).getAsJsonObject().get("PromSubTitulo").getAsString()));
+                    if(!data.isEmpty()){
+                        viewPager.setVisibility(View.VISIBLE);
+                        tvPromotions.setVisibility(View.VISIBLE);
+                        layoutPromotions.setVisibility(View.VISIBLE);
+                        promotionPiscoItemList = new ArrayList<>();
+                        for (int i = 0; i < data.size(); i++) {
+                            String imagePath = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_PROMOCION + data.get(i).getAsJsonObject().get("PromId").getAsInt() + "/" + data.get(i).getAsJsonObject().get("PromImagen").getAsString();
+                            promotionPiscoItemList.add(new PromotionPiscoItem(imagePath,
+                                    data.get(i).getAsJsonObject().get("PromTitulo").getAsString(),
+                                    data.get(i).getAsJsonObject().get("PromPromocion").getAsString(),
+                                    data.get(i).getAsJsonObject().get("PromSubTitulo").getAsString()));
+                        }
+
+                        promotionPiscoViewPagerAdapter = new PromotionPiscoViewPagerAdapter(view.getContext(), promotionPiscoItemList, getChildFragmentManager());
+                        viewPager.setAdapter(promotionPiscoViewPagerAdapter);
+                        viewPager.setClipToPadding(false);
+                        viewPager.setPadding(40, 0, 40, 0);
+                        viewPager.setPageMargin(50);
+                        viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
+                        viewPager.setOffscreenPageLimit(3);
+                    }else{
+                        viewPager.setVisibility(View.GONE);
+                        tvPromotions.setVisibility(View.GONE);
+                        layoutPromotions.setVisibility(View.GONE);
                     }
 
-                    promotionPiscoViewPagerAdapter = new PromotionPiscoViewPagerAdapter(view.getContext(), promotionPiscoItemList, getChildFragmentManager());
-                    viewPager.setAdapter(promotionPiscoViewPagerAdapter);
-                    viewPager.setClipToPadding(false);
-                    viewPager.setPadding(40, 0, 40, 0);
-                    viewPager.setPageMargin(50);
-                    viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
-                    viewPager.setOffscreenPageLimit(3);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -298,8 +314,8 @@ public class StartFragment extends Fragment {
         Button tvRecipes = view.findViewById(R.id.IdButtonInicioRecetas);
         Button btnWhereBuy = view.findViewById(R.id.IdButtonInicioDondeComprar);
         Button btnLearnPisco = view.findViewById(R.id.IdButtonInicioAprendePisco);
-        LinearLayout layoutPromotions = view.findViewById(R.id.lPromotions);
-        TextView tvPromotions = view.findViewById(R.id.IDapp_es_inicio_promociones);
+        layoutPromotions = view.findViewById(R.id.lPromotions);
+        tvPromotions = view.findViewById(R.id.IDapp_es_inicio_promociones);
         if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
             tvSpinRoulette.setText(R.string.app_en_inicio_ruleta);
             tvRecipes.setText(R.string.app_en_recetas);
@@ -314,11 +330,6 @@ public class StartFragment extends Fragment {
             tvPromotions.setText(R.string.app_es_inicio_promociones);
         }
         viewPager = view.findViewById(R.id.promociones_pisco_view_pager);
-        if(Query.readValueInt("flag_promocion", requireContext())==0){
-            viewPager.setVisibility(View.GONE);
-            tvPromotions.setVisibility(View.GONE);
-            layoutPromotions.setVisibility(View.GONE);
-        }
     }
 
     private int currentNumber(int degrees) {

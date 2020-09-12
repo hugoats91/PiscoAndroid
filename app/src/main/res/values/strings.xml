@@ -72,7 +72,7 @@
     <string name="app_es_facebook_error">"Ya existe un correo asociado a la cuenta Facebook"</string>
     <string name="app_en_facebook_error">"There is already an email associated with the Facebook account"</string>
 
-    <string name="app_es_login_clasico_error">"Ya existe una correo asociado a la cuenta"</string>
+    <string name="app_es_login_clasico_error">"Ya existe un correo asociado a la cuenta"</string>
     <string name="app_en_login_clasico_error">"There is already an email associated with the account"</string>
 
     <string name="app_es_onboard_donde_1">¿Necesitas pisco para preparar&lt;br/&gt; &lt;b&gt;las increíbles recetas?&lt;/b&gt;</string>
