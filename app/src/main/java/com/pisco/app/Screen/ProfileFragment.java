@@ -580,9 +580,8 @@ public class ProfileFragment extends Fragment {
             Bundle extras = data.getExtras();
             if (extras != null) {
                 Bitmap imageBitmap = (Bitmap)extras.get("data");
-                imageview.setImageBitmap(imageBitmap);
-
                 if (imageBitmap != null) {
+                    imageview.setImageBitmap(UtilBitmap.getCroppedBitmap(imageBitmap));
                     updateAvatar(UtilBitmap.getBase64ByBitmap(imageBitmap));
                 }
             }

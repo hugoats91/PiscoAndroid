@@ -170,6 +170,8 @@ public class LoginViewModel extends ViewModel {
                     String rouletteImage = jsonObject.get("imagenRuleta").getAsString();
                     String imagePath = jsonObject.get("rutaImagen").getAsString();
                     int portalId = jsonObject.get("PortalId").getAsInt();
+                    int flagPromocion = jsonObject.get("FlagPromocion").getAsInt();
+                    Query.saveIntValue(context, "flag_promocion", flagPromocion);
                     JsonArray jsonArrayStateListOnboarding = jsonObject.getAsJsonArray("listaEstadoOnnboarding");
                     if (consultationResponse == StateUser.EXISTS.ordinal()) {
                         AppDatabase.INSTANCE.userDao().deleteAll();

@@ -14,6 +14,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -297,6 +298,7 @@ public class StartFragment extends Fragment {
         Button tvRecipes = view.findViewById(R.id.IdButtonInicioRecetas);
         Button btnWhereBuy = view.findViewById(R.id.IdButtonInicioDondeComprar);
         Button btnLearnPisco = view.findViewById(R.id.IdButtonInicioAprendePisco);
+        LinearLayout layoutPromotions = view.findViewById(R.id.lPromotions);
         TextView tvPromotions = view.findViewById(R.id.IDapp_es_inicio_promociones);
         if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
             tvSpinRoulette.setText(R.string.app_en_inicio_ruleta);
@@ -315,6 +317,7 @@ public class StartFragment extends Fragment {
         if(Query.readValueInt("flag_promocion", requireContext())==0){
             viewPager.setVisibility(View.GONE);
             tvPromotions.setVisibility(View.GONE);
+            layoutPromotions.setVisibility(View.GONE);
         }
     }
 

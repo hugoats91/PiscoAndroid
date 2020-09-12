@@ -7,7 +7,7 @@
     <string name="app_es_contrasena">Contraseña</string>
     <string name="app_es_contrasena_confirmar">Confirmar contraseña</string>
     <string name="app_es_pais">País</string>
-    <string name="app_es_puntos_venta">No cuenta con puntos de venta en su pais</string>
+    <string name="app_es_puntos_venta">No cuenta con puntos de venta en su país</string>
     <string name="app_en_puntos_venta">It does not have points of sale in your country</string>
     <string name="app_es_cuenta"><u>Ya tengo una cuenta</u></string>
     <string name="app_es_iniciar_sesion">Iniciar sesión</string>
@@ -115,7 +115,7 @@
 
     <string name="app_es_informacion_general">Información general</string>
     <string name="app_es_correo_perfil">Correo:</string>
-    <string name="app_es_pais_perfil">Pais:</string>
+    <string name="app_es_pais_perfil">País:</string>
     <string name="app_es_contrasena_perfil">Contraseña:</string>
 
 
@@ -272,8 +272,8 @@
     <string name="facebook_app_id">1215537925470807</string>
     <string name="facebook_application_id">1215537925470807</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyApNbyx7evYsC5OgCKEnwO5CWpH6jP8p8s</string>
-    <string name="app_en_actualizar_perfil">Perfil actualizado con exito</string>
-    <string name="app_es_actualizar_perfil">Perfil actualizado con exito</string>
+    <string name="app_en_actualizar_perfil">Profile updated successfully</string>
+    <string name="app_es_actualizar_perfil">Perfil actualizado con éxito</string>
 
     <!--<string name="server_client_id">297580232695-50uut303r82slf9nit0k03l0qvv56iah.apps.googleusercontent.com</string>-->
 
