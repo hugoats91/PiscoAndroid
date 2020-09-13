@@ -389,12 +389,8 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                                     .snippet(String.valueOf(pointId))
                                     .icon(finalBitmapDescriptor));
                         }
-                        if (!first) {
-                            LatLng latLng = new LatLng(arrObject.get(0).getAsJsonObject().get("PuntLatitud").getAsFloat(), arrObject.get(index).getAsJsonObject().get("PuntAltitud").getAsFloat());
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f));
-                        } else {
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nearPoint, 14f));
-                        }
+                        LatLng latLng = new LatLng(arrObject.get(0).getAsJsonObject().get("PuntLatitud").getAsFloat(), arrObject.get(index).getAsJsonObject().get("PuntAltitud").getAsFloat());
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
