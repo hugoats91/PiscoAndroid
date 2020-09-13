@@ -23,7 +23,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -46,15 +45,15 @@ import com.google.gson.JsonObject;
 import com.pisco.app.LocalService.AppDatabase;
 import com.pisco.app.PiscoApplication;
 import com.pisco.app.R;
+import com.pisco.app.Screen.Dialogs.MenuDialogFragment;
 import com.pisco.app.Utils.AppConstantList;
 import com.pisco.app.Utils.DownloadImageTask;
 import com.pisco.app.Utils.UtilAnalytics;
-import com.pisco.app.Utils.UtilDialog;
-import com.pisco.app.Utils.ViewModelInstanceList;
+import com.pisco.app.Utils.UtilMap;
 import com.pisco.app.Utils.ViewInstanceList;
+import com.pisco.app.Utils.ViewModelInstanceList;
 import com.pisco.app.ViewModel.LiveData.CityData;
 import com.pisco.app.ViewModel.LiveData.CitySaleData;
-import com.pisco.app.Screen.Dialogs.MenuDialogFragment;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -85,8 +84,12 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
     private int pointSaleCityId = 0;
     private RelativeLayout relMap;
     private ArrayList<JsonObject> storeList;
+    private LatLng currentPoint;
+    private LatLng nearPoint;
+    private boolean searchFirst = true;
 
-    public WhereBuyFragment() {}
+    public WhereBuyFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -148,49 +151,10 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                 if (arrCity == null) {
                     return;
                 }
-                if (arrCity.size() > 0) {
-                    pointSaleCityId = arrCity.get(0).getAsJsonObject().get("PuntoCiudadId").getAsInt();
-                    mapView.getMapAsync(WhereBuyFragment.this);
-                }else{
-                    if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
-                        UtilDialog.infoMessage(getContext(), getString(R.string.app_name), getString(R.string.app_es_no_puntos_venta), () -> {
-                            Navigation.findNavController(view).popBackStack();
-                        });
-                    }else{
-                        UtilDialog.infoMessage(getContext(), getString(R.string.app_name), getString(R.string.app_en_no_puntos_venta), () -> {
-                            Navigation.findNavController(view).popBackStack();
-                        });
-                    }
-                }
-            }
-
-            @EverythingIsNonNull
-            @Override
-            public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {}
-
-        });
-    }
-
-    @Override
-    public void onMapReady(GoogleMap map) {
-        googleMap = map;
-        googleMap.setMinZoomPreference(11.0f);
-        googleMap.setMaxZoomPreference(14.0f);
-        updateLocationUI();
-        getDeviceLocation();
-        ViewModelInstanceList.getHomeViewModelInstance().postGetCityListFront(new Callback<ArrayList<JsonObject>>() {
-
-            @EverythingIsNonNull
-            @Override
-            public void onResponse(Call<ArrayList<JsonObject>> call, Response<ArrayList<JsonObject>> response) {
-                ArrayList<JsonObject> arrCity = response.body();
-                if (arrCity == null) {
-                    return;
-                }
                 try {
                     if (arrCity.size() > 0) {
                         pointSaleCityId = arrCity.get(0).getAsJsonObject().get("PuntoCiudadId").getAsInt();
-                        mapMarkerSet(pointSaleCityId);
+                        getLocationPermission();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -199,20 +163,80 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
 
             @EverythingIsNonNull
             @Override
-            public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {}
+            public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
+            }
 
         });
+
+
+    }
+
+    private void getLocationPermission() {
+        if (ContextCompat.checkSelfPermission(view.getContext().getApplicationContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            locationPermissionGranted = true;
+            mapView.getMapAsync(WhereBuyFragment.this);
+        } else {
+            requestPermissions(
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
+    }
+
+    private void getDeviceLocation() {
+        try {
+            if (locationPermissionGranted) {
+                Task<Location> locationResult = fusedLocationProviderClient.getLastLocation();
+                locationResult.addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        lastKnownLocation = task.getResult();
+                        if (lastKnownLocation != null) {
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                    new LatLng(lastKnownLocation.getLatitude(),
+                                            lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                            currentPoint = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+                            if(searchFirst){
+                                searchFirst = false;
+                                searchNear();
+                            }
+                        }
+                    } else {
+                        googleMap.moveCamera(CameraUpdateFactory
+                                .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
+                        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+                        currentPoint = defaultLocation;
+                        if(searchFirst){
+                            searchFirst = false;
+                            searchNear();
+                        }
+                    }
+                });
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        googleMap = map;
+        googleMap.setMinZoomPreference(11.0f);
+        googleMap.setMaxZoomPreference(14.0f);
+        //updateLocationUI();
+        getDeviceLocation();
         spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 relMap.setVisibility(View.INVISIBLE);
                 int cityId = ViewModelInstanceList.getHomeViewModelInstance().cityIdList.get(position);
-                mapMarkerSet(cityId);
+                mapMarkerSet(cityId, false);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
 
         });
         map.setOnMarkerClickListener(marker -> {
@@ -223,8 +247,8 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
             return false;
         });
     }
-    
-    public void sellPoint(int pointId, int cityPointId){
+
+    public void sellPoint(int pointId, int cityPointId) {
         CitySaleData citySaleData = new CitySaleData(pointId, cityPointId);
         ViewModelInstanceList.getHomeViewModelInstance().postPointSaleDetailFront(citySaleData, new Callback<ArrayList<JsonObject>>() {
 
@@ -264,7 +288,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                     tvPhone.setText(pointPhone);
                     tvAddress.setText(pointAddress);
                     tvSchedule.setText(pointSchedule);
-                    String imageUrl = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath()+ AppConstantList.RUTA_PUNTO_VENTA + pointId + "/" + pointImage;
+                    String imageUrl = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_PUNTO_VENTA + pointId + "/" + pointImage;
                     Picasso.get().load(imageUrl).into(ivPoint);
                     ivFacebook.setOnClickListener(v -> {
                         Uri uri = Uri.parse(pointUrlFacebook);
@@ -305,7 +329,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                                     LayoutInflater layoutInflater = LayoutInflater.from(getContext());
                                     View view = layoutInflater.inflate(R.layout.item_tiendas, containerContent, false);
                                     ImageView imageView = view.findViewById(R.id.IdImageView);
-                                    String imageUrl = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath()+ AppConstantList.RUTA_TIENDA_ONLINE + storeId+"/" + storeIcon;
+                                    String imageUrl = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_TIENDA_ONLINE + storeId + "/" + storeIcon;
                                     new DownloadImageTask(imageView).execute(imageUrl);
                                     imageView.setOnClickListener(v -> {
                                         Uri uri = Uri.parse(pointUrl);
@@ -320,7 +344,8 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                         }
 
                         @Override
-                        public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {}
+                        public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
+                        }
 
                     });
                 } catch (Exception e) {
@@ -330,12 +355,13 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
 
             @EverythingIsNonNull
             @Override
-            public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {}
+            public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
+            }
 
         });
     }
 
-    public void mapMarkerSet(int pointCityId) {
+    public void mapMarkerSet(int pointCityId, boolean first) {
         CityData cityData = new CityData(pointCityId);
         Drawable drawable = AppCompatResources.getDrawable(view.getContext(), R.drawable.pinblue);
         BitmapDescriptor bitmapDescriptor = null;
@@ -352,6 +378,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                 ArrayList<JsonObject> arrObject = response.body();
                 if (arrObject != null && finalBitmapDescriptor != null) {
                     try {
+                        int index = 0;
                         for (int i = 0; i < arrObject.size(); i++) {
                             int pointId = arrObject.get(i).getAsJsonObject().get("PuntId").getAsInt();
                             float latitud = arrObject.get(i).getAsJsonObject().get("PuntLatitud").getAsFloat();
@@ -362,8 +389,12 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                                     .snippet(String.valueOf(pointId))
                                     .icon(finalBitmapDescriptor));
                         }
-                        LatLng latLng = new LatLng(arrObject.get(0).getAsJsonObject().get("PuntLatitud").getAsFloat(), arrObject.get(0).getAsJsonObject().get("PuntAltitud").getAsFloat());
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f));
+                        if (!first) {
+                            LatLng latLng = new LatLng(arrObject.get(0).getAsJsonObject().get("PuntLatitud").getAsFloat(), arrObject.get(index).getAsJsonObject().get("PuntAltitud").getAsFloat());
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f));
+                        } else {
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nearPoint, 14f));
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -372,7 +403,8 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
 
             @EverythingIsNonNull
             @Override
-            public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {}
+            public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
+            }
 
         });
     }
@@ -381,8 +413,8 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
     public static BitmapDescriptor getBitmapDescriptorFromDrawable(@NonNull Drawable drawable) {
         BitmapDescriptor bitmapDescriptor;
         float scale = 0.8f;
-        int width =  (int) (drawable.getIntrinsicWidth()* scale);
-        int height = (int) ( drawable.getIntrinsicHeight()* scale);
+        int width = (int) (drawable.getIntrinsicWidth() * scale);
+        int height = (int) (drawable.getIntrinsicHeight() * scale);
         drawable.setBounds(0, 0, width, height);
         Bitmap markerBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(markerBitmap);
@@ -391,28 +423,45 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
         return bitmapDescriptor;
     }
 
-    private void getDeviceLocation() {
-        try {
-            if (locationPermissionGranted) {
-                Task<Location> locationResult = fusedLocationProviderClient.getLastLocation();
-                locationResult.addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        lastKnownLocation = task.getResult();
-                        if (lastKnownLocation != null) {
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(lastKnownLocation.getLatitude(),
-                                            lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+    private void searchNear() {
+        ViewModelInstanceList.getHomeViewModelInstance().postGetCountryListFront(new Callback<ArrayList<JsonObject>>() {
+
+            @EverythingIsNonNull
+            @Override
+            public void onResponse(Call<ArrayList<JsonObject>> call, Response<ArrayList<JsonObject>> response) {
+                ArrayList<JsonObject> list = response.body();
+                if (list == null) {
+                    return;
+                }
+                try {
+                    float min = 0;
+                    for (int i = 0; i < list.size(); i++) {
+                        float latitud = list.get(i).getAsJsonObject().get("PuntLatitud").getAsFloat();
+                        float altitud = list.get(i).getAsJsonObject().get("PuntAltitud").getAsFloat();
+                        LatLng latLng = new LatLng(latitud, altitud);
+                        if (i == 0) {
+                            min = UtilMap.distanceBetween(currentPoint, latLng);
+                            nearPoint = latLng;
+                        } else {
+                            float temp = UtilMap.distanceBetween(currentPoint, latLng);
+                            if (temp < min) {
+                                min = temp;
+                                nearPoint = latLng;
+                            }
                         }
-                    } else {
-                        googleMap.moveCamera(CameraUpdateFactory
-                                .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
-                        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
                     }
-                });
+                    mapMarkerSet(pointSaleCityId, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
+
+            @EverythingIsNonNull
+            @Override
+            public void onFailure(Call<ArrayList<JsonObject>> call, Throwable t) {
+            }
+
+        });
     }
 
     private void updateLocationUI() {
@@ -427,9 +476,25 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                 googleMap.setMyLocationEnabled(true);
                 googleMap.getUiSettings().setMyLocationButtonEnabled(false);
                 lastKnownLocation = null;
+                getLocationPermission();
             }
-        } catch (SecurityException e)  {
+        } catch (SecurityException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+            if (grantResults.length > 0 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                locationPermissionGranted = true;
+                mapView.getMapAsync(WhereBuyFragment.this);
+            } else {
+                Navigation.findNavController(view).popBackStack();
+            }
         }
     }
 
@@ -454,6 +519,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
         super.onDetach();
         listener = null;
     }
+
     @Override
     public void onResume() {
         super.onResume();

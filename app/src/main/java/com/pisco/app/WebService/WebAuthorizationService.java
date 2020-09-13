@@ -67,6 +67,10 @@ public interface WebAuthorizationService {
     Call<ArrayList<JsonObject>> postPointListCitySalesFront(@Body CityData ciudadData);
 
     @Headers("Content-Type: application/json")
+    @POST("Front/PostListarPuntoVentaPais")
+    Call<ArrayList<JsonObject>> postPointListCountrySales();
+
+    @Headers("Content-Type: application/json")
     @POST("Front/PostListarTiendasOnlineFront")
     Call<ArrayList<JsonObject>> postStoreListOnlineFront(@Body CitySaleData ciudadVentaData);
 

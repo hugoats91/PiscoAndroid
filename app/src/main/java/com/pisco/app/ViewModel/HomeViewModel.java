@@ -88,6 +88,11 @@ public class HomeViewModel extends ViewModel {
         call.enqueue(calling);
     }
 
+    public void postGetCountryListFront(Callback<ArrayList<JsonObject>> calling) {
+        Call<ArrayList<JsonObject>> call = oauthRepository.postPointListCountrySales();
+        call.enqueue(calling);
+    }
+
     public void cityListFront(Spinner spinnerCity) {
         Call<ArrayList<JsonObject>> call = oauthRepository.postCityListFront();
         call.enqueue(new Callback<ArrayList<JsonObject>>() {

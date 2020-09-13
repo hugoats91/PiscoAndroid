@@ -79,6 +79,11 @@ public class OAuthAuthorizationRepository implements WebAuthorizationService {
     }
 
     @Override
+    public Call<ArrayList<JsonObject>> postPointListCountrySales() {
+        return webservice.postPointListCountrySales();
+    }
+
+    @Override
     public Call<ArrayList<JsonObject>> postStoreListOnlineFront(CitySaleData ciudadVentaData) {
         return webservice.postStoreListOnlineFront(ciudadVentaData);
     }
