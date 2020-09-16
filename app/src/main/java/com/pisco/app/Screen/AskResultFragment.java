@@ -85,7 +85,10 @@ public class AskResultFragment extends Fragment {
                         JsonObject jsonObject = jsonElement.getAsJsonObject();
                         int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
                         if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
-                            DialogFragment newFragment = new TrophyDialogFragment();
+                            TrophyDialogFragment newFragment = new TrophyDialogFragment();
+                            newFragment.setListener(() -> {
+                                requireActivity().onBackPressed();
+                            });
                             newFragment.show(getChildFragmentManager(), "missiles");
                         } else {
                             Navigation.findNavController(view).navigate(R.id.action_in_resultado_ask_to_inicioFragment);

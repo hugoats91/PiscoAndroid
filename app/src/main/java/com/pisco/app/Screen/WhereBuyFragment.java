@@ -154,7 +154,8 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                 try {
                     if (arrCity.size() > 0) {
                         pointSaleCityId = arrCity.get(0).getAsJsonObject().get("PuntoCiudadId").getAsInt();
-                        getLocationPermission();
+                        mapView.getMapAsync(WhereBuyFragment.this);
+                        //getLocationPermission();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -171,60 +172,14 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
-    private void getLocationPermission() {
-        if (ContextCompat.checkSelfPermission(view.getContext().getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            locationPermissionGranted = true;
-            mapView.getMapAsync(WhereBuyFragment.this);
-        } else {
-            requestPermissions(
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-        }
-    }
 
-    private void getDeviceLocation() {
-        try {
-            if (locationPermissionGranted) {
-                Task<Location> locationResult = fusedLocationProviderClient.getLastLocation();
-                locationResult.addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        lastKnownLocation = task.getResult();
-                        if (lastKnownLocation != null) {
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(lastKnownLocation.getLatitude(),
-                                            lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
-                            currentPoint = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
-                            if(searchFirst){
-                                searchFirst = false;
-                                searchNear();
-                            }
-                        }
-                    } else {
-                        googleMap.moveCamera(CameraUpdateFactory
-                                .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
-                        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-                        currentPoint = defaultLocation;
-                        if(searchFirst){
-                            searchFirst = false;
-                            searchNear();
-                        }
-                    }
-                });
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void onMapReady(GoogleMap map) {
         googleMap = map;
         googleMap.setMinZoomPreference(11.0f);
         googleMap.setMaxZoomPreference(14.0f);
-        //updateLocationUI();
-        getDeviceLocation();
+        mapMarkerSet(pointSaleCityId, true);
         spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -458,25 +413,6 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
             }
 
         });
-    }
-
-    private void updateLocationUI() {
-        if (googleMap == null) {
-            return;
-        }
-        try {
-            if (locationPermissionGranted) {
-                googleMap.setMyLocationEnabled(true);
-                googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-            } else {
-                googleMap.setMyLocationEnabled(true);
-                googleMap.getUiSettings().setMyLocationButtonEnabled(false);
-                lastKnownLocation = null;
-                getLocationPermission();
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
     }
 
 

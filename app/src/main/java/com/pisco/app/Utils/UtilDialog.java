@@ -14,6 +14,10 @@ public class UtilDialog {
         void onAccept();
     }
 
+    public interface InfoCancelMessageCallback{
+        void onCancel();
+    }
+
     public static void infoMessage(Context context, String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
@@ -28,6 +32,26 @@ public class UtilDialog {
         builder.setMessage(message).setCancelable(false).setPositiveButton("OK", (DialogInterface dialog, int which) -> {
             dialog.dismiss();
             listener.onAccept();
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public static void infoTwoOptionsMessage(Context context, String title, String message, InfoMessageCallback listener, InfoCancelMessageCallback cancelListener){
+        String cancel = "";
+        if(Query.getPortalId()==1){
+            cancel = "Cancel";
+        }else{
+            cancel = "Cancelar";
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title);
+        builder.setMessage(message).setCancelable(false).setPositiveButton("OK", (DialogInterface dialog, int which) -> {
+            dialog.dismiss();
+            listener.onAccept();
+        }).setNegativeButton(cancel, (DialogInterface dialog, int which) ->{
+            dialog.dismiss();
+            cancelListener.onCancel();
         });
         AlertDialog dialog = builder.create();
         dialog.show();

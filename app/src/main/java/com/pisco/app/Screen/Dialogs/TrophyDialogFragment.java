@@ -20,6 +20,16 @@ import com.pisco.app.R;
 
 public class TrophyDialogFragment extends DialogFragment {
 
+    public interface Listener{
+        void onClose();
+    }
+
+    public void setListener(Listener listener){
+        this.listener = listener;
+    }
+
+    Listener listener;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +60,8 @@ public class TrophyDialogFragment extends DialogFragment {
         AlertDialog alertDialog = builder.create();
         ivClose.setOnClickListener(v -> {
             alertDialog.dismiss();
-            requireActivity().onBackPressed();
+            listener.onClose();
+            //requireActivity().onBackPressed();
         });
         return alertDialog;
     }
