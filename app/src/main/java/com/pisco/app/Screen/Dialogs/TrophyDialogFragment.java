@@ -60,8 +60,11 @@ public class TrophyDialogFragment extends DialogFragment {
         AlertDialog alertDialog = builder.create();
         ivClose.setOnClickListener(v -> {
             alertDialog.dismiss();
-            listener.onClose();
-            //requireActivity().onBackPressed();
+            if(listener!=null){
+                listener.onClose();
+            }else{
+                requireActivity().onBackPressed();
+            }
         });
         return alertDialog;
     }
