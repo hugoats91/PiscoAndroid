@@ -138,8 +138,7 @@ public class LogInEmailRegisterViewModel extends ViewModel {
         return "";
     }
 
-    public void addCountrySpinner(final Spinner spinner) {
-        View view = ViewInstanceList.getDictionaryViews("login-email-registro-fragment");
+    public void addCountrySpinner(View view, final Spinner spinner) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_item, arrayCountry);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);

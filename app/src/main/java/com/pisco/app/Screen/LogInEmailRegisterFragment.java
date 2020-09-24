@@ -64,12 +64,11 @@ public class LogInEmailRegisterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login_email_registro, container, false);
         ViewInstanceList.setViewInstances("login-email-registro-fragment",view);
-        spinnerCountry = view.findViewById(R.id.IdEditTextPais);
+
         Context context = getContext();
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }
-        ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addCountrySpinner(spinnerCountry);
         return view;
     }
 
@@ -84,6 +83,8 @@ public class LogInEmailRegisterFragment extends Fragment {
         TextView tvHaveAccount = view.findViewById(R.id.IDTextViewLoginCreateUserYaTengoCuenta);
         tvFillFields = view.findViewById(R.id.textView);
         tvFillFields.setVisibility(View.GONE);
+        spinnerCountry = view.findViewById(R.id.IdEditTextPais);
+        ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addCountrySpinner(view, spinnerCountry);
         if (Query.getPortalId() == 1) {
             etName.setHint(R.string.app_en_nombre);
             etEmail.setHint(R.string.app_en_correo);
