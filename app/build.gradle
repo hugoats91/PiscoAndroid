@@ -113,6 +113,8 @@ dependencies {
     // optional - Guava support for Room, including Optional and ListenableFuture
     implementation "androidx.room:room-guava:$room_version"
 
+    implementation "com.google.android.gms:play-services-tagmanager:17.0.0"
+
     // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 // Google Play services Auth split
