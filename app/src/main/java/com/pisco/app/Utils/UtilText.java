@@ -7,9 +7,13 @@ import com.pisco.app.R;
 public class UtilText {
 
     public static String capitalize(String text) {
-        StringBuilder sb = new StringBuilder(text);
-        sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
-        return sb.toString();
+        if(text.isEmpty()){
+            return text;
+        }else{
+            StringBuilder sb = new StringBuilder(text);
+            sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
+            return sb.toString();
+        }
     }
 
     public static String errorRegister(int type, Context context) {
