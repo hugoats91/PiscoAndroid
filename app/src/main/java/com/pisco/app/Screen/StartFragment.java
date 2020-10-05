@@ -81,6 +81,7 @@ public class StartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_inicio, container, false);
         ViewInstanceList.setViewInstances("in-inicio-fragment", view);
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Inicio");
         HomeViewModel homeViewModel = new HomeViewModel();
         Context context = getContext();
         if (context != null) {
@@ -186,6 +187,7 @@ public class StartFragment extends Fragment {
         view.findViewById(R.id.imRoulette).setOnClickListener(v -> rouletteOnWeel());
         Button aprendePisco = view.findViewById(R.id.IdButtonInicioAprendePisco);
         aprendePisco.setOnClickListener(v -> {
+            UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Conoce mas");
             UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "boton", "Inicio - Aprende sobre pisco");
             String url = AppDatabase.INSTANCE.userDao().getEntityUser().getLearnPisco();
             Uri uri = Uri.parse(url);

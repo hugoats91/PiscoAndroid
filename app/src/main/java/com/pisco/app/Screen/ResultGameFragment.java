@@ -118,6 +118,7 @@ public class ResultGameFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Resultado del juego");
         HomeViewModel homeViewModel =new HomeViewModel();
         ImageView ivBack = view.findViewById(R.id.IDBackInResultadoJuego);
         ImageView ivHeader = view.findViewById(R.id.IDInResultadoJuegoCabeceraImageView);

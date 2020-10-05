@@ -53,6 +53,7 @@ public class OnBoardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_on_board, container, false);
         ViewInstanceList.setViewInstances("on-board-fragment", view);
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Inicio onboarding");
         Context context = getContext();
         if (context != null) {
             FirebaseAnalytics.getInstance(context);

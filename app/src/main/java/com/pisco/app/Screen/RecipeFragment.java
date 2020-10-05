@@ -64,6 +64,7 @@ public class RecipeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_in_receta, container, false);
         ViewInstanceList.setViewInstances("in-receta-fragment", view);
         Context context = getContext();
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Recetas");
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }

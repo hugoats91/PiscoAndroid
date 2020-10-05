@@ -74,6 +74,7 @@ public class MenuDialogFragment extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Menu");
         ImageView ivClose = view.findViewById(R.id.ImageViewButtonMenuClose);
         ivClose.setOnClickListener(v -> dismiss());
         view.findViewById(R.id.IdCardViewPerfil).setOnClickListener(v -> {

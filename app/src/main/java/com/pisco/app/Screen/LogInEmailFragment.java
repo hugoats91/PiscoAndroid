@@ -56,6 +56,7 @@ public class LogInEmailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login_email, container, false);
         ViewInstanceList.setViewInstances("login-email-fragment", view);
         Context context = getContext();
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Login por correo");
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }

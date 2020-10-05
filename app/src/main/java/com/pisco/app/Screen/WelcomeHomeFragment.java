@@ -41,6 +41,7 @@ public class WelcomeHomeFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_inicio_bienvenido, container, false);
         ViewInstanceList.setViewInstances("inicio-bienvenido-fragment",view);
         Context context = getContext();
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Login Registro");
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }

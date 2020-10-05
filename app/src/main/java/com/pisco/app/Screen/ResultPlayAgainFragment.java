@@ -51,6 +51,7 @@ public class ResultPlayAgainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_in_resultado_juego_again, container, false);
         ViewInstanceList.setViewInstances("in-resultado-juego-fragment",view);
         Context context = getContext();
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Resultado del juego");
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }

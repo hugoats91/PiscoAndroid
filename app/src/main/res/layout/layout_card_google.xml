@@ -124,8 +124,7 @@
                         android:fontFamily="@font/clan_offc_bold"
                         android:lineHeight="25dp"
                         android:textColor="@color/colorAccent"
-
-                        android:textSize="16dp" />
+                        android:textSize="14sp" />
                     <!--  android:text="September Wines AND Spirits"   -->
                     <TextView
                         android:id="@+id/IDPuntTelefono"

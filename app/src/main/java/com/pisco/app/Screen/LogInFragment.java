@@ -1,6 +1,7 @@
 package com.pisco.app.Screen;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -95,6 +96,9 @@ public class LogInFragment extends Fragment  implements GoogleApiClient.OnConnec
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_login, container, false);
         ViewInstanceList.setViewInstances("login-fragment", view);
+
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Login");
+
         Context context = getContext();
         if (context != null) {
             FirebaseAnalytics.getInstance(context);

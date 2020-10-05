@@ -96,6 +96,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
         view = inflater.inflate(R.layout.fragment_in_donde_comprar, container, false);
         ViewInstanceList.setViewInstances("in-donde-comprar-fragment", view);
         Context context = getContext();
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Donde comprar");
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }

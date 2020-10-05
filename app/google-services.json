@@ -1,42 +1,50 @@
 {
   "project_info": {
-    "project_number": "448952165177",
-    "firebase_url": "https://app-pisco-90871.firebaseio.com",
-    "project_id": "app-pisco-90871",
-    "storage_bucket": "app-pisco-90871.appspot.com"
+    "project_number": "80030041496",
+    "firebase_url": "https://piscoapp-a46b4.firebaseio.com",
+    "project_id": "piscoapp-a46b4",
+    "storage_bucket": "piscoapp-a46b4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:448952165177:android:186e85ad4094ca6f79fee8",
+        "mobilesdk_app_id": "1:80030041496:android:4de589d2c434011cca97ed",
         "android_client_info": {
           "package_name": "com.pisco.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "448952165177-rhgvg6f1neju1pdov2ig8s4homlnaj01.apps.googleusercontent.com",
+          "client_id": "80030041496-6fbper082e8ed708mgak2dguisp64goa.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.pisco.app",
-            "certificate_hash": "7a58f0d0d8aa6a668bdf7470e6052df5beeb3b5e"
+            "certificate_hash": "1db8c2dc63af7b7653db1560d3696c3509b0c2ca"
           }
         },
         {
-          "client_id": "448952165177-s4e4lt8mmgpkue2r19fr1gla1csvg4jb.apps.googleusercontent.com",
+          "client_id": "80030041496-jst33p36stejiuf6farusarc0kb8j1en.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pisco.app",
+            "certificate_hash": "b10bf9de41a4b30b16f9373adedc2103b605ca47"
+          }
+        },
+        {
+          "client_id": "80030041496-9qf3q4brb90n79g4biidjkoq680l0m3c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAjOP0vD93YfxynxO9YAvRzx59bW-fMNL8"
+          "current_key": "AIzaSyDzzO4lKc4mozb4VwJ5W2J2M_lc_hEttPE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "448952165177-6mogc1j3d1dj37p7d6ptf6846hbt55n2.apps.googleusercontent.com",
+              "client_id": "80030041496-ffndsjviv3fa9lnb4k2panis9psn1fq7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

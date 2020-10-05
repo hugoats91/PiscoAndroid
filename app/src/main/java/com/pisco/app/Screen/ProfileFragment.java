@@ -105,6 +105,7 @@ public class ProfileFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_in_mi_perfil, container, false);
         ViewInstanceList.setViewInstances("in-perfil-fragment", view);
         Context context = getContext();
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Mi Perfil");
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }
