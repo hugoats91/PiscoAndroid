@@ -37,7 +37,7 @@ public class LogInEmailPasswordRecoverFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login_email_password_recuperar, container, false);
         ViewInstanceList.setViewInstances("login-email-password-recuperar-fragment",view);
         Context context = getContext();
-        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Login por correo");
+        UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Login por Correo");
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }
