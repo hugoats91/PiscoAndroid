@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.pisco.app.Screen.LogInFragment"
+        android:name="com.promperu.pisco.Screen.LogInFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginEmailFragment"
-        android:name="com.pisco.app.Screen.LogInEmailFragment"
+        android:name="com.promperu.pisco.Screen.LogInEmailFragment"
         android:label="fragment_login_email"
         tools:layout="@layout/fragment_login_email" >
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/inicioFragment"
-        android:name="com.pisco.app.Screen.StartFragment"
+        android:name="com.promperu.pisco.Screen.StartFragment"
         android:label="fragment_inicio"
         tools:layout="@layout/fragment_inicio" >
         <action
@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginEmailRegistroFragment"
-        android:name="com.pisco.app.Screen.LogInEmailRegisterFragment"
+        android:name="com.promperu.pisco.Screen.LogInEmailRegisterFragment"
         android:label="fragment_login_email_registro"
         tools:layout="@layout/fragment_login_email_registro" >
         <action
@@ -103,7 +103,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginEmailPasswordRecuperarFragment"
-        android:name="com.pisco.app.Screen.LogInEmailPasswordRecoverFragment"
+        android:name="com.promperu.pisco.Screen.LogInEmailPasswordRecoverFragment"
         android:label="fragment_login_email_password_recuperar"
         tools:layout="@layout/fragment_login_email_password_recuperar" >
         <action
@@ -112,7 +112,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginEmailPasswordRecuperarExitosoFragment"
-        android:name="com.pisco.app.Screen.LogInEmailPasswordRecoverSuccessfulFragment"
+        android:name="com.promperu.pisco.Screen.LogInEmailPasswordRecoverSuccessfulFragment"
         android:label="fragment_login_email_password_recuperar_exitoso"
         tools:layout="@layout/fragment_login_email_password_recuperar_exitoso" >
         <action
@@ -121,7 +121,7 @@
     </fragment>
     <fragment
         android:id="@+id/inicioBienvenidoFragment"
-        android:name="com.pisco.app.Screen.WelcomeHomeFragment"
+        android:name="com.promperu.pisco.Screen.WelcomeHomeFragment"
         android:label="fragment_inicio_bienvenido"
         tools:layout="@layout/fragment_inicio_bienvenido" >
         <action
@@ -133,7 +133,7 @@
     </fragment>
     <fragment
         android:id="@+id/onBoardFragment"
-        android:name="com.pisco.app.Screen.OnBoardFragment"
+        android:name="com.promperu.pisco.Screen.OnBoardFragment"
         android:label="fragment_on_board"
         tools:layout="@layout/fragment_on_board">
         <argument
@@ -163,7 +163,7 @@
 
     <fragment
         android:id="@+id/in_mi_perfil"
-        android:name="com.pisco.app.Screen.ProfileFragment"
+        android:name="com.promperu.pisco.Screen.ProfileFragment"
         android:label="fragment_in_mi_perfil"
         tools:layout="@layout/fragment_in_mi_perfil" >
         <argument
@@ -175,12 +175,12 @@
     </fragment>
     <fragment
         android:id="@+id/in_donde_comprar"
-        android:name="com.pisco.app.Screen.WhereBuyFragment"
+        android:name="com.promperu.pisco.Screen.WhereBuyFragment"
         android:label="fragment_in_donde_comprar"
         tools:layout="@layout/fragment_in_donde_comprar" />
     <fragment
         android:id="@+id/in_inicio_receta"
-        android:name="com.pisco.app.Screen.InitialRecipeFragment"
+        android:name="com.promperu.pisco.Screen.InitialRecipeFragment"
         android:label="fragment_in_inicio_receta"
         tools:layout="@layout/fragment_in_inicio_receta" >
         <action
@@ -190,7 +190,7 @@
     </fragment>
     <fragment
         android:id="@+id/in_receta"
-        android:name="com.pisco.app.Screen.RecipeFragment"
+        android:name="com.promperu.pisco.Screen.RecipeFragment"
         android:label="fragment_in_receta"
         tools:layout="@layout/fragment_in_receta" >
         <action
@@ -207,12 +207,12 @@
     </fragment>
     <fragment
         android:id="@+id/in_conoce"
-        android:name="com.pisco.app.Screen.LearnFragment"
+        android:name="com.promperu.pisco.Screen.LearnFragment"
         android:label="fragment_in_conoce"
         tools:layout="@layout/fragment_in_conoce" />
     <fragment
         android:id="@+id/in_resultado_juego"
-        android:name="com.pisco.app.Screen.ResultGameFragment"
+        android:name="com.promperu.pisco.Screen.ResultGameFragment"
         android:label="fragment_in_resultado_juego"
         tools:layout="@layout/fragment_in_resultado_juego" >
         <action
@@ -227,14 +227,14 @@
     </fragment>
     <fragment
         android:id="@+id/cambio_contrasena_solcitud"
-        android:name="com.pisco.app.Screen.ChangePasswordFragment"
+        android:name="com.promperu.pisco.Screen.ChangePasswordFragment"
         android:label="fragment_cambio_contrasena_solcitud"
         tools:layout="@layout/fragment_cambio_contrasena_solcitud" />
 
 
     <fragment
         android:id="@+id/in_resultado_ask"
-        android:name="com.pisco.app.Screen.AskResultFragment"
+        android:name="com.promperu.pisco.Screen.AskResultFragment"
         android:label="fragment_in_resultado_ask"
         tools:layout="@layout/fragment_in_resultado_ask" >
         <action
@@ -259,7 +259,7 @@
 
     <fragment
         android:id="@+id/in_resultado_juego_again"
-        android:name="com.pisco.app.Screen.ResultPlayAgainFragment"
+        android:name="com.promperu.pisco.Screen.ResultPlayAgainFragment"
         android:label="fragment_in_resultado_juego_again"
         tools:layout="@layout/fragment_in_resultado_juego_again" >
         <action
@@ -270,7 +270,7 @@
 
     <dialog
         android:id="@+id/menuDialogFragment2"
-        android:name="com.pisco.app.Screen.Dialogs.MenuDialogFragment"
+        android:name="com.promperu.pisco.Screen.Dialogs.MenuDialogFragment"
         android:label="fragment_dialog_pp_in_menu"
         tools:layout="@layout/fragment_dialog_pp_in_menu" />
 
@@ -281,7 +281,7 @@
         tools:layout="@layout/fragment_onboard" />-->
     <dialog
         android:id="@+id/onboardFragment"
-        android:name="com.pisco.app.Screen.Dialogs.OnboardDialogFragment"
+        android:name="com.promperu.pisco.Screen.Dialogs.OnboardDialogFragment"
         android:label="fragment_onboard"
         tools:layout="@layout/fragment_onboard" />
 </navigation>
