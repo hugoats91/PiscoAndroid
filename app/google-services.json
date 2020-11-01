@@ -8,50 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:448952165177:android:186e85ad4094ca6f79fee8",
-        "android_client_info": {
-          "package_name": "com.pisco.app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "448952165177-rhgvg6f1neju1pdov2ig8s4homlnaj01.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.pisco.app",
-            "certificate_hash": "7a58f0d0d8aa6a668bdf7470e6052df5beeb3b5e"
-          }
-        },
-        {
-          "client_id": "448952165177-s4e4lt8mmgpkue2r19fr1gla1csvg4jb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAjOP0vD93YfxynxO9YAvRzx59bW-fMNL8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "448952165177-6mogc1j3d1dj37p7d6ptf6846hbt55n2.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "448952165177-02skgaif27cuj5j82j726qb337r0q91l.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.promperu.piscodemo"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:448952165177:android:9b7d21e1afb0134579fee8",
         "android_client_info": {
           "package_name": "com.promperu.pisco"
