@@ -32,7 +32,7 @@ import retrofit2.internal.EverythingIsNonNull;
 public class LogInEmailRegisterViewModel extends ViewModel {
 
     private OAuthRepository oauthRepository = new OAuthRepository();
-    private JsonElement countryJsonElement = null;
+    JsonElement countryJsonElement = null;
     private String[] arrayCountry;
 
     public interface RegisterCallback{
@@ -154,37 +154,10 @@ public class LogInEmailRegisterViewModel extends ViewModel {
         }
     }
 
-    public void countryListFront(Context context) {
+    public void countryListFront(Callback<JsonElement> calling) {
         CountryData data = new CountryData(Query.getPortalId());
         Call<JsonElement> call = oauthRepository.postCountryListFront(data);
-        call.enqueue(new Callback<JsonElement>() {
-
-            @EverythingIsNonNull
-            @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                countryJsonElement = response.body();
-                if (countryJsonElement == null) {
-                    return;
-                }
-                try {
-                    arrayCountry = new String[countryJsonElement.getAsJsonArray().size()+1];
-                    String countryCodeTwo = Query.getUserCountry(context);
-                    String countryName = countryName(countryCodeTwo);
-                    arrayCountry[0] = countryName.replaceAll("\"", "");
-                    for (int i = 0; i < countryJsonElement.getAsJsonArray().size(); i++) {
-                        if (i== countryJsonElement.getAsJsonArray().size()) break;
-                        arrayCountry[i + 1] = countryJsonElement.getAsJsonArray().get(i).getAsJsonObject().get("PaisNombre").toString().replaceAll("\"", "");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @EverythingIsNonNull
-            @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {}
-
-        });
+        call.enqueue(calling);
     }
 
     public void postCountryListUserFront(Callback<JsonElement> calling){

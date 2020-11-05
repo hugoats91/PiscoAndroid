@@ -20,11 +20,15 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.promperu.pisco.Entity.Country;
 import com.promperu.pisco.Enum.UserType;
 import com.promperu.pisco.LocalService.AppDatabase;
 import com.promperu.pisco.PiscoApplication;
 import com.promperu.pisco.R;
+import com.promperu.pisco.Screen.Dialogs.ProgressDialogFragment;
 import com.promperu.pisco.Utils.Query;
 import com.promperu.pisco.Utils.UtilAnalytics;
 import com.promperu.pisco.Utils.UtilDialog;
@@ -44,6 +48,9 @@ import retrofit2.Response;
 import retrofit2.internal.EverythingIsNonNull;
 
 public class LogInEmailRegisterFragment extends Fragment {
+
+    private JsonElement countryListJsonElement;
+    private ArrayList<Country> countries = new ArrayList<>();
 
     private String name = null;
     private String email = null;
@@ -84,7 +91,37 @@ public class LogInEmailRegisterFragment extends Fragment {
         tvFillFields = view.findViewById(R.id.textView);
         tvFillFields.setVisibility(View.GONE);
         spinnerCountry = view.findViewById(R.id.IdEditTextPais);
-        ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addCountrySpinner(view, spinnerCountry);
+
+        ProgressDialogFragment frag  = UtilDialog.showProgress(this);
+        ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().countryListFront( new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                frag.dismiss();
+                countryListJsonElement = response.body();
+                if (countryListJsonElement == null) {
+                    return;
+                }
+                try {
+                    JsonArray jsonArray = countryListJsonElement.getAsJsonArray();
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        JsonObject json = countryListJsonElement.getAsJsonArray().get(i).getAsJsonObject();
+                        countries.add(new Country(json.get("PaisNombre").toString().replaceAll("\"", ""),
+                                json.get("PaisCodigoDos").toString().replaceAll("\"", ""),
+                                json.get("PaisPortalId").getAsInt(),
+                                json.get("PaisId").getAsInt()));
+                    }
+                    ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addCountrySpinner2(spinnerCountry, countries, view);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonElement> call, Throwable t) {
+                frag.dismiss();
+            }
+        });
+
         if (Query.getPortalId() == 1) {
             etName.setHint(R.string.app_en_nombre);
             etEmail.setHint(R.string.app_en_correo);

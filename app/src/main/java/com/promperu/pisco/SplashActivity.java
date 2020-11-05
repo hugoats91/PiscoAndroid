@@ -10,28 +10,30 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.promperu.pisco.LocalService.AppDatabase;
-import com.promperu.pisco.Utils.ViewModelInstanceList;
+import com.promperu.pisco.Screen.AskResultFragment;
 import com.promperu.pisco.Screen.Dialogs.NoConnectionDialogFragment;
-import com.promperu.pisco.Screen.WelcomeHomeFragment;
-import com.promperu.pisco.Screen.StartFragment;
+import com.promperu.pisco.Screen.InitialRecipeFragment;
 import com.promperu.pisco.Screen.LogInEmailFragment;
-import com.promperu.pisco.Screen.LogInEmailPasswordRecoverSuccessfulFragment;
 import com.promperu.pisco.Screen.LogInEmailPasswordRecoverFragment;
+import com.promperu.pisco.Screen.LogInEmailPasswordRecoverSuccessfulFragment;
 import com.promperu.pisco.Screen.LogInEmailRegisterFragment;
 import com.promperu.pisco.Screen.LogInFragment;
-import com.promperu.pisco.Screen.WhereBuyFragment;
-import com.promperu.pisco.Screen.InitialRecipeFragment;
 import com.promperu.pisco.Screen.ProfileFragment;
 import com.promperu.pisco.Screen.RecipeFragment;
-import com.promperu.pisco.Screen.AskResultFragment;
 import com.promperu.pisco.Screen.ResultGameFragment;
 import com.promperu.pisco.Screen.ResultPlayAgainFragment;
+import com.promperu.pisco.Screen.StartFragment;
+import com.promperu.pisco.Screen.WelcomeHomeFragment;
+import com.promperu.pisco.Screen.WhereBuyFragment;
+
+import pl.droidsonroids.gif.GifImageView;
 
 public class SplashActivity extends AppCompatActivity implements
         LogInFragment.OnFragmentInteractionListener,
@@ -47,24 +49,26 @@ public class SplashActivity extends AppCompatActivity implements
         ResultPlayAgainFragment.OnFragmentInteractionListener,
         AskResultFragment.OnFragmentInteractionListener,
         ProfileFragment.OnFragmentInteractionListener,
-        RecipeFragment.OnFragmentInteractionListener{
+        RecipeFragment.OnFragmentInteractionListener {
 
     NoConnectionDialogFragment dialog = new NoConnectionDialogFragment();
+    GifImageView gifImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_relative);
+        setContentView(R.layout.activity_pp_login);
+        gifImageView = findViewById(R.id.gifSplash);
         AppDatabase.getAppDatabase(this);
         int DURACION_SPLASH = 4000;
         new Handler().postDelayed(() -> {
-            setContentView(R.layout.activity_pp_login);
-            ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().countryListFront(getApplicationContext());
+            gifImageView.setVisibility(View.GONE);
         }, DURACION_SPLASH);
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {}
+    public void onFragmentInteraction(Uri uri) {
+    }
 
     @Override
     public void onResume() {
@@ -106,7 +110,7 @@ public class SplashActivity extends AppCompatActivity implements
         }
     };
 
-    public void dismissDialog(){
+    public void dismissDialog() {
         Fragment prev = getSupportFragmentManager().findFragmentByTag("no_internet");
         if (prev != null) {
             DialogFragment df = (DialogFragment) prev;

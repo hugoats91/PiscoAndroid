@@ -2,7 +2,7 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">apiapp.bigbyte.pe</domain>
-        <domain includeSubdomains="true">cmsapp.bigbyte.pe</domain>
+        <domain includeSubdomains="true">apppisco-api-qa.promperu.gob.pe</domain>
     </domain-config>
 </network-security-config>
 <!--https://developer.android.com/training/articles/security-config-->

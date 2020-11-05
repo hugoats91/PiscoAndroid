@@ -32,6 +32,7 @@ import com.google.gson.JsonObject;
 import com.promperu.pisco.Adapter.PromotionPiscoViewPagerAdapter;
 import com.promperu.pisco.Entity.PromotionPiscoItem;
 import com.promperu.pisco.LocalService.AppDatabase;
+import com.promperu.pisco.LocalService.Entity.EntityUser;
 import com.promperu.pisco.PiscoApplication;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Screen.Dialogs.MenuDialogFragment;
@@ -92,7 +93,8 @@ public class StartFragment extends Fragment {
         });
 
         Button btnUser = view.findViewById(R.id.IdInicioButtonUsuario);
-        btnUser.setText(UtilText.capitalize(AppDatabase.INSTANCE.userDao().getEntityUser().getUserName()));
+        EntityUser userName = AppDatabase.INSTANCE.userDao().getEntityUser();
+        if(userName!=null) btnUser.setText(UtilText.capitalize(userName.userName));
         Button btnStart = view.findViewById(R.id.IdInicioButtonStart);
 
         homeViewModel.currentScore(new Callback<JsonElement>() {
