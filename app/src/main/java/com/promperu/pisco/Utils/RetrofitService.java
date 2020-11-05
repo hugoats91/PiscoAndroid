@@ -1,6 +1,7 @@
 package com.promperu.pisco.Utils;
 
 import com.promperu.pisco.LocalService.AppDatabase;
+import com.promperu.pisco.LocalService.Entity.EntityUser;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -24,10 +25,17 @@ public class RetrofitService {
 
     private static OkHttpClient client = new OkHttpClient.Builder()
             .addInterceptor(chain -> {
-                Request newRequest = chain.request().newBuilder()
-                        .addHeader("Authorization", "Bearer " + AppDatabase.INSTANCE.userDao().getEntityUser().getToken())
-                        .build();
-                return chain.proceed(newRequest);
+                EntityUser user = AppDatabase.INSTANCE.userDao().getEntityUser();
+                if (user!=null){
+                    Request newRequest = chain.request().newBuilder()
+                            .addHeader("Authorization", "Bearer " + user.getToken())
+                            .build();
+                    return chain.proceed(newRequest);
+                }else{
+                    Request newRequest = chain.request().newBuilder()
+                            .build();
+                    return chain.proceed(newRequest);
+                }
             }).addInterceptor(new HttpLoggingInterceptor()).build();
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
