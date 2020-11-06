@@ -37,6 +37,7 @@ import com.promperu.pisco.Screen.Dialogs.TrophyDialogFragment;
 import com.promperu.pisco.Utils.AppConstantList;
 import com.promperu.pisco.Utils.Query;
 import com.promperu.pisco.Utils.UtilAnalytics;
+import com.promperu.pisco.Utils.UtilDialog;
 import com.promperu.pisco.Utils.UtilSound;
 import com.promperu.pisco.Utils.UtilText;
 import com.promperu.pisco.Utils.ViewInstanceList;
@@ -133,6 +134,7 @@ public class StartFragment extends Fragment {
             public void onResponse(Call<List<JsonElement>> call, Response<List<JsonElement>> response) {
                 List<JsonElement> data = response.body();
                 if (data == null) {
+                    UtilDialog.infoMessage(getContext(), getString(R.string.app_name), "Data vino null");
                     viewPager.setVisibility(View.GONE);
                     tvPromotions.setVisibility(View.GONE);
                     layoutPromotions.setVisibility(View.GONE);
@@ -160,12 +162,14 @@ public class StartFragment extends Fragment {
                         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
                         viewPager.setOffscreenPageLimit(3);
                     } else {
+                        UtilDialog.infoMessage(getContext(), getString(R.string.app_name), "Data vino vacia");
                         viewPager.setVisibility(View.GONE);
                         tvPromotions.setVisibility(View.GONE);
                         layoutPromotions.setVisibility(View.GONE);
                     }
 
                 } catch (Exception e) {
+                    UtilDialog.infoMessage(getContext(), getString(R.string.app_name), e.getMessage());
                     e.printStackTrace();
                 }
             }
