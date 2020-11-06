@@ -150,7 +150,7 @@ public class LogInEmailRegisterFragment extends Fragment {
                 int userType = UserType.EMAIL.ordinal();
                 int countryPortalId= Query.getPortalId();
                 UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "sign_up", "Registro", "Registrate");
-                ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().registerUser(name, email, password, confirmPassword, country, userType, countryPortalId, new LogInEmailRegisterViewModel.RegisterCallback() {
+                ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().registerUser(name, email, password, confirmPassword, country, userType, countryPortalId, countryListJsonElement, new LogInEmailRegisterViewModel.RegisterCallback() {
                     @Override
                     public void onSuccess() {
                         ViewModelInstanceList.getLogInViewModelInstance().loginUser(LogInEmailRegisterFragment.this, email, password, false, getContext(), new LoginViewModel.LoginCallback() {

@@ -2,7 +2,10 @@ package com.promperu.pisco.Utils;
 
 public class AppConstantList {
 
-    public static final String BASE_URL= "http://apppisco-api-qa.promperu.gob.pe/api/";
+    //public static final String BASE_URL= "http://apiapp.bigbyte.pe/api/";
+    //public static final String BASE_URL= "http://apppisco-api.promperu.gob.pe/api/";
+
+    public static final String BASE_URL= "https://apiapp.bigbyte.pe/api/";
 
     public static final String BD_NAME="piscodb1";
 

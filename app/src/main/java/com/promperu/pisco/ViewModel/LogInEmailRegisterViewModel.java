@@ -1,6 +1,5 @@
 package com.promperu.pisco.ViewModel;
 
-import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,8 +18,8 @@ import com.promperu.pisco.R;
 import com.promperu.pisco.Repository.OAuthRepository;
 import com.promperu.pisco.Utils.Query;
 import com.promperu.pisco.Utils.ViewInstanceList;
-import com.promperu.pisco.ViewModel.LiveData.LoginRegisterData;
 import com.promperu.pisco.ViewModel.LiveData.CountryData;
+import com.promperu.pisco.ViewModel.LiveData.LoginRegisterData;
 
 import java.util.ArrayList;
 
@@ -32,11 +31,11 @@ import retrofit2.internal.EverythingIsNonNull;
 public class LogInEmailRegisterViewModel extends ViewModel {
 
     private OAuthRepository oauthRepository = new OAuthRepository();
-    JsonElement countryJsonElement = null;
     private String[] arrayCountry;
 
-    public interface RegisterCallback{
+    public interface RegisterCallback {
         void onSuccess();
+
         void onError(int type);
     }
 
@@ -44,11 +43,11 @@ public class LogInEmailRegisterViewModel extends ViewModel {
         return password.equals(confirmPassword);
     }
 
-    public void registerUser(String name, String email, String password, String confirmPassword, String country, int type, int countryPortalId, RegisterCallback callback) {
+    public void registerUser(String name, String email, String password, String confirmPassword, String country, int type, int countryPortalId, JsonElement countryJsonElement, RegisterCallback callback) {
         LoginRegisterData data = new LoginRegisterData();
         if (validatePassword(password, confirmPassword)) {
             data.setName(name);
-            data.setCountryCodeTwo(countryCodeTwo(country));
+            data.setCountryCodeTwo(countryCodeTwo(country, countryJsonElement));
             data.setEmail(email);
             data.setPassword(password);
             data.setType(type);
@@ -75,15 +74,15 @@ public class LogInEmailRegisterViewModel extends ViewModel {
                             } else {
                                 tvCompleteFieldList.setText(R.string.app_es_campos_completados);
                             }
-                            etEmail.setCompoundDrawablesWithIntrinsicBounds(null,null, AppCompatResources.getDrawable(view.getContext(),R.drawable.alertasesion),null);
+                            etEmail.setCompoundDrawablesWithIntrinsicBounds(null, null, AppCompatResources.getDrawable(view.getContext(), R.drawable.alertasesion), null);
                             new android.os.Handler().postDelayed(
                                     () -> {
                                         tvCompleteFieldList.setVisibility(View.INVISIBLE);
-                                        etEmail.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
+                                        etEmail.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
                                     }, 3000);
                         } else if (responseInt == StateSignUpUserNoAuth.REGISTERED.ordinal()) {
                             callback.onSuccess();
-                        }else{
+                        } else {
                             callback.onError(responseInt);
                         }
                     } catch (Exception e) {
@@ -93,7 +92,8 @@ public class LogInEmailRegisterViewModel extends ViewModel {
 
                 @EverythingIsNonNull
                 @Override
-                public void onFailure(Call<JsonElement> call, Throwable t) {}
+                public void onFailure(Call<JsonElement> call, Throwable t) {
+                }
 
             });
         }
@@ -113,7 +113,7 @@ public class LogInEmailRegisterViewModel extends ViewModel {
         }
     }
 
-    public String countryCodeTwo(String country) {
+    public String countryCodeTwo(String country, JsonElement countryJsonElement) {
         if (!countryJsonElement.isJsonNull()) {
             for (int i = 0; i < countryJsonElement.getAsJsonArray().size(); i++) {
                 if (i == countryJsonElement.getAsJsonArray().size()) break;
@@ -125,42 +125,13 @@ public class LogInEmailRegisterViewModel extends ViewModel {
         return "";
     }
 
-    public String countryName(String countryCodeTwo) {
-        if (!countryJsonElement.isJsonNull()) {
-            for (int i = 0; i < countryJsonElement.getAsJsonArray().size(); i++) {
-                if (i == countryJsonElement.getAsJsonArray().size()) break;
-                String countryName = countryJsonElement.getAsJsonArray().get(i).getAsJsonObject().get("PaisNombre").toString().replaceAll("\"", "");
-                String countryCodeTwo2 = countryJsonElement.getAsJsonArray().get(i).getAsJsonObject().get("PaisCodigoDos").toString().replaceAll("\"", "");
-                if((countryCodeTwo).equals(countryCodeTwo2)) return countryName;
-            }
-        }
-        return "";
-    }
-
-    public void addCountrySpinner(View view, final Spinner spinner) {
-        if(arrayCountry!=null){
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_item, arrayCountry);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {}
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {}
-
-            });
-        }
-    }
-
     public void countryListFront(Callback<JsonElement> calling) {
         CountryData data = new CountryData(Query.getPortalId());
         Call<JsonElement> call = oauthRepository.postCountryListFront(data);
         call.enqueue(calling);
     }
 
-    public void postCountryListUserFront(Callback<JsonElement> calling){
+    public void postCountryListUserFront(Callback<JsonElement> calling) {
         CountryData data = new CountryData(AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId());
         Call<JsonElement> call = oauthRepository.postCountryListFront(data);
         call.enqueue(calling);

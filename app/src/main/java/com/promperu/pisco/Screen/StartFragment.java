@@ -11,16 +11,13 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -70,7 +67,7 @@ public class StartFragment extends Fragment {
     private View view;
     private OnFragmentInteractionListener listener;
 
-    LinearLayout layoutPromotions;
+    ConstraintLayout layoutPromotions;
     TextView tvPromotions;
 
     public StartFragment() {
@@ -78,7 +75,7 @@ public class StartFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_inicio, container, false);
+        view = inflater.inflate(R.layout.fragment_inicio_v2, container, false);
         ViewInstanceList.setViewInstances("in-inicio-fragment", view);
         UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Inicio");
         HomeViewModel homeViewModel = new HomeViewModel();
@@ -86,16 +83,16 @@ public class StartFragment extends Fragment {
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }
-        ImageView ivMenu = view.findViewById(R.id.IDMenuModal);
+        ImageView ivMenu = view.findViewById(R.id.ivMenu);
         ivMenu.setOnClickListener(v -> {
             DialogFragment newFragment = new MenuDialogFragment();
             newFragment.show(getChildFragmentManager(), "missiles");
         });
 
-        Button btnUser = view.findViewById(R.id.IdInicioButtonUsuario);
+        TextView btnUser = view.findViewById(R.id.tvName);
         EntityUser userName = AppDatabase.INSTANCE.userDao().getEntityUser();
-        if(userName!=null) btnUser.setText(UtilText.capitalize(userName.userName));
-        Button btnStart = view.findViewById(R.id.IdInicioButtonStart);
+        if (userName != null) btnUser.setText(UtilText.capitalize(userName.userName));
+        TextView btnStart = view.findViewById(R.id.tvPoints);
 
         homeViewModel.currentScore(new Callback<JsonElement>() {
 
@@ -142,7 +139,7 @@ public class StartFragment extends Fragment {
                     return;
                 }
                 try {
-                    if(!data.isEmpty()){
+                    if (!data.isEmpty()) {
                         viewPager.setVisibility(View.VISIBLE);
                         tvPromotions.setVisibility(View.VISIBLE);
                         layoutPromotions.setVisibility(View.VISIBLE);
@@ -162,7 +159,7 @@ public class StartFragment extends Fragment {
                         viewPager.setPageMargin(50);
                         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
                         viewPager.setOffscreenPageLimit(3);
-                    }else{
+                    } else {
                         viewPager.setVisibility(View.GONE);
                         tvPromotions.setVisibility(View.GONE);
                         layoutPromotions.setVisibility(View.GONE);
@@ -175,17 +172,18 @@ public class StartFragment extends Fragment {
 
             @EverythingIsNonNull
             @Override
-            public void onFailure(Call<List<JsonElement>> call, Throwable t) {}
+            public void onFailure(Call<List<JsonElement>> call, Throwable t) {
+            }
 
         });
-        ImageButton ivPoint = view.findViewById(R.id.imPointer);
-        ivWheel = view.findViewById(R.id.imRoulette);
+        ImageView ivPoint = view.findViewById(R.id.ivCenter);
+        ivWheel = view.findViewById(R.id.ivRuleta);
         String imageRoulettePath = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_RULETA + AppDatabase.INSTANCE.userDao().getEntityUser().getImageRoulette();
         Picasso.get().load(imageRoulettePath).into(ivWheel);
         random = new Random();
         ivPoint.setOnClickListener(v -> rouletteOnWeel());
-        view.findViewById(R.id.imRoulette).setOnClickListener(v -> rouletteOnWeel());
-        Button aprendePisco = view.findViewById(R.id.IdButtonInicioAprendePisco);
+        ivWheel.setOnClickListener(v -> rouletteOnWeel());
+        ConstraintLayout aprendePisco = view.findViewById(R.id.clAprende);
         aprendePisco.setOnClickListener(v -> {
             UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Conoce mas");
             UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "boton", "Inicio - Aprende sobre pisco");
@@ -194,23 +192,22 @@ public class StartFragment extends Fragment {
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
         });
-        Button btnWhereBuy = view.findViewById(R.id.IdButtonInicioDondeComprar);
-        RelativeLayout rlWhereBuy = view.findViewById(R.id.rlDondeComprar);
-        if(Query.readValueInt("count", getContext())==0){
-            rlWhereBuy.setVisibility(View.GONE);
-        }else{
-            rlWhereBuy.setVisibility(View.VISIBLE);
+        ConstraintLayout btnWhereBuy = view.findViewById(R.id.clDonde);
+        if (Query.readValueInt("count", getContext()) == 0) {
+            btnWhereBuy.setVisibility(View.GONE);
+        } else {
+            btnWhereBuy.setVisibility(View.VISIBLE);
         }
         btnWhereBuy.setOnClickListener(v -> {
             UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "boton", "Inicio - ¿Donde comprar?");
-            if(AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 3.1").getSesiState()==1 &&AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 3.2").getSesiState()== 1){
+            if (AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 3.1").getSesiState() == 1 && AppDatabase.INSTANCE.userDao().getEntityStateOnboarding("OnBoard 3.2").getSesiState() == 1) {
                 Navigation.findNavController(view).navigate(StartFragmentDirections.actionInicioFragmentToOnBoardFragment("onBoard-donde"));
-            }else{
+            } else {
                 Navigation.findNavController(view).navigate(R.id.action_inicioFragment_to_in_donde_comprar);
             }
         });
 
-        Button btnRecipeHome = view.findViewById(R.id.IdButtonInicioRecetas);
+        ConstraintLayout btnRecipeHome = view.findViewById(R.id.clRecetas);
         btnRecipeHome.setOnClickListener(v -> {
             UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "boton", "Inicio - Recetas");
             Navigation.findNavController(view).navigate(R.id.action_inicioFragment_to_in_receta);
@@ -272,7 +269,7 @@ public class StartFragment extends Fragment {
                                                         bundle.putString("onboard", "onboard-resultado");
                                                         onboardDialogFragment.setArguments(bundle);
                                                         onboardDialogFragment.show(getChildFragmentManager(), "missiles");*/
-                                                    }else{
+                                                    } else {
                                                         Navigation.findNavController(view).navigate(StartFragmentDirections.actionInicioFragmentToInResultadoJuego());
                                                     }
                                                     break;
@@ -284,13 +281,15 @@ public class StartFragment extends Fragment {
                                     }
 
                                     @Override
-                                    public void onFailure(Call<List<JsonElement>> call, Throwable t) {}
+                                    public void onFailure(Call<List<JsonElement>> call, Throwable t) {
+                                    }
 
                                 });
                             }
 
                             @Override
-                            public void onAnimationRepeat(Animation animation) {}
+                            public void onAnimationRepeat(Animation animation) {
+                            }
 
                         });
                         UtilSound.startSound(getContext(), R.raw.roulette);
@@ -312,12 +311,12 @@ public class StartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView tvSpinRoulette = view.findViewById(R.id.IDapp_es_inicio_ruleta);
-        Button tvRecipes = view.findViewById(R.id.IdButtonInicioRecetas);
-        Button btnWhereBuy = view.findViewById(R.id.IdButtonInicioDondeComprar);
-        Button btnLearnPisco = view.findViewById(R.id.IdButtonInicioAprendePisco);
-        layoutPromotions = view.findViewById(R.id.lPromotions);
-        tvPromotions = view.findViewById(R.id.IDapp_es_inicio_promociones);
+        TextView tvSpinRoulette = view.findViewById(R.id.tvRuletaTitle);
+        TextView tvRecipes = view.findViewById(R.id.tvRecetaTitle);
+        TextView btnWhereBuy = view.findViewById(R.id.tvDondeTitle);
+        TextView btnLearnPisco = view.findViewById(R.id.tvAprendeTitle);
+        layoutPromotions = view.findViewById(R.id.clPromotions);
+        tvPromotions = view.findViewById(R.id.tvPromotionsTitle);
         if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
             tvSpinRoulette.setText(R.string.app_en_inicio_ruleta);
             tvRecipes.setText(R.string.app_en_recetas);
