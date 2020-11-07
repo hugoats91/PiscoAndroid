@@ -55,7 +55,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_gravity="top|center"
-                                    android:scaleType="fitXY"
+                                    android:scaleType="centerCrop"
 
                                     android:elevation="0dp"/>
                                 <!--android:src="@drawable/pisco_sour_3"-->

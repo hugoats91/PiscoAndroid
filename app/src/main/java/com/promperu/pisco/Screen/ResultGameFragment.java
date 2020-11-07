@@ -35,6 +35,7 @@ import com.promperu.pisco.ViewModel.HomeViewModel;
 import com.promperu.pisco.ViewModel.LiveData.Question;
 import com.promperu.pisco.Screen.Dialogs.TrophyDialogFragment;
 import com.promperu.pisco.Screen.Dialogs.MenuDialogFragment;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -177,7 +178,7 @@ public class ResultGameFragment extends Fragment {
                     resultDrinkImage = jsonObject.get("BebiImagenResultado").getAsString();
                     drinkTitle = jsonObject.get("BebiTitulo").getAsString();
                     drinkImagePath = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_BEBIDA + drinkId +"/" + resultDrinkImage;
-                    new DownloadImageTask(ivHeader).execute(drinkImagePath);
+                    Picasso.get().load(drinkImagePath).into(ivHeader);
                     tvTitle.setText(question);
                     String yourPerfectRecipe;
                     if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {

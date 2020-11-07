@@ -58,11 +58,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="top|center"
                                 android:elevation="0dp"
-
-                                android:scaleType="fitXY"></ImageView>
-                            <!--
-
-                            android:src="@drawable/pisco_sour_3"-->
+                                android:scaleType="centerCrop"/>
 
                         </androidx.cardview.widget.CardView>
 
