@@ -167,6 +167,7 @@ public class StartFragment extends Fragment {
                     }
 
                 } catch (Exception e) {
+
                     e.printStackTrace();
                 }
             }
