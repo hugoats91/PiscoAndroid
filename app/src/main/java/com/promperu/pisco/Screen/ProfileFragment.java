@@ -144,7 +144,6 @@ public class ProfileFragment extends Fragment {
         imageview.setDrawingCacheEnabled(true);
         LinearLayout linRectangle = view.findViewById(R.id.IDLinearLayoutRectanguleShadow);
         RelativeLayout relCountry = view.findViewById(R.id.IdRelativeContentPais);
-        RelativeLayout relLanguage = view.findViewById(R.id.IdRelativeContentIdioma);
         TextView tvValidationPassword = view.findViewById(R.id.IDapp_en_contrasena_validacion);
         btnOption = view.findViewById(R.id.show_options_button);
         TextView tvUserPassword = view.findViewById(R.id.IDUsuaPasswords);
@@ -189,55 +188,7 @@ public class ProfileFragment extends Fragment {
         EditText etEmail = view.findViewById(R.id.IDEditTextCorreo);
         EditText etPassword = view.findViewById(R.id.IDEditTextPassword);
         Spinner spiCountry = view.findViewById(R.id.IdEditTextPais);
-        Spinner spiLanguage = view.findViewById(R.id.IdEditTextIdioma);
-        ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addLanguageSpinner(spiLanguage, arrLanguage, view);
-        spiLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int portal;
-                if (spiLanguage.getSelectedItem().toString().toLowerCase().equals((getString(R.string.app_es_espanol).toLowerCase())) || spiLanguage.getSelectedItem().toString().toLowerCase().equals((getString(R.string.app_en_espanol).toLowerCase()))) {
-                    portal = 0;
-                } else {
-                    portal = 1;
-                }
-                CountryData countryData = new CountryData(portal);
-                ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().postCountryListUserFront3(new Callback<JsonElement>() {
 
-                    @EverythingIsNonNull
-                    @Override
-                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                        countryListJsonElement = response.body();
-                        if (countryListJsonElement == null) {
-                            return;
-                        }
-                        try {
-                            JsonArray jsonArray = countryListJsonElement.getAsJsonArray();
-                            for (int i = 0; i < jsonArray.size(); i++) {
-                                JsonObject json = countryListJsonElement.getAsJsonArray().get(i).getAsJsonObject();
-                                countries.add(new Country(json.get("PaisNombre").toString().replaceAll("\"", ""),
-                                        json.get("PaisCodigoDos").toString().replaceAll("\"", ""),
-                                        json.get("PaisPortalId").getAsInt(),
-                                        json.get("PaisId").getAsInt()));
-                            }
-                            ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addCountrySpinner2(spiCountry, countries, view);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @EverythingIsNonNull
-                    @Override
-                    public void onFailure(Call<JsonElement> call, Throwable t) {
-
-                    }
-                }, countryData);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-
-        });
         homeViewModel.postUserDataFront(new Callback<JsonElement>() {
 
             @EverythingIsNonNull
@@ -368,7 +319,6 @@ public class ProfileFragment extends Fragment {
                     etEmail.setVisibility(View.GONE);
                     etPassword.setVisibility(View.GONE);
                     relCountry.setVisibility(View.GONE);
-                    relLanguage.setVisibility(View.GONE);
                     RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) linRectangle.getLayoutParams();
                     params.height = params.height - 300;
                     linRectangle.requestLayout();
@@ -384,22 +334,7 @@ public class ProfileFragment extends Fragment {
                     ((TextView) view.findViewById(R.id.IDTextViewNombre)).setText(name);
                     ((TextView) view.findViewById(R.id.IDTextViewCorreo)).setText(email);
                     ((TextView) view.findViewById(R.id.IDTextViewPais)).setText(country);
-                    String language = spiLanguage.getSelectedItem().toString();
-                    int portalId;
-                    if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
-                        if (language.toLowerCase().equals(getString(R.string.app_en_ingles).toLowerCase())) {
-                            portalId = 1;
-                        } else {
-                            portalId = 0;
-                        }
-                    } else {
-                        if (language.toLowerCase().equals(getString(R.string.app_es_ingles).toLowerCase())) {
-                            portalId = 1;
-                        } else {
-                            portalId = 0;
-                        }
-                    }
-
+                    int portalId = AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId();
                     if (portalId == 0) {
                         tvGeneralInfo.setText(getString(R.string.app_es_informacion_general));
                         tvEmailProfile.setText(getString(R.string.app_es_correo_perfil));
@@ -442,7 +377,6 @@ public class ProfileFragment extends Fragment {
                         @Override
                         public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                             progress.dismiss();
-                            ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addLanguageSpinner(spiLanguage, arrLanguage, view);
                             LoginRegisterData loginRegisterData = new LoginRegisterData();
                             loginRegisterData.setEmail(email);
                             loginRegisterData.setPassword(finalPassword);
@@ -572,7 +506,6 @@ public class ProfileFragment extends Fragment {
         tvCamera.setOnClickListener(v -> {
             if (AppDatabase.INSTANCE.userDao().getEntityUser().getUserType() == 0) {
                 requestPermissions();
-                //showOptions();
             }
         });
     }

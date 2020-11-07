@@ -97,8 +97,6 @@
                                     android:layout_height="35dp"
                                     android:textAllCaps="false"
                                     android:layout_alignParentRight="true"
-
-
                                     android:elevation="0dp"
                                     android:layout_alignParentLeft="true"
                                     android:textColor="@color/colorAccent"
@@ -106,7 +104,7 @@
                                     android:textSize="18dp"
                                     android:fontFamily="@font/typeforgestudio_kapra_neue_regular"
                                     android:background="@drawable/button_border_inicio_white_left"
-                                    ></Button>
+                                    />
                                 <ImageView
                                     android:layout_width="25dp"
                                     android:layout_height="15dp"
