@@ -142,10 +142,11 @@ public class LogInEmailRegisterViewModel extends ViewModel {
         call.enqueue(calling);
     }
 
-    public void addCountrySpinner2(Spinner spinner, ArrayList<Country> countries, View views) {
+    public void addCountrySpinner2(Spinner spinner, ArrayList<Country> countries, int currentItem, View views) {
         ArrayAdapter<Country> adapter = new ArrayAdapter(views.getContext(), R.layout.item_spinner_2, countries);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setSelection(currentItem);
     }
 
     public void addLanguageSpinner(Spinner spinner, String[] array, View views) {

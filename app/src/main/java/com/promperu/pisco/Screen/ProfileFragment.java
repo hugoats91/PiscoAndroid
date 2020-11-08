@@ -228,29 +228,22 @@ public class ProfileFragment extends Fragment {
                                 return;
                             }
                             try {
+                                int currentItem  = 0;
                                 for (int i = 0; i < countryListJsonElement.getAsJsonArray().size(); i++) {
                                     if (i == countryListJsonElement.getAsJsonArray().size()) break;
                                     String codeTwo = countryListJsonElement.getAsJsonArray().get(i).getAsJsonObject().get("PaisCodigoDos").getAsString();
                                     if (countryCodeTwo.equals(codeTwo)) {
+                                        currentItem = i;
                                         String countryName = countryListJsonElement.getAsJsonArray().get(i).getAsJsonObject().get("PaisNombre").getAsString();
                                         tvCountry.setText(countryName);
-                                        JsonObject json = countryListJsonElement.getAsJsonArray().get(i).getAsJsonObject();
-                                        countries.add(new Country(json.get("PaisNombre").toString().replaceAll("\"", ""),
-                                                json.get("PaisCodigoDos").toString().replaceAll("\"", ""),
-                                                json.get("PaisPortalId").getAsInt(),
-                                                json.get("PaisId").getAsInt()));
-                                        break;
                                     }
-                                }
-                                for (int i = 0; i < countryListJsonElement.getAsJsonArray().size(); i++) {
-                                    if (i == countryListJsonElement.getAsJsonArray().size()) break;
                                     JsonObject json = countryListJsonElement.getAsJsonArray().get(i).getAsJsonObject();
                                     countries.add(new Country(json.get("PaisNombre").toString().replaceAll("\"", ""),
                                             json.get("PaisCodigoDos").toString().replaceAll("\"", ""),
                                             json.get("PaisPortalId").getAsInt(),
                                             json.get("PaisId").getAsInt()));
                                 }
-                                ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addCountrySpinner2(spiCountry, countries, view);
+                                ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addCountrySpinner2(spiCountry, countries, currentItem, view);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

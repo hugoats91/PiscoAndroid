@@ -103,14 +103,24 @@ public class LogInEmailRegisterFragment extends Fragment {
                 }
                 try {
                     JsonArray jsonArray = countryListJsonElement.getAsJsonArray();
+
+                    //arrayCountry = new String[countryJsonElement.getAsJsonArray().size()+1];
+                    //String countryCodeTwo = Query.getUserCountry(context);
+                    //String countryName = countryName(countryCodeTwo);
+
+                    String countryCodeTwo = Query.getUserCountry(getContext());
+                    int currentItem = 0;
+
                     for (int i = 0; i < jsonArray.size(); i++) {
                         JsonObject json = countryListJsonElement.getAsJsonArray().get(i).getAsJsonObject();
+                        String countryCode = json.get("PaisCodigoDos").toString().replaceAll("\"", "");
+                        if(countryCode.equals(countryCodeTwo)) currentItem = i;
                         countries.add(new Country(json.get("PaisNombre").toString().replaceAll("\"", ""),
-                                json.get("PaisCodigoDos").toString().replaceAll("\"", ""),
+                                countryCode,
                                 json.get("PaisPortalId").getAsInt(),
                                 json.get("PaisId").getAsInt()));
                     }
-                    ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addCountrySpinner2(spinnerCountry, countries, view);
+                    ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addCountrySpinner2(spinnerCountry, countries, currentItem, view);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
