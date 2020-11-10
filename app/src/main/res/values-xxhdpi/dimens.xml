@@ -12,6 +12,7 @@
     <dimen name="normal_Button">40dp</dimen>
     <dimen name="normal_TextSize14">14dp</dimen>
     <dimen name="text_on_board">18sp</dimen>
+    <dimen name="icon_menu">85dp</dimen>
 
     <dimen name="viewpager_next_item_visible">26dp</dimen>
     <dimen name="viewpager_current_item_horizontal_margin">42dp</dimen>

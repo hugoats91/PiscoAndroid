@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/ImageViewButtonMenuClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@color/clear"
@@ -44,8 +44,8 @@
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/icon_menu"
+                android:layout_height="@dimen/icon_menu"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -124,8 +124,8 @@
 
             <ImageView
                 android:id="@+id/imageView10"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/icon_menu"
+                android:layout_height="@dimen/icon_menu"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -183,8 +183,8 @@
 
             <ImageView
                 android:id="@+id/imageView11"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/icon_menu"
+                android:layout_height="@dimen/icon_menu"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -242,8 +242,8 @@
 
             <ImageView
                 android:id="@+id/imageView12"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/icon_menu"
+                android:layout_height="@dimen/icon_menu"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -301,8 +301,8 @@
 
             <ImageView
                 android:id="@+id/imageView13"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/icon_menu"
+                android:layout_height="@dimen/icon_menu"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -360,8 +360,8 @@
 
             <ImageView
                 android:id="@+id/imageView14"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/icon_menu"
+                android:layout_height="@dimen/icon_menu"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"

@@ -151,14 +151,15 @@
             <ImageView
                 android:id="@+id/ivRuleta"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
+                android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvRuletaTitle"
-                app:srcCompat="@drawable/ruleta1" />
+                app:srcCompat="@drawable/ruleta" />
 
             <ImageView
                 android:id="@+id/ivCenter"
@@ -168,7 +169,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/ivRuleta"
                 app:layout_constraintStart_toStartOf="@+id/ivRuleta"
                 app:layout_constraintTop_toTopOf="@+id/ivRuleta"
-                app:srcCompat="@drawable/spin" />
+                app:srcCompat="@drawable/spin"
+                tools:visibility="gone" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clRecetas"
