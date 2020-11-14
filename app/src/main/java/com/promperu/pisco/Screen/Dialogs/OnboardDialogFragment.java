@@ -18,6 +18,7 @@ import com.promperu.pisco.Entity.ScreenItem;
 import com.promperu.pisco.LocalService.AppDatabase;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Utils.FragmentInstanceList;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewInstanceList;
 
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class OnboardDialogFragment extends DialogFragment implements BoardViewPa
             onboard = args.getString("onboard", "");
         }
         screenList.clear();
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+        if (UtilUser.getUser().getPortalId() == 1) {
             switch (onboard) {
                 case "onboard-donde":
                     screenList.add(new ScreenItem(getString(R.string.app_en_onboard_donde_1), R.drawable.world_onboard, 1, onboard));

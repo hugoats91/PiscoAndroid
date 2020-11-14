@@ -20,6 +20,7 @@ import com.promperu.pisco.LocalService.AppDatabase;
 import com.promperu.pisco.PiscoApplication;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Utils.UtilAnalytics;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewModelInstanceList;
 import com.squareup.picasso.Picasso;
 
@@ -72,7 +73,7 @@ public class RecipeObjectFragment extends Fragment {
             ivHeart.setImageDrawable(AppCompatResources.getDrawable(view.getContext(), R.drawable.megustacorazoncirculo));
         }
         Button tnShow = view.findViewById(R.id.bvShow);
-        if(AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId()==0) {
+        if(UtilUser.getUser().getPortalId()==0) {
             tnShow.setText(R.string.app_es_ver_receta);
         }else{
             tnShow.setText(R.string.app_en_ver_receta);

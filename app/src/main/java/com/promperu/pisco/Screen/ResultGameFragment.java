@@ -24,12 +24,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.promperu.pisco.LocalService.AppDatabase;
+import com.promperu.pisco.LocalService.Entity.EntityUser;
 import com.promperu.pisco.PiscoApplication;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Utils.AppConstantList;
 import com.promperu.pisco.Utils.DownloadImageTask;
 import com.promperu.pisco.Utils.UtilAnalytics;
 import com.promperu.pisco.Utils.UtilSound;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewInstanceList;
 import com.promperu.pisco.ViewModel.HomeViewModel;
 import com.promperu.pisco.ViewModel.LiveData.Question;
@@ -59,6 +61,7 @@ public class ResultGameFragment extends Fragment {
     private String drinkTitle;
     private String drinkImagePath;
     private TextView tvRecipe;
+    EntityUser user;
 
     public ResultGameFragment() {}
 
@@ -119,6 +122,7 @@ public class ResultGameFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Resultado del juego");
+        user = UtilUser.getUser();
         HomeViewModel homeViewModel =new HomeViewModel();
         ImageView ivBack = view.findViewById(R.id.IDBackInResultadoJuego);
         ImageView ivHeader = view.findViewById(R.id.IDInResultadoJuegoCabeceraImageView);
@@ -131,7 +135,7 @@ public class ResultGameFragment extends Fragment {
         TextView tvBody = view.findViewById(R.id.marg);
         CardView cardView = view.findViewById(R.id.CardViewINImagenRecetaCabecera);
         cardView.setBackgroundResource(R.drawable.border_image);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+        if (user.getPortalId() == 1) {
             tvBody.setText(R.string.app_en_resultado_juego_titulo_cuerpo);
             btnPlayAgain.setText(R.string.app_en_jugar_denuevo);
         } else {
@@ -177,11 +181,11 @@ public class ResultGameFragment extends Fragment {
                     drinkId = jsonObject.get("BebiId").getAsInt();
                     resultDrinkImage = jsonObject.get("BebiImagenResultado").getAsString();
                     drinkTitle = jsonObject.get("BebiTitulo").getAsString();
-                    drinkImagePath = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_BEBIDA + drinkId +"/" + resultDrinkImage;
+                    drinkImagePath = user.getImagePath() + AppConstantList.RUTA_BEBIDA + drinkId +"/" + resultDrinkImage;
                     Picasso.get().load(drinkImagePath).into(ivHeader);
                     tvTitle.setText(question);
                     String yourPerfectRecipe;
-                    if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+                    if (user.getPortalId() == 1) {
                         yourPerfectRecipe = getString(R.string.app_en_resultado_juego_titulo);
                     } else {
                         yourPerfectRecipe = getString(R.string.app_es_resultado_juego_titulo);
@@ -220,7 +224,7 @@ public class ResultGameFragment extends Fragment {
                 try {
                     JsonObject jsonObject = jsonElement.getAsJsonObject();
                     int partPuntajeAcumulado=jsonObject.get("PartPuntajeAcumulado").getAsInt();
-                    if (partPuntajeAcumulado==AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
+                    if (partPuntajeAcumulado==user.getNumberRoulette()) {
                         DialogFragment newFragment = new TrophyDialogFragment();
                         newFragment.show(getChildFragmentManager(), "missiles");
                     } else {

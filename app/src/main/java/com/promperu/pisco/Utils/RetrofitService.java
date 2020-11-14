@@ -25,7 +25,7 @@ public class RetrofitService {
 
     private static OkHttpClient client = new OkHttpClient.Builder()
             .addInterceptor(chain -> {
-                EntityUser user = AppDatabase.INSTANCE.userDao().getEntityUser();
+                EntityUser user = UtilUser.getUser();
                 if (user!=null){
                     Request newRequest = chain.request().newBuilder()
                             .addHeader("Authorization", "Bearer " + user.getToken())

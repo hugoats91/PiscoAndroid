@@ -13,6 +13,7 @@ import com.promperu.pisco.LocalService.AppDatabase;
 import com.promperu.pisco.LocalService.Entity.EntityUser;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Repository.OAuthAuthorizationRepository;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewInstanceList;
 import com.promperu.pisco.ViewModel.LiveData.Drink;
 import com.promperu.pisco.ViewModel.LiveData.CityData;
@@ -56,7 +57,7 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void questionList(Callback<ArrayList<JsonObject>> calling) {
-        EntityUser user = AppDatabase.INSTANCE.userDao().getEntityUser();
+        EntityUser user = UtilUser.getUser();
         int bebiId = user.getBebiId();
         if (bebiId != 0) {
             Drink drink = new Drink(bebiId);
@@ -156,7 +157,7 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void postUpdateUserFront(Callback<JsonElement> calling, LoginRegisterData data) {
-        data.setCountryPortalId(AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId());
+        data.setCountryPortalId(UtilUser.getUser().getPortalId());
         Call<JsonElement> call = oauthRepository.postUpdateUserFront(data);
         call.enqueue(calling);
     }

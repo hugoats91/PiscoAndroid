@@ -17,6 +17,7 @@ import com.promperu.pisco.LocalService.AppDatabase;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Repository.OAuthRepository;
 import com.promperu.pisco.Utils.Query;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewInstanceList;
 import com.promperu.pisco.ViewModel.LiveData.CountryData;
 import com.promperu.pisco.ViewModel.LiveData.LoginRegisterData;
@@ -132,7 +133,7 @@ public class LogInEmailRegisterViewModel extends ViewModel {
     }
 
     public void postCountryListUserFront(Callback<JsonElement> calling) {
-        CountryData data = new CountryData(AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId());
+        CountryData data = new CountryData(UtilUser.getUser().getPortalId());
         Call<JsonElement> call = oauthRepository.postCountryListFront(data);
         call.enqueue(calling);
     }

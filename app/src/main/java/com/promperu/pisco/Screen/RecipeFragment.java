@@ -33,6 +33,7 @@ import com.promperu.pisco.PiscoApplication;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Utils.AppConstantList;
 import com.promperu.pisco.Utils.UtilAnalytics;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewModelInstanceList;
 import com.promperu.pisco.Utils.ViewInstanceList;
 import com.promperu.pisco.ViewModel.HomeViewModel;
@@ -92,7 +93,7 @@ public class RecipeFragment extends Fragment {
                         String recipeImageHeader = arrayList.get(i).getAsJsonObject().get("ReceImagenRecetaCabecera").getAsString();
                         int userLike = arrayList.get(i).getAsJsonObject().get("ReceUsuarioMeGusta").getAsInt();
                         int userId = arrayList.get(i).getAsJsonObject().get("ReceUsuarioId").getAsInt();
-                        String imagePath = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_RECETA + recipeId + "/" + recipeImage;
+                        String imagePath = UtilUser.getUser().getImagePath() + AppConstantList.RUTA_RECETA + recipeId + "/" + recipeImage;
                         recipeItemList.add(new RecipeItem(recipeTitle, "", recipeDescription, imagePath, recipeImageHeader, recipeId, userLike, userId));
                     }
                     viewPagerRecipeList = view.findViewById(R.id.recetas_pisco_view_pager);
@@ -144,7 +145,7 @@ public class RecipeFragment extends Fragment {
                         int userLike = arrayList.get(i).getAsJsonObject().get("ReceUsuarioMeGusta").getAsInt();
                         int userId = arrayList.get(i).getAsJsonObject().get("ReceUsuarioId").getAsInt();
                         String recipeRoundedImage = arrayList.get(i).getAsJsonObject().get("RecetaImagebRedonda").getAsString();
-                        String imagePath = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_RECETA + recipeId + "/" + recipeRoundedImage;
+                        String imagePath = UtilUser.getUser().getImagePath() + AppConstantList.RUTA_RECETA + recipeId + "/" + recipeRoundedImage;
                         blockedRecipeItemList.add(new RecipeItem(recipeTitle, "", recipeDescription, imagePath, "", recipeId, userLike, userId));
                     }
                 } catch (Exception e) {
@@ -174,7 +175,7 @@ public class RecipeFragment extends Fragment {
         TextView tvRecipeName = view.findViewById(R.id.IDapp_es_receta_nombre);
         TextView tvRecipeSubtitle = view.findViewById(R.id.IDapp_es_receta_subtitulo);
         Button btnPlayAgain = view.findViewById(R.id.IDButtonResultadoJuegoAgainJugarDenuevo);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+        if (UtilUser.getUser().getPortalId() == 0) {
             tvBlockedRecipe.setText(R.string.app_es_receta_block);
             tvSubtitle.setText(R.string.app_es_receta_block_subitulo);
             tvRecipeName.setText(R.string.app_es_receta_nombre);
@@ -202,7 +203,7 @@ public class RecipeFragment extends Fragment {
                     try {
                         JsonObject jsonObject = jsonElement.getAsJsonObject();
                         int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
-                        if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
+                        if (currentScore == UtilUser.getUser().getNumberRoulette()) {
                             DialogFragment newFragment = new TrophyDialogFragment();
                             newFragment.show(getChildFragmentManager(), "missiles");
                         } else {

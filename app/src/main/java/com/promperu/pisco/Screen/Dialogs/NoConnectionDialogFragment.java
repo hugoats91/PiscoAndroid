@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.promperu.pisco.LocalService.AppDatabase;
 import com.promperu.pisco.R;
+import com.promperu.pisco.Utils.UtilUser;
 
 public class NoConnectionDialogFragment extends DialogFragment {
 
@@ -33,7 +34,7 @@ public class NoConnectionDialogFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         TextView tvTitle = view.findViewById(R.id.tvTitle);
         TextView tvDescription = view.findViewById(R.id.tvDescription);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+        if (UtilUser.getUser().getPortalId() == 0) {
             tvTitle.setText(getString(R.string.app_es_no_conexion_titulo));
             tvDescription.setText(getString(R.string.app_es_no_conexion));
         }else{

@@ -25,10 +25,12 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.promperu.pisco.LocalService.AppDatabase;
+import com.promperu.pisco.LocalService.Entity.EntityUser;
 import com.promperu.pisco.PiscoApplication;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Utils.Query;
 import com.promperu.pisco.Utils.UtilAnalytics;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewInstanceList;
 import com.promperu.pisco.ViewModel.HomeViewModel;
 import com.promperu.pisco.Screen.Dialogs.TrophyDialogFragment;
@@ -45,6 +47,7 @@ import retrofit2.internal.EverythingIsNonNull;
 public class AskResultFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    EntityUser user;
 
     public AskResultFragment() {}
 
@@ -54,6 +57,7 @@ public class AskResultFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_in_resultado_ask, container, false);
         ViewInstanceList.setViewInstances("in-resultado-ask-fragment", view);
         Context context = getContext();
+        user = UtilUser.getUser();
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }
@@ -83,7 +87,7 @@ public class AskResultFragment extends Fragment {
                     try {
                         JsonObject jsonObject = jsonElement.getAsJsonObject();
                         int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
-                        if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
+                        if (currentScore == user.getNumberRoulette()) {
                             TrophyDialogFragment newFragment = new TrophyDialogFragment();
                             newFragment.setListener(() -> {
                                 requireActivity().onBackPressed();
@@ -121,7 +125,7 @@ public class AskResultFragment extends Fragment {
         Button btnLearnPisco = view.findViewById(R.id.IDButtonResultadoJuegoAskAprendePisco);
         btnLearnPisco.setOnClickListener(v -> {
             UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Resultados del Juego", "Boton", "Aprende sobre Pisco_Resultado");
-            String url=AppDatabase.INSTANCE.userDao().getEntityUser().getLearnPisco();
+            String url=user.getLearnPisco();
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
@@ -138,7 +142,7 @@ public class AskResultFragment extends Fragment {
             String recipeId = bundle.getString("ReceId");
             TextView tvRecipe = view.findViewById(R.id.IdTextViewReceta);
             String yourPerfectRecipe;
-            if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+            if (user.getPortalId() == 1) {
                 yourPerfectRecipe = getString(R.string.app_en_resultado_juego_titulo);
             } else {
                 yourPerfectRecipe = getString(R.string.app_es_resultado_juego_titulo);
@@ -180,7 +184,7 @@ public class AskResultFragment extends Fragment {
         Button btnWhereBuy = view.findViewById(R.id.IDButtonResultadoJuegoAskDondeComprar);
         Button btnLearnPisco = view.findViewById(R.id.IDButtonResultadoJuegoAskAprendePisco);
         Button btnPlayAgain = view.findViewById(R.id.IDButtonResultadoJuegoAskJugarDenuevo);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+        if (user.getPortalId() == 0) {
             tvBodyTitle.setText(R.string.app_es_resultado_juego_titulo_cuerpo);
             tvCongratulations.setText(R.string.app_es_resultado_felicidad);
             tvEarnPoint.setText(R.string.app_es_resultado_ganaste_punto);

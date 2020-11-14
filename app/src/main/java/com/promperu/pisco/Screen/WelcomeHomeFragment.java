@@ -23,6 +23,7 @@ import com.promperu.pisco.Screen.Dialogs.ProgressDialogFragment;
 import com.promperu.pisco.Utils.Query;
 import com.promperu.pisco.Utils.UtilAnalytics;
 import com.promperu.pisco.Utils.UtilDialog;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewModelInstanceList;
 import com.promperu.pisco.Utils.ViewInstanceList;
 
@@ -80,7 +81,7 @@ public class WelcomeHomeFragment extends Fragment {
     public void autogenerate() {
         TextView tvChangePasswordSuccessfull = ViewInstanceList.getDictionaryViews("inicio-bienvenido-fragment").findViewById(R.id.mensaje_cambio_contrasena_exitoso);
         String changePasswordSuccessfull = (String) tvChangePasswordSuccessfull.getText();
-        String userName = AppDatabase.INSTANCE.userDao().getEntityUser().getUserName();
+        String userName = UtilUser.getUser().getUserName();
         changePasswordSuccessfull = changePasswordSuccessfull.replaceAll("nombre!", "<b>"+userName+"</b>!");
         tvChangePasswordSuccessfull.setText(Html.fromHtml(changePasswordSuccessfull));
     }

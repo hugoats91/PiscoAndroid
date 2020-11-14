@@ -37,7 +37,7 @@ import com.promperu.pisco.Screen.Dialogs.TrophyDialogFragment;
 import com.promperu.pisco.Utils.AppConstantList;
 import com.promperu.pisco.Utils.Query;
 import com.promperu.pisco.Utils.UtilAnalytics;
-import com.promperu.pisco.Utils.UtilDialog;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.UtilSound;
 import com.promperu.pisco.Utils.UtilText;
 import com.promperu.pisco.Utils.ViewInstanceList;
@@ -70,6 +70,7 @@ public class StartFragment extends Fragment {
 
     ConstraintLayout layoutPromotions;
     TextView tvPromotions;
+    EntityUser user;
 
     public StartFragment() {
     }
@@ -81,6 +82,7 @@ public class StartFragment extends Fragment {
         UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Inicio");
         HomeViewModel homeViewModel = new HomeViewModel();
         Context context = getContext();
+        user = UtilUser.getUser();
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }
@@ -91,8 +93,7 @@ public class StartFragment extends Fragment {
         });
 
         TextView btnUser = view.findViewById(R.id.tvName);
-        EntityUser userName = AppDatabase.INSTANCE.userDao().getEntityUser();
-        if (userName != null) btnUser.setText(UtilText.capitalize(userName.userName));
+        if (user != null) btnUser.setText(UtilText.capitalize(user.userName));
         TextView btnStart = view.findViewById(R.id.tvPoints);
 
         homeViewModel.currentScore(new Callback<JsonElement>() {
@@ -146,7 +147,7 @@ public class StartFragment extends Fragment {
                         layoutPromotions.setVisibility(View.VISIBLE);
                         promotionPiscoItemList = new ArrayList<>();
                         for (int i = 0; i < data.size(); i++) {
-                            String imagePath = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_PROMOCION + data.get(i).getAsJsonObject().get("PromId").getAsInt() + "/" + data.get(i).getAsJsonObject().get("PromImagen").getAsString();
+                            String imagePath = user.getImagePath() + AppConstantList.RUTA_PROMOCION + data.get(i).getAsJsonObject().get("PromId").getAsInt() + "/" + data.get(i).getAsJsonObject().get("PromImagen").getAsString();
                             promotionPiscoItemList.add(new PromotionPiscoItem(imagePath,
                                     data.get(i).getAsJsonObject().get("PromTitulo").getAsString(),
                                     data.get(i).getAsJsonObject().get("PromPromocion").getAsString(),
@@ -180,7 +181,7 @@ public class StartFragment extends Fragment {
         });
         ImageView ivPoint = view.findViewById(R.id.ivCenter);
         ivWheel = view.findViewById(R.id.ivRuleta);
-        String imageRoulettePath = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_RULETA + AppDatabase.INSTANCE.userDao().getEntityUser().getImageRoulette();
+        String imageRoulettePath = user.getImagePath() + AppConstantList.RUTA_RULETA + user.getImageRoulette();
         Picasso.get().load(imageRoulettePath).into(ivWheel);
         random = new Random();
         ivPoint.setOnClickListener(v -> rouletteOnWeel());
@@ -189,7 +190,7 @@ public class StartFragment extends Fragment {
         aprendePisco.setOnClickListener(v -> {
             UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Conoce mas");
             UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "boton", "Inicio - Aprende sobre pisco");
-            String url = AppDatabase.INSTANCE.userDao().getEntityUser().getLearnPisco();
+            String url = user.getLearnPisco();
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
@@ -231,7 +232,7 @@ public class StartFragment extends Fragment {
                 try {
                     JsonObject jsonObject = jsonElement.getAsJsonObject();
                     int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
-                    if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
+                    if (currentScore == user.getNumberRoulette()) {
                         DialogFragment newFragment = new TrophyDialogFragment();
                         newFragment.show(getChildFragmentManager(), "missiles");
                     } else {
@@ -319,7 +320,7 @@ public class StartFragment extends Fragment {
         TextView btnLearnPisco = view.findViewById(R.id.tvAprendeTitle);
         layoutPromotions = view.findViewById(R.id.clPromotions);
         tvPromotions = view.findViewById(R.id.tvPromotionsTitle);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+        if (user.getPortalId() == 1) {
             tvSpinRoulette.setText(R.string.app_en_inicio_ruleta);
             tvRecipes.setText(R.string.app_en_recetas);
             btnWhereBuy.setText(R.string.app_en_donde_comprar);
@@ -337,7 +338,7 @@ public class StartFragment extends Fragment {
 
     private int currentNumber(int degrees) {
         int number = 0;
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette() == 4) {
+        if (user.getNumberRoulette() == 4) {
             if (degrees >= 45 && degrees < 135) {
                 number = 1;
             } else if (degrees >= 135 && degrees < 225) {
@@ -347,7 +348,7 @@ public class StartFragment extends Fragment {
             } else if (degrees >= 315 && degrees < 360 || degrees >= 0 && degrees < 45) {
                 number = 4;
             }
-        } else if (AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette() == 6) {
+        } else if (user.getNumberRoulette() == 6) {
             if (degrees >= 30 && degrees < 90) {
                 number = 1;
             } else if (degrees >= 90 && degrees < 150) {
@@ -361,7 +362,7 @@ public class StartFragment extends Fragment {
             } else if (degrees >= 330 && degrees < 360 || degrees >= 0 && degrees < 30) {
                 number = 6;
             }
-        } else if (AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette() == 8) {
+        } else if (user.getNumberRoulette() == 8) {
             double RESTA = 22.5;
             if (degrees >= 45 - RESTA && degrees < 90 - RESTA) {
                 number = 1;
@@ -380,7 +381,7 @@ public class StartFragment extends Fragment {
             } else if (degrees >= 355 - RESTA && degrees < 360 || degrees >= 0 && degrees < 45 - RESTA) {
                 number = 8;
             }
-        } else if (AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette() == 10) {
+        } else if (user.getNumberRoulette() == 10) {
             if (degrees >= 18 && degrees < 54) {
                 number = 1;
             } else if (degrees >= 54 && degrees < 90) {
@@ -402,7 +403,7 @@ public class StartFragment extends Fragment {
             } else if (degrees >= 342 && degrees < 360 || degrees >= 0 && degrees < 18) {
                 number = 10;
             }
-        } else if (AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette() == 12) {
+        } else if (user.getNumberRoulette() == 12) {
             if (degrees >= 15 && degrees < 45) {
                 number = 1;
             } else if (degrees >= 45 && degrees < 75) {

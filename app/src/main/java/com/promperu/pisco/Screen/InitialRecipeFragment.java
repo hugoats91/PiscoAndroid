@@ -27,11 +27,13 @@ import com.google.gson.JsonObject;
 import com.promperu.pisco.Adapter.IngredientsAdapter;
 import com.promperu.pisco.Entity.IngredientItem;
 import com.promperu.pisco.LocalService.AppDatabase;
+import com.promperu.pisco.LocalService.Entity.EntityUser;
 import com.promperu.pisco.PiscoApplication;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Utils.AppConstantList;
 import com.promperu.pisco.Utils.DownloadImageTask;
 import com.promperu.pisco.Utils.UtilAnalytics;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewInstanceList;
 import com.promperu.pisco.ViewModel.HomeViewModel;
 import com.promperu.pisco.ViewModel.LiveData.RecipeData;
@@ -56,6 +58,7 @@ public class InitialRecipeFragment extends Fragment {
     private IngredientsAdapter ingredientsAdapter;
     private RecyclerView rvIngredients;
     private List<IngredientItem> ingredientItemList;
+    EntityUser user;
 
     public InitialRecipeFragment() {}
 
@@ -65,12 +68,13 @@ public class InitialRecipeFragment extends Fragment {
         ViewInstanceList.setViewInstances("in-inicio-receta-fragment", view);
         HomeViewModel homeViewModel = new HomeViewModel();
         Context context = getContext();
+        user = UtilUser.getUser();
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }
-        int recipeId = AppDatabase.INSTANCE.userDao().getEntityUser().getRecipeId();
+        int recipeId = user.getRecipeId();
         RecipeData recipeData = new RecipeData(recipeId);
-        AppDatabase.INSTANCE.userDao().getEntityUser().setRecipeId(0);
+        user.setRecipeId(0);
         homeViewModel.postRecipeListFront(recipeData, new Callback<ArrayList<JsonObject>>() {
 
             @EverythingIsNonNull
@@ -96,7 +100,7 @@ public class InitialRecipeFragment extends Fragment {
                     TextView tvDescription = view.findViewById(R.id.IDTextViewInRecetaDescription);
                     tvDescription.setText(recipeDescription);
                     ImageView ivHeader = view.findViewById(R.id.ImageViewINRecetaReceImagenRecetaCabecera);
-                    String imageHeaderUrl = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath()+ AppConstantList.RUTA_RECETA + recipeId + "/" + recipeImageHeader;
+                    String imageHeaderUrl = user.getImagePath()+ AppConstantList.RUTA_RECETA + recipeId + "/" + recipeImageHeader;
                     Picasso.get().load(imageHeaderUrl).into(ivHeader);
                     ingredientItemList = new ArrayList<>();
                     JsonArray ingredientJsonArray = jsonObject.get("ListaIngredientes").getAsJsonArray();
@@ -105,7 +109,7 @@ public class InitialRecipeFragment extends Fragment {
                         String title = ingredientJsonArray.get(j).getAsJsonObject().get("IngrTitulo").getAsString();
                         String icon = ingredientJsonArray.get(j).getAsJsonObject().get("IngrIcono").getAsString();
                         String description = ingredientJsonArray.get(j).getAsJsonObject().get("IngrDescripcion").getAsString();
-                        String urlIcon = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_INGREDIENTE + id + "/" + icon;
+                        String urlIcon = user.getImagePath() + AppConstantList.RUTA_INGREDIENTE + id + "/" + icon;
                         ingredientItemList.add(new IngredientItem(id, title, urlIcon, description));
                     }
                     rvIngredients = view.findViewById(R.id.rvIngredients);
@@ -121,7 +125,7 @@ public class InitialRecipeFragment extends Fragment {
                         int id = preparationJsonArray.get(j).getAsJsonObject().get("RecePreparacionId").getAsInt();
                         String detail = preparationJsonArray.get(j).getAsJsonObject().get("RecePreparacionDetalle").getAsString();
                         String image = preparationJsonArray.get(j).getAsJsonObject().get("RecePreparacionImagen").getAsString();
-                        String imageUrl = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath()+ AppConstantList.RUTA_RECETA_PREPARACION + id+"/" + image;
+                        String imageUrl = user.getImagePath()+ AppConstantList.RUTA_RECETA_PREPARACION + id+"/" + image;
                         if(j % 2 == 0){
                             View viewLeft = inflater.inflate(R.layout.layout_preparacion_left, container, false);
                             textView = viewLeft.findViewById(R.id.IDLayoutPreparacionLeftContenido);
@@ -165,7 +169,8 @@ public class InitialRecipeFragment extends Fragment {
         TextView tvIngredientList = view.findViewById(R.id.IDapp_es_ingredientes);
         CardView cardHeader = view.findViewById(R.id.CardViewINRecetaReceImagenRecetaCabecera);
         cardHeader.setBackgroundResource(R.drawable.border_image);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+        user = UtilUser.getUser();
+        if (user.getPortalId() == 0) {
             btnPlayAgain.setText(R.string.app_es_jugar_denuevo);
             tvPreparation.setText(R.string.app_es_preparacion);
             tvIngredientList.setText(R.string.app_es_ingredientes);
@@ -189,7 +194,7 @@ public class InitialRecipeFragment extends Fragment {
                     try {
                         JsonObject jsonObject = jsonElement.getAsJsonObject();
                         int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
-                        if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
+                        if (currentScore == user.getNumberRoulette()) {
                             DialogFragment newFragment = new TrophyDialogFragment();
                             newFragment.show(getChildFragmentManager(), "missiles");
                         } else {

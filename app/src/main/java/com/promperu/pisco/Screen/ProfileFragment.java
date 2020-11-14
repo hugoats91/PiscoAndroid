@@ -54,6 +54,7 @@ import com.promperu.pisco.Utils.Query;
 import com.promperu.pisco.Utils.UtilAnalytics;
 import com.promperu.pisco.Utils.UtilBitmap;
 import com.promperu.pisco.Utils.UtilDialog;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewInstanceList;
 import com.promperu.pisco.Utils.ViewModelInstanceList;
 import com.promperu.pisco.ViewModel.HomeViewModel;
@@ -92,6 +93,7 @@ public class ProfileFragment extends Fragment {
     private Button btnOption;
     private ImageView imageview;
     private ArrayList<Country> countries = new ArrayList<Country>();
+    EntityUser user;
 
     private String imgBase64 = "data:image/png;base64,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";
 
@@ -107,6 +109,7 @@ public class ProfileFragment extends Fragment {
         if (context != null) {
             FirebaseAnalytics.getInstance(context);
         }
+        user = UtilUser.getUser();
         ImageView ivMenu = view.findViewById(R.id.IDMenuModal);
         ivMenu.setOnClickListener(v -> {
             DialogFragment newFragment = new MenuDialogFragment();
@@ -129,6 +132,7 @@ public class ProfileFragment extends Fragment {
         if (args == null) {
             return;
         }
+        user = UtilUser.getUser();
         ImageView ivBack = view.findViewById(R.id.ImageViewButtonBackPerfil);
         ivBack.setOnClickListener(v -> {
             String type = args.getString("type");
@@ -155,7 +159,7 @@ public class ProfileFragment extends Fragment {
         ImageView tvCamera = view.findViewById(R.id.IDImageViewCamera);
         TextView tvLanguageProfile = view.findViewById(R.id.IDapp_es_idioma_perfil);
         TextView tvLanguage = view.findViewById(R.id.IDTextViewIdioma);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+        if (user.getPortalId() == 0) {
             tvGeneralInfo.setText(getString(R.string.app_es_informacion_general));
             tvEmailProfile.setText(getString(R.string.app_es_correo_perfil));
             tvCountryProfile.setText(getString(R.string.app_es_pais_perfil));
@@ -212,7 +216,7 @@ public class ProfileFragment extends Fragment {
                     if (userImage.equals("")) {
                         imageview.setImageDrawable(AppCompatResources.getDrawable(view.getContext(), R.drawable.imagenperfil));
                     } else {
-                        String urlImagen = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_USUARIO + userId + "/" + userImage;
+                        String urlImagen = user.getImagePath() + AppConstantList.RUTA_USUARIO + userId + "/" + userImage;
                         Picasso.get().load(urlImagen)
                                 .transform(new CircleTransform())
                                 .error(R.drawable.imagenperfil)
@@ -327,7 +331,7 @@ public class ProfileFragment extends Fragment {
                     ((TextView) view.findViewById(R.id.IDTextViewNombre)).setText(name);
                     ((TextView) view.findViewById(R.id.IDTextViewCorreo)).setText(email);
                     ((TextView) view.findViewById(R.id.IDTextViewPais)).setText(country);
-                    int portalId = AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId();
+                    int portalId = user.getPortalId();
                     if (portalId == 0) {
                         tvGeneralInfo.setText(getString(R.string.app_es_informacion_general));
                         tvEmailProfile.setText(getString(R.string.app_es_correo_perfil));
@@ -336,7 +340,7 @@ public class ProfileFragment extends Fragment {
                         tvEdit.setText(getString(R.string.app_es_editar));
                         tvLanguageProfile.setText(getString(R.string.app_es_idioma_perfil));
                         tvLanguage.setText(getString(R.string.app_es));
-                        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+                        if (user.getPortalId() == 0) {
                             arrLanguage[0] = getString(R.string.app_es_espanol);
                             arrLanguage[1] = getString(R.string.app_es_ingles);
                         } else {
@@ -351,7 +355,7 @@ public class ProfileFragment extends Fragment {
                         tvEdit.setText(getString(R.string.app_en_editar));
                         tvLanguageProfile.setText(getString(R.string.app_en_idioma_perfil));
                         tvLanguage.setText(getString(R.string.app_en));
-                        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+                        if (user.getPortalId() == 0) {
                             arrLanguage[0] = getString(R.string.app_en_espanol);
                             arrLanguage[1] = getString(R.string.app_en_ingles);
                         } else {
@@ -373,7 +377,7 @@ public class ProfileFragment extends Fragment {
                             LoginRegisterData loginRegisterData = new LoginRegisterData();
                             loginRegisterData.setEmail(email);
                             loginRegisterData.setPassword(finalPassword);
-                            loginRegisterData.setType(AppDatabase.INSTANCE.userDao().getEntityUser().getUserType());
+                            loginRegisterData.setType(user.getUserType());
                             ViewModelInstanceList.getHomeViewModelInstance().postEmailSelectionFront(loginRegisterData, new Callback<JsonElement>() {
                                 @Override
                                 public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
@@ -473,7 +477,7 @@ public class ProfileFragment extends Fragment {
                 etName.setText(tvName.getText());
                 etEmail.setText(tvEmail.getText());
                 etPassword.setText("");
-                if (AppDatabase.INSTANCE.userDao().getEntityUser().getUserType() != 0) {
+                if (user.getUserType() != 0) {
                     etEmail.setEnabled(false);
                     etPassword.setEnabled(false);
                     spiCountry.setEnabled(false);
@@ -482,7 +486,7 @@ public class ProfileFragment extends Fragment {
                     etPassword.setEnabled(true);
                     spiCountry.setEnabled(true);
                 }
-                if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+                if (user.getPortalId() == 1) {
                     etName.setHint(getString(R.string.app_en_nombre));
                     etEmail.setHint(getString(R.string.app_en_correo));
                     etPassword.setHint(getString(R.string.app_en_contrasena));
@@ -497,7 +501,7 @@ public class ProfileFragment extends Fragment {
             }
         });
         tvCamera.setOnClickListener(v -> {
-            if (AppDatabase.INSTANCE.userDao().getEntityUser().getUserType() == 0) {
+            if (user.getUserType() == 0) {
                 requestPermissions();
             }
         });
@@ -652,7 +656,7 @@ public class ProfileFragment extends Fragment {
         String cancel;
         String chooseOption;
         String selectImage;
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+        if (user.getPortalId() == 0) {
             takePhoto = getString(R.string.app_es_tomar_foto);
             chooseGallery = getString(R.string.app_es_elegir_galeria);
             cancel = getString(R.string.app_es_cancelar);
@@ -697,7 +701,7 @@ public class ProfileFragment extends Fragment {
         String acceptPermissions;
         String accept;
         String cancel;
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+        if (user.getPortalId() == 1) {
             deniedPermissions = getString(R.string.app_en_permisos_denegados);
             acceptPermissions = getString(R.string.app_en_aceptar_permisos);
             accept = getString(R.string.app_en_aceptar);

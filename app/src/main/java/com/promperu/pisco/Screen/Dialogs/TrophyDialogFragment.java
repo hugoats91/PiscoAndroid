@@ -17,6 +17,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.promperu.pisco.LocalService.AppDatabase;
 import com.promperu.pisco.R;
+import com.promperu.pisco.Utils.UtilUser;
 
 public class TrophyDialogFragment extends DialogFragment {
 
@@ -48,7 +49,7 @@ public class TrophyDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_dialog_pp_in_ruleta_ok, null);
         TextView tvCongratulations = view.findViewById(R.id.IDTextViewFelicitacion);
         TextView tvSubtitle = view.findViewById(R.id.tvSubtitle);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+        if (UtilUser.getUser().getPortalId() == 1) {
             tvCongratulations.setText(getString(R.string.app_en_trophy_congratulations));
             tvSubtitle.setText(getString(R.string.app_en_trophy_subtitle));
         } else {

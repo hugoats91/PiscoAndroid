@@ -18,6 +18,7 @@ import com.promperu.pisco.PiscoApplication;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Utils.DownloadImageTask;
 import com.promperu.pisco.Utils.UtilAnalytics;
+import com.promperu.pisco.Utils.UtilUser;
 
 public class PromotionPiscoFragment extends Fragment {
 
@@ -48,7 +49,7 @@ public class PromotionPiscoFragment extends Fragment {
         tvSubtitle.setText(args.getString(PromSubTitulo));
         view.findViewById(R.id.IdPromocionPiscoCard).setOnClickListener(v -> {
             UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "Clic", "Inicio - Promociones de Pisco");
-            String url= AppDatabase.INSTANCE.userDao().getEntityUser().getLearnPisco();
+            String url= UtilUser.getUser().getLearnPisco();
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             view.getContext().startActivity(intent);

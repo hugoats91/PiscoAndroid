@@ -16,7 +16,9 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.promperu.pisco.Entity.ScreenItem;
 import com.promperu.pisco.LocalService.AppDatabase;
+import com.promperu.pisco.LocalService.Entity.EntityUser;
 import com.promperu.pisco.R;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewModelInstanceList;
 
 import java.util.List;
@@ -26,6 +28,7 @@ public class BoardViewPagerAdapter extends PagerAdapter {
     private Context context;
     private List<ScreenItem> listScreen;
     private OnboardingListener listener;
+    EntityUser user;
 
     public BoardViewPagerAdapter(Context context, List<ScreenItem> listScreen, OnboardingListener listener) {
         this.context = context;
@@ -50,8 +53,9 @@ public class BoardViewPagerAdapter extends PagerAdapter {
         TextView tvReady = layoutScreen.findViewById(R.id.IDTexViewListo);
         ImageView ivNext = layoutScreen.findViewById(R.id.IDImageViewNext);
         TextView tvSkip = layoutScreen.findViewById(R.id.IDTexViewSaltar);
+        user = UtilUser.getUser();
 
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+        if (user.getPortalId() == 1) {
             tvReady.setText(R.string.app_en_listo);
             tvSkip.setText(R.string.app_en_saltar);
         } else {
@@ -75,7 +79,7 @@ public class BoardViewPagerAdapter extends PagerAdapter {
             tvSkip.setVisibility(View.GONE);
             tvReady.setVisibility(View.VISIBLE);
         } else if(onboard.equals("onboard-inicio") && position == 0) {
-            if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1 ){
+            if (user.getPortalId() == 1 ){
                 layoutScreen.setBackgroundResource(R.drawable.onboard_inicio_hola);
             }else{
                 layoutScreen.setBackgroundResource(R.drawable.onboard_inicio_hello);

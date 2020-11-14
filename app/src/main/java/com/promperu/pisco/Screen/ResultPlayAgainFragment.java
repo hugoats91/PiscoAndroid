@@ -27,6 +27,7 @@ import com.promperu.pisco.PiscoApplication;
 import com.promperu.pisco.R;
 import com.promperu.pisco.Utils.DownloadImageTask;
 import com.promperu.pisco.Utils.UtilAnalytics;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewInstanceList;
 import com.promperu.pisco.ViewModel.HomeViewModel;
 import com.promperu.pisco.Screen.Dialogs.TrophyDialogFragment;
@@ -83,7 +84,7 @@ public class ResultPlayAgainFragment extends Fragment {
                     try {
                         JsonObject jsonObject = jsonElement.getAsJsonObject();
                         int currentScore = jsonObject.get("PartPuntajeAcumulado").getAsInt();
-                        if (currentScore == AppDatabase.INSTANCE.userDao().getEntityUser().getNumberRoulette()) {
+                        if (currentScore == UtilUser.getUser().getNumberRoulette()) {
                             DialogFragment newFragment = new TrophyDialogFragment();
                             newFragment.show(getChildFragmentManager(), "missiles");
                         } else {
@@ -113,7 +114,7 @@ public class ResultPlayAgainFragment extends Fragment {
             tvResultIncorrect.setText(bundle.getString("RespMensaje"));
             TextView tvRecipe = view.findViewById(R.id.IdTextViewReceta);
             String yourPerfectRecipe;
-            if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+            if (UtilUser.getUser().getPortalId() == 1) {
                 yourPerfectRecipe = getString(R.string.app_en_resultado_juego_titulo);
             } else {
                 yourPerfectRecipe = getString(R.string.app_es_resultado_juego_titulo);
@@ -134,7 +135,7 @@ public class ResultPlayAgainFragment extends Fragment {
         TextView tvIncorrect = view.findViewById(R.id.IDapp_es_incorrecto);
         TextView tvMoreOptions = view.findViewById(R.id.IDTextViewAgainMasOpciones);
         Button btnPlayAgain = view.findViewById(R.id.IDButtonResultadoJuegoAgainJugarDenuevo);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+        if (UtilUser.getUser().getPortalId() == 1) {
             tvBody.setText(R.string.app_en_resultado_juego_titulo_cuerpo);
             tvIncorrect.setText(R.string.app_en_incorrecto);
             tvMoreOptions.setText(R.string.app_en_resultado_jugar_mas_opciones);

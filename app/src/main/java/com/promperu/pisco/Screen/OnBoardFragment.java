@@ -28,6 +28,7 @@ import com.promperu.pisco.R;
 import com.promperu.pisco.Screen.Dialogs.ProgressDialogFragment;
 import com.promperu.pisco.Utils.UtilAnalytics;
 import com.promperu.pisco.Utils.UtilDialog;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewInstanceList;
 import com.promperu.pisco.Utils.ViewModelInstanceList;
 
@@ -78,7 +79,7 @@ public class OnBoardFragment extends Fragment {
         ivNext = view.findViewById(R.id.ivNext);
         String onBoard = args.getString("type");
         setStyleText(onBoard);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+        if (UtilUser.getUser().getPortalId() == 1) {
             switch (onBoard) {
                 case "onBoard-donde":
                     screenList.add(new ScreenItem(getString(R.string.app_en_onboard_donde_1), R.drawable.world_onboard, 1, onBoard, color));

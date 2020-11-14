@@ -28,6 +28,7 @@ import com.promperu.pisco.R;
 import com.promperu.pisco.Utils.Query;
 import com.promperu.pisco.Utils.UtilAnalytics;
 import com.promperu.pisco.Utils.UtilDialog;
+import com.promperu.pisco.Utils.UtilUser;
 
 public class MenuDialogFragment extends DialogFragment {
 
@@ -118,7 +119,7 @@ public class MenuDialogFragment extends DialogFragment {
                 }
                 Navigation.findNavController(fragmentView).navigate(R.id.in_donde_comprar);
             }else{
-                if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 0) {
+                if (UtilUser.getUser().getPortalId() == 0) {
                     UtilDialog.infoMessage(getContext(), getString(R.string.app_name), getString(R.string.app_es_no_puntos_venta_aviso), () -> {
                         dismiss();
                     });
@@ -132,7 +133,7 @@ public class MenuDialogFragment extends DialogFragment {
 
         view.findViewById(R.id.IDCardViewSobrePisco).setOnClickListener(v -> {
             UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Menu", "Boton", "Menu - Aprende sobre Pisco");
-            String url = AppDatabase.INSTANCE.userDao().getEntityUser().getLearnPisco();
+            String url = UtilUser.getUser().getLearnPisco();
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
@@ -175,7 +176,7 @@ public class MenuDialogFragment extends DialogFragment {
         TextView tvLearnPisco = view.findViewById(R.id.IDDialogMenuAPRENDE);
         TextView tvSignOff = view.findViewById(R.id.id_app_es_menu_salir);
 
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+        if (UtilUser.getUser().getPortalId() == 1) {
             tvProfile.setText(R.string.app_en_menu_perfil);
             tvPlay.setText(R.string.app_en_menu_jugar);
             tvRecipe.setText(R.string.app_en_menu_receta);

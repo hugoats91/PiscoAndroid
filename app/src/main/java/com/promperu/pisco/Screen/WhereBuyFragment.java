@@ -48,6 +48,7 @@ import com.promperu.pisco.Utils.AppConstantList;
 import com.promperu.pisco.Utils.DownloadImageTask;
 import com.promperu.pisco.Utils.UtilAnalytics;
 import com.promperu.pisco.Utils.UtilMap;
+import com.promperu.pisco.Utils.UtilUser;
 import com.promperu.pisco.Utils.ViewInstanceList;
 import com.promperu.pisco.Utils.ViewModelInstanceList;
 import com.promperu.pisco.ViewModel.LiveData.CityData;
@@ -106,7 +107,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TextView tvAvailable = view.findViewById(R.id.Id_app_es_disponible);
-        if (AppDatabase.INSTANCE.userDao().getEntityUser().getPortalId() == 1) {
+        if (UtilUser.getUser().getPortalId() == 1) {
             tvAvailable.setText(R.string.app_en_disponible);
         } else {
             tvAvailable.setText(R.string.app_es_disponible);
@@ -242,7 +243,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                     tvPhone.setText(pointPhone);
                     tvAddress.setText(pointAddress);
                     tvSchedule.setText(pointSchedule);
-                    String imageUrl = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_PUNTO_VENTA + pointId + "/" + pointImage;
+                    String imageUrl = UtilUser.getUser().getImagePath() + AppConstantList.RUTA_PUNTO_VENTA + pointId + "/" + pointImage;
                     Picasso.get().load(imageUrl).into(ivPoint);
                     ivFacebook.setOnClickListener(v -> {
                         Uri uri = Uri.parse(pointUrlFacebook);
@@ -283,7 +284,7 @@ public class WhereBuyFragment extends Fragment implements OnMapReadyCallback {
                                     LayoutInflater layoutInflater = LayoutInflater.from(getContext());
                                     View view = layoutInflater.inflate(R.layout.item_tiendas, containerContent, false);
                                     ImageView imageView = view.findViewById(R.id.IdImageView);
-                                    String imageUrl = AppDatabase.INSTANCE.userDao().getEntityUser().getImagePath() + AppConstantList.RUTA_TIENDA_ONLINE + storeId + "/" + storeIcon;
+                                    String imageUrl = UtilUser.getUser().getImagePath() + AppConstantList.RUTA_TIENDA_ONLINE + storeId + "/" + storeIcon;
                                     new DownloadImageTask(imageView).execute(imageUrl);
                                     imageView.setOnClickListener(v -> {
                                         Uri uri = Uri.parse(pointUrl);
