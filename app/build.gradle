@@ -27,8 +27,8 @@ android {
         applicationId "com.promperu.pisco"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 22
-        versionName "1.22"
+        versionCode 23
+        versionName "1.23"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true//multidex enable

@@ -191,9 +191,11 @@ public class StartFragment extends Fragment {
             UtilAnalytics.sendEventScreen(PiscoApplication.getInstance(requireContext()), "Conoce mas");
             UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Inicio", "boton", "Inicio - Aprende sobre pisco");
             String url = user.getLearnPisco();
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
+            if(!url.isEmpty()){
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
         });
         ConstraintLayout btnWhereBuy = view.findViewById(R.id.clDonde);
         if (Query.readValueInt("count", getContext()) == 0) {
