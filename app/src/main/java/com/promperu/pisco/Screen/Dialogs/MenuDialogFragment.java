@@ -134,9 +134,11 @@ public class MenuDialogFragment extends DialogFragment {
         view.findViewById(R.id.IDCardViewSobrePisco).setOnClickListener(v -> {
             UtilAnalytics.sendEvent(PiscoApplication.getInstance(requireContext()), "send", "event", "Menu", "Boton", "Menu - Aprende sobre Pisco");
             String url = UtilUser.getUser().getLearnPisco();
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
+            if(!url.isEmpty()){
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
         });
 
         view.findViewById(R.id.IDCardViewReceta).setOnClickListener(v -> {

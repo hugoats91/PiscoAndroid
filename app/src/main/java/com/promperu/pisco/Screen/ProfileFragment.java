@@ -250,22 +250,26 @@ public class ProfileFragment extends Fragment {
                                 ViewModelInstanceList.getLogInEmailRegisterViewModelInstance().addCountrySpinner2(spiCountry, countries, currentItem, view);
                             } catch (Exception e) {
                                 e.printStackTrace();
+                                Navigation.findNavController(view).popBackStack();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<JsonElement> call, Throwable t) {
+                            Navigation.findNavController(view).popBackStack();
                         }
 
                     });
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Navigation.findNavController(view).popBackStack();
                 }
             }
 
             @EverythingIsNonNull
             @Override
             public void onFailure(Call<JsonElement> call, Throwable t) {
+                Navigation.findNavController(view).popBackStack();
             }
 
         });
@@ -327,7 +331,11 @@ public class ProfileFragment extends Fragment {
                     } else {
                         password = etPassword.getText().toString();
                     }
-                    String country = spiCountry.getSelectedItem().toString();
+                    String country = "";
+                    Object item = spiCountry.getSelectedItem();
+                    if(item!=null){
+                        country = item.toString();
+                    }
                     ((TextView) view.findViewById(R.id.IDTextViewNombre)).setText(name);
                     ((TextView) view.findViewById(R.id.IDTextViewCorreo)).setText(email);
                     ((TextView) view.findViewById(R.id.IDTextViewPais)).setText(country);
